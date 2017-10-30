@@ -2,7 +2,7 @@ from string import Template
 import os
 import random
 from sqlalchemy.orm import sessionmaker
-import scraper.models as models
+import models
 
 # Connect to the database to retrieve names
 engine = models.db_connect()
