@@ -3,7 +3,7 @@
 import tensorflow as tf
 import numpy as np
 import os
-import text_classification.data_helpers as data_helpers
+import data_helpers
 from tensorflow.contrib import learn
 import csv
 
@@ -11,7 +11,7 @@ import csv
 # ==================================================
 
 # Eval Parameters
-tf.flags.DEFINE_string("checkpoint_dir", "./runs/1494451825/checkpoints/", "Checkpoint directory from training run")
+tf.flags.DEFINE_string("checkpoint_dir", "./runs/general/checkpoints/", "Checkpoint directory from training run")
 
 # Misc Parameters
 tf.flags.DEFINE_boolean("allow_soft_placement", True, "Allow device soft device placement")

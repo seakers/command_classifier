@@ -3,8 +3,8 @@ import numpy as np
 import os
 import time
 import datetime
-import text_classification.data_helpers as data_helpers
-from text_classification.text_cnn import TextCNN
+import data_helpers
+from text_cnn import TextCNN
 from tensorflow.contrib import learn
 
 # Parameters
@@ -15,6 +15,7 @@ tf.flags.DEFINE_float("dev_sample_percentage", .1, "Percentage of the training d
 
 # Model Hyperparameters
 tf.flags.DEFINE_integer("embedding_dim", 128, "Dimensionality of character embedding (default: 128)")
+tf.flags.DEFINE_integer("fc_hidden_size", 1024, "Hidden size for fully connected layer (default: 1024)")
 tf.flags.DEFINE_string("filter_sizes", "3,4,5", "Comma-separated filter sizes (default: '3,4,5')")
 tf.flags.DEFINE_integer("num_filters", 128, "Number of filters per filter size (default: 128)")
 tf.flags.DEFINE_float("dropout_keep_prob", 0.5, "Dropout keep probability (default: 0.5)")
@@ -77,6 +78,7 @@ def train_cnn(x_text, y, output_dir):
                 sequence_length=x_train.shape[1],
                 num_classes=y_train.shape[1],
                 vocab_size=len(vocab_processor.vocabulary_),
+                fc_hidden_size=FLAGS.fc_hidden_size,
                 embedding_size=FLAGS.embedding_dim,
                 filter_sizes=list(map(int, FLAGS.filter_sizes.split(","))),
                 num_filters=FLAGS.num_filters,
@@ -104,15 +106,15 @@ def train_cnn(x_text, y, output_dir):
 
             # Summaries for loss and accuracy
             loss_summary = tf.summary.scalar("loss", cnn.loss)
-            acc_summary = tf.summary.scalar("accuracy", cnn.accuracy)
+            #acc_summary = tf.summary.scalar("accuracy", cnn.accuracy)
 
             # Train Summaries
-            train_summary_op = tf.summary.merge([loss_summary, acc_summary, grad_summaries_merged])
+            train_summary_op = tf.summary.merge([loss_summary, grad_summaries_merged])
             train_summary_dir = os.path.join(out_dir, "summaries", "train")
             train_summary_writer = tf.summary.FileWriter(train_summary_dir, sess.graph)
 
             # Dev summaries
-            dev_summary_op = tf.summary.merge([loss_summary, acc_summary])
+            dev_summary_op = tf.summary.merge([loss_summary])
             dev_summary_dir = os.path.join(out_dir, "summaries", "dev")
             dev_summary_writer = tf.summary.FileWriter(dev_summary_dir, sess.graph)
 
@@ -136,13 +138,14 @@ def train_cnn(x_text, y, output_dir):
                 feed_dict = {
                     cnn.input_x: x_batch,
                     cnn.input_y: y_batch,
-                    cnn.dropout_keep_prob: FLAGS.dropout_keep_prob
+                    cnn.dropout_keep_prob: FLAGS.dropout_keep_prob,
+                    cnn.is_training: True
                 }
-                _, step, summaries, loss, accuracy = sess.run(
-                    [train_op, global_step, train_summary_op, cnn.loss, cnn.accuracy],
+                _, step, summaries, loss = sess.run(
+                    [train_op, global_step, train_summary_op, cnn.loss],
                     feed_dict)
                 time_str = datetime.datetime.now().isoformat()
-                print("{}: step {}, loss {:g}, acc {:g}".format(time_str, step, loss, accuracy))
+                print("{}: step {}, loss {:g}".format(time_str, step, loss))
                 train_summary_writer.add_summary(summaries, step)
 
             def dev_step(x_batch, y_batch, writer=None):
@@ -152,13 +155,14 @@ def train_cnn(x_text, y, output_dir):
                 feed_dict = {
                     cnn.input_x: x_batch,
                     cnn.input_y: y_batch,
-                    cnn.dropout_keep_prob: 1.0
+                    cnn.dropout_keep_prob: 1.0,
+                    cnn.is_training: False
                 }
-                step, summaries, loss, accuracy = sess.run(
-                    [global_step, dev_summary_op, cnn.loss, cnn.accuracy],
+                step, summaries, loss = sess.run(
+                    [global_step, dev_summary_op, cnn.loss],
                     feed_dict)
                 time_str = datetime.datetime.now().isoformat()
-                print("{}: step {}, loss {:g}, acc {:g}".format(time_str, step, loss, accuracy))
+                print("{}: step {}, loss {:g}".format(time_str, step, loss))
                 if writer:
                     writer.add_summary(summaries, step)
 
