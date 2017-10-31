@@ -54,7 +54,9 @@ def load_data_and_labels(data_folder):
     # Add texts and labels
     num_specific_labels = [0, 0, 0, 0]
     dict_specific_labels = [{}, {}, {}, {}]
-    for filename in os.listdir(data_folder):
+
+    files_list = sorted(os.listdir(data_folder))
+    for filename in files_list:
         specific_label = int(filename.split('.', 1)[0])
         with open(data_folder + filename, 'r') as file:
             file_labels = next(file)[:-1]
@@ -65,7 +67,7 @@ def load_data_and_labels(data_folder):
                     num_specific_labels[index] += 1
 
 
-    for filename in os.listdir(data_folder):
+    for filename in files_list:
         specific_label = int(filename.split('.', 1)[0])
         with open(data_folder + filename, 'r') as file:
             file_general_labels = next(file)[:-1]
@@ -80,7 +82,7 @@ def load_data_and_labels(data_folder):
                 for index in range(num_general_labels):
                     if file_general_labels[index]:
                         specific_x_texts[index].append(clean_line)
-                        label_vec = [0 for i in range(num_specific_labels[index])]
+                        label_vec = [0 for _ in range(num_specific_labels[index])]
                         label_vec[dict_specific_labels[index][specific_label]] = 1
                         specific_labels[index].append(label_vec)
 
@@ -89,6 +91,31 @@ def load_data_and_labels(data_folder):
     for index in range(num_general_labels):
         specific_ys[index] = np.array(specific_labels[index])
     return [general_x_text, general_y, specific_x_texts, specific_ys]
+
+
+def get_label_using_logits(logits, top_number=1):
+    logits = np.ndarray.tolist(logits)
+    predicted_labels = []
+    for item in logits:
+        index_list = np.argsort(item)[-top_number:]
+        index_list = index_list[::-1]
+        predicted_labels.append(np.ndarray.tolist(index_list))
+    return predicted_labels
+
+
+def cal_rec_and_acc(predicted_labels, labels):
+    label_no_zero = []
+    for index, label in enumerate(labels):
+        if int(label) == 1:
+            label_no_zero.append(index)
+    count = 0
+    #print("predicted_labels: {}, origin_labels: {}".format(predicted_labels, label_no_zero))
+    for predicted_label in predicted_labels:
+        if int(predicted_label) in label_no_zero:
+            count += 1
+    rec = count / len(label_no_zero)
+    acc = count / len(predicted_labels)
+    return rec, acc
 
 
 def load_embedding_vectors_word2vec(vocabulary, filename, binary):

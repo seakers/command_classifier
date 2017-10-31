@@ -15,11 +15,11 @@ tf.flags.DEFINE_float("dev_sample_percentage", .1, "Percentage of the training d
 
 # Model Hyperparameters
 tf.flags.DEFINE_integer("embedding_dim", 128, "Dimensionality of character embedding (default: 128)")
-tf.flags.DEFINE_integer("fc_hidden_size", 1024, "Hidden size for fully connected layer (default: 1024)")
 tf.flags.DEFINE_string("filter_sizes", "3,4,5", "Comma-separated filter sizes (default: '3,4,5')")
 tf.flags.DEFINE_integer("num_filters", 128, "Number of filters per filter size (default: 128)")
 tf.flags.DEFINE_float("dropout_keep_prob", 0.5, "Dropout keep probability (default: 0.5)")
 tf.flags.DEFINE_float("l2_reg_lambda", 0.0, "L2 regularization lambda (default: 0.0)")
+tf.flags.DEFINE_integer("top_num", 1, "Number of top K prediction classess (default: 3)")
 
 # Training parameters
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
@@ -72,13 +72,13 @@ def train_cnn(x_text, y, output_dir):
         session_conf = tf.ConfigProto(
             allow_soft_placement=FLAGS.allow_soft_placement,
             log_device_placement=FLAGS.log_device_placement)
+        session_conf.gpu_options.allow_growth = FLAGS.gpu_options_allow_growth
         sess = tf.Session(config=session_conf)
         with sess.as_default():
             cnn = TextCNN(
                 sequence_length=x_train.shape[1],
                 num_classes=y_train.shape[1],
                 vocab_size=len(vocab_processor.vocabulary_),
-                fc_hidden_size=FLAGS.fc_hidden_size,
                 embedding_size=FLAGS.embedding_dim,
                 filter_sizes=list(map(int, FLAGS.filter_sizes.split(","))),
                 num_filters=FLAGS.num_filters,
@@ -138,36 +138,33 @@ def train_cnn(x_text, y, output_dir):
                 feed_dict = {
                     cnn.input_x: x_batch,
                     cnn.input_y: y_batch,
-                    cnn.dropout_keep_prob: FLAGS.dropout_keep_prob,
-                    cnn.is_training: True
+                    cnn.dropout_keep_prob: FLAGS.dropout_keep_prob
                 }
-                _, step, summaries, loss = sess.run(
-                    [train_op, global_step, train_summary_op, cnn.loss],
-                    feed_dict)
+                _, step, summaries, loss = sess.run([train_op, global_step, train_summary_op, cnn.loss], feed_dict)
                 time_str = datetime.datetime.now().isoformat()
                 print("{}: step {}, loss {:g}".format(time_str, step, loss))
                 train_summary_writer.add_summary(summaries, step)
 
-            def dev_step(x_batch, y_batch, writer=None):
+            def dev_step(x_batch, y_batch):
                 """
                 Evaluates model on a dev set
                 """
                 feed_dict = {
                     cnn.input_x: x_batch,
                     cnn.input_y: y_batch,
-                    cnn.dropout_keep_prob: 1.0,
-                    cnn.is_training: False
+                    cnn.dropout_keep_prob: 1.0
                 }
                 step, summaries, loss = sess.run(
                     [global_step, dev_summary_op, cnn.loss],
                     feed_dict)
                 time_str = datetime.datetime.now().isoformat()
                 print("{}: step {}, loss {:g}".format(time_str, step, loss))
-                if writer:
-                    writer.add_summary(summaries, step)
+                dev_summary_writer.add_summary(summaries, step)
+
 
             # Generate batches
             batches = data_helpers.batch_iter(list(zip(x_train, y_train)), FLAGS.batch_size, FLAGS.num_epochs)
+
             # Training loop. For each batch...
             for batch in batches:
                 x_batch, y_batch = zip(*batch)
@@ -175,7 +172,7 @@ def train_cnn(x_text, y, output_dir):
                 current_step = tf.train.global_step(sess, global_step)
                 if current_step % FLAGS.evaluate_every == 0:
                     print("\nEvaluation:")
-                    dev_step(x_dev, y_dev, writer=dev_summary_writer)
+                    dev_step(x_dev, y_dev)
                     print("")
                 if current_step % FLAGS.checkpoint_every == 0:
                     path = saver.save(sess, checkpoint_prefix, global_step=current_step)
