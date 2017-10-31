@@ -28,10 +28,24 @@ def subs_mission(session):
 def subs_year(session):
     return random.randrange(1965, 2055)
 
+def subs_design_id(session):
+    return "D" + str(random.randrange(1, 3000))
+
+def subs_objective(session):
+    objectives = ["GEO1", "GEO2", "GEO3"]
+    return random.choice(objectives)
+
+def subs_not_partial_full(session):
+    options = ["not", "partially", "fully"]
+    return random.choice(options)
+
 substitutions['measurement'] = subs_measurement
 substitutions['technology'] = subs_technology
 substitutions['mission'] = subs_mission
 substitutions['year'] = subs_year
+substitutions['design_id'] = subs_design_id
+substitutions['objective'] = subs_objective
+substitutions['not_partial_full'] = subs_not_partial_full
 
 # Iterate over all types of questions
 for filename in os.listdir('./question_templates'):

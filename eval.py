@@ -12,7 +12,7 @@ import csv
 
 # Eval Parameters
 tf.flags.DEFINE_string("checkpoint_dir", "./runs/Historian/checkpoints/", "Checkpoint directory from training run")
-tf.flags.DEFINE_integer("top_num", 1, "Number of top K prediction classess (default: 3)")
+tf.flags.DEFINE_integer("top_num", 1, "Number of top K prediction classes (default: 3)")
 
 # Misc Parameters
 tf.flags.DEFINE_boolean("allow_soft_placement", True, "Allow device soft device placement")
