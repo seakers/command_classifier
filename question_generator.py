@@ -3,10 +3,13 @@ import os
 import random
 from sqlalchemy.orm import sessionmaker
 import models
+from VASSARClient import VASSARClient
 
 # Connect to the database to retrieve names
 engine = models.db_connect()
 Session = sessionmaker(bind=engine)
+
+VASSAR = VASSARClient()
 
 # Define template substitutions depending on the type
 substitutions = dict()
@@ -32,7 +35,9 @@ def subs_design_id(session):
     return "D" + str(random.randrange(1, 3000))
 
 def subs_objective(session):
-    objectives = ["GEO1", "GEO2", "GEO3"]
+    VASSAR.startConnection()
+    objectives = VASSAR.client.getObjectiveList()
+    VASSAR.endConnection()
     return random.choice(objectives)
 
 def subs_not_partial_full(session):
