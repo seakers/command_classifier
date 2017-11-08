@@ -28,6 +28,10 @@ def subs_mission(session):
     missions = session.query(models.Mission).all()
     return random.choice(missions).name
 
+def subs_instrument_ifeed(session):
+    options = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'j', 'k', 'l']
+    return random.choice(options)
+
 def subs_year(session):
     return random.randrange(1965, 2055)
 
@@ -48,14 +52,23 @@ def subs_agent(session):
     options = ["expert", "historian", "analyst", "explorer"]
     return random.choice(options)
 
+def subs_orbit(session):
+    return random.randint(1, 5)
+
+def subs_number(session):
+    return random.randint(1, 8)
+
 substitutions['measurement'] = subs_measurement
 substitutions['technology'] = subs_technology
 substitutions['mission'] = subs_mission
+substitutions['instrument'] = subs_instrument_ifeed
 substitutions['year'] = subs_year
 substitutions['design_id'] = subs_design_id
 substitutions['objective'] = subs_objective
 substitutions['not_partial_full'] = subs_not_partial_full
 substitutions['agent'] = subs_agent
+substitutions['orbit'] = subs_orbit
+substitutions['number'] = subs_number
 
 # Iterate over all types of questions
 for filename in os.listdir('./question_templates'):
