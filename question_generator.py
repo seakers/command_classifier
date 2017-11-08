@@ -44,6 +44,10 @@ def subs_not_partial_full(session):
     options = ["not", "partially", "fully"]
     return random.choice(options)
 
+def subs_agent(session):
+    options = ["expert", "historian", "analyst", "explorer"]
+    return random.choice(options)
+
 substitutions['measurement'] = subs_measurement
 substitutions['technology'] = subs_technology
 substitutions['mission'] = subs_mission
@@ -51,6 +55,7 @@ substitutions['year'] = subs_year
 substitutions['design_id'] = subs_design_id
 substitutions['objective'] = subs_objective
 substitutions['not_partial_full'] = subs_not_partial_full
+substitutions['agent'] = subs_agent
 
 # Iterate over all types of questions
 for filename in os.listdir('./question_templates'):
