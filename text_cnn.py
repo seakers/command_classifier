@@ -80,6 +80,6 @@ class TextCNN(object):
             self.loss = tf.reduce_mean(losses) + l2_reg_lambda * l2_loss
 
         # Calculate Accuracy
-#        with tf.name_scope("accuracy"):
-#            correct_predictions = tf.equal(self.logits, tf.argmax(self.input_y, 1))
-#            self.accuracy = tf.reduce_mean(tf.cast(correct_predictions, "float"), name="accuracy")
+        with tf.name_scope("accuracy"):
+            correct_predictions = tf.equal(tf.round(tf.nn.sigmoid(self.logits)), tf.round(self.input_y))
+            self.accuracy = tf.reduce_mean(tf.cast(correct_predictions, tf.float32))
