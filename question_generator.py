@@ -4,6 +4,7 @@ import random
 from sqlalchemy.orm import sessionmaker
 import models
 from VASSARClient import VASSARClient
+import pandas
 
 # Connect to the database to retrieve names
 engine = models.db_connect()
@@ -11,12 +12,22 @@ Session = sessionmaker(bind=engine)
 
 VASSAR = VASSARClient()
 
+instruments_sheet = pandas.read_excel('./xls/Climate-centric/Climate-centric AttributeSet.xls', sheet_name='Instrument')
+measurements_sheet = pandas.read_excel('./xls/Climate-centric/Climate-centric AttributeSet.xls', sheet_name='Measurement')
+param_names = []
+for row in measurements_sheet.itertuples(index=True, name='Measurement'):
+    if row[2] == 'Parameter':
+        for i in range(6, len(row)):
+            param_names.append(row[i])
+
 # Define template substitutions depending on the type
 substitutions = dict()
+
 
 def subs_measurement(session):
     measurements = session.query(models.Measurement).all()
     return random.choice(measurements).name
+
 
 def subs_technology(session):
     technologies = list(models.technologies)
@@ -24,19 +35,24 @@ def subs_technology(session):
         technologies.append(type.name)
     return random.choice(technologies)
 
+
 def subs_mission(session):
     missions = session.query(models.Mission).all()
     return random.choice(missions).name
+
 
 def subs_instrument_ifeed(session):
     options = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'j', 'k', 'l']
     return random.choice(options)
 
+
 def subs_year(session):
     return random.randrange(1965, 2055)
 
+
 def subs_design_id(session):
     return "D" + str(random.randrange(1, 3000))
+
 
 def subs_objective(session):
     VASSAR.startConnection()
@@ -44,19 +60,37 @@ def subs_objective(session):
     VASSAR.endConnection()
     return random.choice(objectives)
 
+
 def subs_not_partial_full(session):
     options = ["not", "partially", "fully"]
     return random.choice(options)
+
 
 def subs_agent(session):
     options = ["expert", "historian", "analyst", "explorer"]
     return random.choice(options)
 
+
 def subs_orbit(session):
     return random.randint(1, 5)
 
+
 def subs_number(session):
     return random.randint(1, 8)
+
+
+def subs_instrument_parameter(session):
+    return random.choice(instruments_sheet['Attributes-for-object-Instrument'])
+
+
+def subs_vassar_instrument(session):
+    options = ["ACE_ORCA","ACE_POL","ACE_LID","CLAR_ERB","ACE_CPR","DESD_SAR","DESD_LID","GACM_VIS","GACM_SWIR","HYSP_TIR","POSTEPS_IRS","CNES_KaRIN"]
+    return random.choice(options)
+
+
+def subs_vassar_measurement(session):
+    return random.choice(param_names)
+
 
 substitutions['measurement'] = subs_measurement
 substitutions['technology'] = subs_technology
@@ -69,6 +103,10 @@ substitutions['not_partial_full'] = subs_not_partial_full
 substitutions['agent'] = subs_agent
 substitutions['orbit'] = subs_orbit
 substitutions['number'] = subs_number
+substitutions['instrument_parameter'] = subs_instrument_parameter
+substitutions['vassar_instrument'] = subs_vassar_instrument
+substitutions['vassar_measurement'] = subs_vassar_measurement
+
 
 # Iterate over all types of questions
 for filename in os.listdir('./question_templates'):
