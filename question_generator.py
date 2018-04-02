@@ -92,6 +92,11 @@ def subs_vassar_measurement(session):
     return random.choice(param_names)
 
 
+def subs_vassar_stakeholder(session):
+    options = ["Atmospheric", "Oceanic", "Terrestrial"]
+    return random.choice(options)
+
+
 substitutions['measurement'] = subs_measurement
 substitutions['technology'] = subs_technology
 substitutions['mission'] = subs_mission
@@ -106,6 +111,7 @@ substitutions['number'] = subs_number
 substitutions['instrument_parameter'] = subs_instrument_parameter
 substitutions['vassar_instrument'] = subs_vassar_instrument
 substitutions['vassar_measurement'] = subs_vassar_measurement
+substitutions['vassar_stakeholder'] = subs_vassar_stakeholder
 
 
 # Iterate over all types of questions
