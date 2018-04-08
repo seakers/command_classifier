@@ -35,6 +35,13 @@ class Iface(object):
         """
         pass
 
+    def evalSpecial(self, inputs):
+        """
+        Parameters:
+         - inputs
+        """
+        pass
+
     def runLocalSearch(self, inputs, experiment_stage):
         """
         Parameters:
@@ -59,10 +66,18 @@ class Iface(object):
         """
         pass
 
-    def getScoreExplanation(self, arch):
+    def getScoreExplanation(self, arch, useSpecial):
         """
         Parameters:
          - arch
+         - useSpecial
+        """
+        pass
+
+    def changeLoadedFiles(self, params_map):
+        """
+        Parameters:
+         - params_map
         """
         pass
 
@@ -134,6 +149,37 @@ class Client(Iface):
         if result.success is not None:
             return result.success
         raise TApplicationException(TApplicationException.MISSING_RESULT, "eval failed: unknown result")
+
+    def evalSpecial(self, inputs):
+        """
+        Parameters:
+         - inputs
+        """
+        self.send_evalSpecial(inputs)
+        return self.recv_evalSpecial()
+
+    def send_evalSpecial(self, inputs):
+        self._oprot.writeMessageBegin('evalSpecial', TMessageType.CALL, self._seqid)
+        args = evalSpecial_args()
+        args.inputs = inputs
+        args.write(self._oprot)
+        self._oprot.writeMessageEnd()
+        self._oprot.trans.flush()
+
+    def recv_evalSpecial(self):
+        iprot = self._iprot
+        (fname, mtype, rseqid) = iprot.readMessageBegin()
+        if mtype == TMessageType.EXCEPTION:
+            x = TApplicationException()
+            x.read(iprot)
+            iprot.readMessageEnd()
+            raise x
+        result = evalSpecial_result()
+        result.read(iprot)
+        iprot.readMessageEnd()
+        if result.success is not None:
+            return result.success
+        raise TApplicationException(TApplicationException.MISSING_RESULT, "evalSpecial failed: unknown result")
 
     def runLocalSearch(self, inputs, experiment_stage):
         """
@@ -277,18 +323,20 @@ class Client(Iface):
             return result.success
         raise TApplicationException(TApplicationException.MISSING_RESULT, "getCritique failed: unknown result")
 
-    def getScoreExplanation(self, arch):
+    def getScoreExplanation(self, arch, useSpecial):
         """
         Parameters:
          - arch
+         - useSpecial
         """
-        self.send_getScoreExplanation(arch)
+        self.send_getScoreExplanation(arch, useSpecial)
         return self.recv_getScoreExplanation()
 
-    def send_getScoreExplanation(self, arch):
+    def send_getScoreExplanation(self, arch, useSpecial):
         self._oprot.writeMessageBegin('getScoreExplanation', TMessageType.CALL, self._seqid)
         args = getScoreExplanation_args()
         args.arch = arch
+        args.useSpecial = useSpecial
         args.write(self._oprot)
         self._oprot.writeMessageEnd()
         self._oprot.trans.flush()
@@ -308,6 +356,37 @@ class Client(Iface):
             return result.success
         raise TApplicationException(TApplicationException.MISSING_RESULT, "getScoreExplanation failed: unknown result")
 
+    def changeLoadedFiles(self, params_map):
+        """
+        Parameters:
+         - params_map
+        """
+        self.send_changeLoadedFiles(params_map)
+        return self.recv_changeLoadedFiles()
+
+    def send_changeLoadedFiles(self, params_map):
+        self._oprot.writeMessageBegin('changeLoadedFiles', TMessageType.CALL, self._seqid)
+        args = changeLoadedFiles_args()
+        args.params_map = params_map
+        args.write(self._oprot)
+        self._oprot.writeMessageEnd()
+        self._oprot.trans.flush()
+
+    def recv_changeLoadedFiles(self):
+        iprot = self._iprot
+        (fname, mtype, rseqid) = iprot.readMessageBegin()
+        if mtype == TMessageType.EXCEPTION:
+            x = TApplicationException()
+            x.read(iprot)
+            iprot.readMessageEnd()
+            raise x
+        result = changeLoadedFiles_result()
+        result.read(iprot)
+        iprot.readMessageEnd()
+        if result.success is not None:
+            return result.success
+        raise TApplicationException(TApplicationException.MISSING_RESULT, "changeLoadedFiles failed: unknown result")
+
 
 class Processor(Iface, TProcessor):
     def __init__(self, handler):
@@ -315,12 +394,14 @@ class Processor(Iface, TProcessor):
         self._processMap = {}
         self._processMap["ping"] = Processor.process_ping
         self._processMap["eval"] = Processor.process_eval
+        self._processMap["evalSpecial"] = Processor.process_evalSpecial
         self._processMap["runLocalSearch"] = Processor.process_runLocalSearch
         self._processMap["getOrbitList"] = Processor.process_getOrbitList
         self._processMap["getInstrumentList"] = Processor.process_getInstrumentList
         self._processMap["getObjectiveList"] = Processor.process_getObjectiveList
         self._processMap["getCritique"] = Processor.process_getCritique
         self._processMap["getScoreExplanation"] = Processor.process_getScoreExplanation
+        self._processMap["changeLoadedFiles"] = Processor.process_changeLoadedFiles
 
     def process(self, iprot, oprot):
         (name, type, seqid) = iprot.readMessageBegin()
@@ -379,6 +460,29 @@ class Processor(Iface, TProcessor):
             msg_type = TMessageType.EXCEPTION
             result = TApplicationException(TApplicationException.INTERNAL_ERROR, 'Internal error')
         oprot.writeMessageBegin("eval", msg_type, seqid)
+        result.write(oprot)
+        oprot.writeMessageEnd()
+        oprot.trans.flush()
+
+    def process_evalSpecial(self, seqid, iprot, oprot):
+        args = evalSpecial_args()
+        args.read(iprot)
+        iprot.readMessageEnd()
+        result = evalSpecial_result()
+        try:
+            result.success = self._handler.evalSpecial(args.inputs)
+            msg_type = TMessageType.REPLY
+        except TTransport.TTransportException:
+            raise
+        except TApplicationException as ex:
+            logging.exception('TApplication exception in handler')
+            msg_type = TMessageType.EXCEPTION
+            result = ex
+        except Exception:
+            logging.exception('Unexpected exception in handler')
+            msg_type = TMessageType.EXCEPTION
+            result = TApplicationException(TApplicationException.INTERNAL_ERROR, 'Internal error')
+        oprot.writeMessageBegin("evalSpecial", msg_type, seqid)
         result.write(oprot)
         oprot.writeMessageEnd()
         oprot.trans.flush()
@@ -504,7 +608,7 @@ class Processor(Iface, TProcessor):
         iprot.readMessageEnd()
         result = getScoreExplanation_result()
         try:
-            result.success = self._handler.getScoreExplanation(args.arch)
+            result.success = self._handler.getScoreExplanation(args.arch, args.useSpecial)
             msg_type = TMessageType.REPLY
         except TTransport.TTransportException:
             raise
@@ -517,6 +621,29 @@ class Processor(Iface, TProcessor):
             msg_type = TMessageType.EXCEPTION
             result = TApplicationException(TApplicationException.INTERNAL_ERROR, 'Internal error')
         oprot.writeMessageBegin("getScoreExplanation", msg_type, seqid)
+        result.write(oprot)
+        oprot.writeMessageEnd()
+        oprot.trans.flush()
+
+    def process_changeLoadedFiles(self, seqid, iprot, oprot):
+        args = changeLoadedFiles_args()
+        args.read(iprot)
+        iprot.readMessageEnd()
+        result = changeLoadedFiles_result()
+        try:
+            result.success = self._handler.changeLoadedFiles(args.params_map)
+            msg_type = TMessageType.REPLY
+        except TTransport.TTransportException:
+            raise
+        except TApplicationException as ex:
+            logging.exception('TApplication exception in handler')
+            msg_type = TMessageType.EXCEPTION
+            result = ex
+        except Exception:
+            logging.exception('Unexpected exception in handler')
+            msg_type = TMessageType.EXCEPTION
+            result = TApplicationException(TApplicationException.INTERNAL_ERROR, 'Internal error')
+        oprot.writeMessageBegin("changeLoadedFiles", msg_type, seqid)
         result.write(oprot)
         oprot.writeMessageEnd()
         oprot.trans.flush()
@@ -740,6 +867,136 @@ eval_result.thrift_spec = (
 )
 
 
+class evalSpecial_args(object):
+    """
+    Attributes:
+     - inputs
+    """
+
+
+    def __init__(self, inputs=None,):
+        self.inputs = inputs
+
+    def read(self, iprot):
+        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+            iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
+            return
+        iprot.readStructBegin()
+        while True:
+            (fname, ftype, fid) = iprot.readFieldBegin()
+            if ftype == TType.STOP:
+                break
+            if fid == 1:
+                if ftype == TType.LIST:
+                    self.inputs = []
+                    (_etype24, _size21) = iprot.readListBegin()
+                    for _i25 in range(_size21):
+                        _elem26 = iprot.readBool()
+                        self.inputs.append(_elem26)
+                    iprot.readListEnd()
+                else:
+                    iprot.skip(ftype)
+            else:
+                iprot.skip(ftype)
+            iprot.readFieldEnd()
+        iprot.readStructEnd()
+
+    def write(self, oprot):
+        if oprot._fast_encode is not None and self.thrift_spec is not None:
+            oprot.trans.write(oprot._fast_encode(self, [self.__class__, self.thrift_spec]))
+            return
+        oprot.writeStructBegin('evalSpecial_args')
+        if self.inputs is not None:
+            oprot.writeFieldBegin('inputs', TType.LIST, 1)
+            oprot.writeListBegin(TType.BOOL, len(self.inputs))
+            for iter27 in self.inputs:
+                oprot.writeBool(iter27)
+            oprot.writeListEnd()
+            oprot.writeFieldEnd()
+        oprot.writeFieldStop()
+        oprot.writeStructEnd()
+
+    def validate(self):
+        return
+
+    def __repr__(self):
+        L = ['%s=%r' % (key, value)
+             for key, value in self.__dict__.items()]
+        return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+    def __eq__(self, other):
+        return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+    def __ne__(self, other):
+        return not (self == other)
+all_structs.append(evalSpecial_args)
+evalSpecial_args.thrift_spec = (
+    None,  # 0
+    (1, TType.LIST, 'inputs', (TType.BOOL, None, False), None, ),  # 1
+)
+
+
+class evalSpecial_result(object):
+    """
+    Attributes:
+     - success
+    """
+
+
+    def __init__(self, success=None,):
+        self.success = success
+
+    def read(self, iprot):
+        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+            iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
+            return
+        iprot.readStructBegin()
+        while True:
+            (fname, ftype, fid) = iprot.readFieldBegin()
+            if ftype == TType.STOP:
+                break
+            if fid == 0:
+                if ftype == TType.STRUCT:
+                    self.success = BinaryInputArchitecture()
+                    self.success.read(iprot)
+                else:
+                    iprot.skip(ftype)
+            else:
+                iprot.skip(ftype)
+            iprot.readFieldEnd()
+        iprot.readStructEnd()
+
+    def write(self, oprot):
+        if oprot._fast_encode is not None and self.thrift_spec is not None:
+            oprot.trans.write(oprot._fast_encode(self, [self.__class__, self.thrift_spec]))
+            return
+        oprot.writeStructBegin('evalSpecial_result')
+        if self.success is not None:
+            oprot.writeFieldBegin('success', TType.STRUCT, 0)
+            self.success.write(oprot)
+            oprot.writeFieldEnd()
+        oprot.writeFieldStop()
+        oprot.writeStructEnd()
+
+    def validate(self):
+        return
+
+    def __repr__(self):
+        L = ['%s=%r' % (key, value)
+             for key, value in self.__dict__.items()]
+        return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+    def __eq__(self, other):
+        return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+    def __ne__(self, other):
+        return not (self == other)
+all_structs.append(evalSpecial_result)
+evalSpecial_result.thrift_spec = (
+    (0, TType.STRUCT, 'success', [BinaryInputArchitecture, None], None, ),  # 0
+)
+
+
 class runLocalSearch_args(object):
     """
     Attributes:
@@ -764,10 +1021,10 @@ class runLocalSearch_args(object):
             if fid == 1:
                 if ftype == TType.LIST:
                     self.inputs = []
-                    (_etype24, _size21) = iprot.readListBegin()
-                    for _i25 in range(_size21):
-                        _elem26 = iprot.readBool()
-                        self.inputs.append(_elem26)
+                    (_etype31, _size28) = iprot.readListBegin()
+                    for _i32 in range(_size28):
+                        _elem33 = iprot.readBool()
+                        self.inputs.append(_elem33)
                     iprot.readListEnd()
                 else:
                     iprot.skip(ftype)
@@ -789,8 +1046,8 @@ class runLocalSearch_args(object):
         if self.inputs is not None:
             oprot.writeFieldBegin('inputs', TType.LIST, 1)
             oprot.writeListBegin(TType.BOOL, len(self.inputs))
-            for iter27 in self.inputs:
-                oprot.writeBool(iter27)
+            for iter34 in self.inputs:
+                oprot.writeBool(iter34)
             oprot.writeListEnd()
             oprot.writeFieldEnd()
         if self.experiment_stage is not None:
@@ -843,11 +1100,11 @@ class runLocalSearch_result(object):
             if fid == 0:
                 if ftype == TType.LIST:
                     self.success = []
-                    (_etype31, _size28) = iprot.readListBegin()
-                    for _i32 in range(_size28):
-                        _elem33 = BinaryInputArchitecture()
-                        _elem33.read(iprot)
-                        self.success.append(_elem33)
+                    (_etype38, _size35) = iprot.readListBegin()
+                    for _i39 in range(_size35):
+                        _elem40 = BinaryInputArchitecture()
+                        _elem40.read(iprot)
+                        self.success.append(_elem40)
                     iprot.readListEnd()
                 else:
                     iprot.skip(ftype)
@@ -864,8 +1121,8 @@ class runLocalSearch_result(object):
         if self.success is not None:
             oprot.writeFieldBegin('success', TType.LIST, 0)
             oprot.writeListBegin(TType.STRUCT, len(self.success))
-            for iter34 in self.success:
-                iter34.write(oprot)
+            for iter41 in self.success:
+                iter41.write(oprot)
             oprot.writeListEnd()
             oprot.writeFieldEnd()
         oprot.writeFieldStop()
@@ -955,10 +1212,10 @@ class getOrbitList_result(object):
             if fid == 0:
                 if ftype == TType.LIST:
                     self.success = []
-                    (_etype38, _size35) = iprot.readListBegin()
-                    for _i39 in range(_size35):
-                        _elem40 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
-                        self.success.append(_elem40)
+                    (_etype45, _size42) = iprot.readListBegin()
+                    for _i46 in range(_size42):
+                        _elem47 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                        self.success.append(_elem47)
                     iprot.readListEnd()
                 else:
                     iprot.skip(ftype)
@@ -975,8 +1232,8 @@ class getOrbitList_result(object):
         if self.success is not None:
             oprot.writeFieldBegin('success', TType.LIST, 0)
             oprot.writeListBegin(TType.STRING, len(self.success))
-            for iter41 in self.success:
-                oprot.writeString(iter41.encode('utf-8') if sys.version_info[0] == 2 else iter41)
+            for iter48 in self.success:
+                oprot.writeString(iter48.encode('utf-8') if sys.version_info[0] == 2 else iter48)
             oprot.writeListEnd()
             oprot.writeFieldEnd()
         oprot.writeFieldStop()
@@ -1066,10 +1323,10 @@ class getInstrumentList_result(object):
             if fid == 0:
                 if ftype == TType.LIST:
                     self.success = []
-                    (_etype45, _size42) = iprot.readListBegin()
-                    for _i46 in range(_size42):
-                        _elem47 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
-                        self.success.append(_elem47)
+                    (_etype52, _size49) = iprot.readListBegin()
+                    for _i53 in range(_size49):
+                        _elem54 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                        self.success.append(_elem54)
                     iprot.readListEnd()
                 else:
                     iprot.skip(ftype)
@@ -1086,8 +1343,8 @@ class getInstrumentList_result(object):
         if self.success is not None:
             oprot.writeFieldBegin('success', TType.LIST, 0)
             oprot.writeListBegin(TType.STRING, len(self.success))
-            for iter48 in self.success:
-                oprot.writeString(iter48.encode('utf-8') if sys.version_info[0] == 2 else iter48)
+            for iter55 in self.success:
+                oprot.writeString(iter55.encode('utf-8') if sys.version_info[0] == 2 else iter55)
             oprot.writeListEnd()
             oprot.writeFieldEnd()
         oprot.writeFieldStop()
@@ -1177,10 +1434,10 @@ class getObjectiveList_result(object):
             if fid == 0:
                 if ftype == TType.LIST:
                     self.success = []
-                    (_etype52, _size49) = iprot.readListBegin()
-                    for _i53 in range(_size49):
-                        _elem54 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
-                        self.success.append(_elem54)
+                    (_etype59, _size56) = iprot.readListBegin()
+                    for _i60 in range(_size56):
+                        _elem61 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                        self.success.append(_elem61)
                     iprot.readListEnd()
                 else:
                     iprot.skip(ftype)
@@ -1197,8 +1454,8 @@ class getObjectiveList_result(object):
         if self.success is not None:
             oprot.writeFieldBegin('success', TType.LIST, 0)
             oprot.writeListBegin(TType.STRING, len(self.success))
-            for iter55 in self.success:
-                oprot.writeString(iter55.encode('utf-8') if sys.version_info[0] == 2 else iter55)
+            for iter62 in self.success:
+                oprot.writeString(iter62.encode('utf-8') if sys.version_info[0] == 2 else iter62)
             oprot.writeListEnd()
             oprot.writeFieldEnd()
         oprot.writeFieldStop()
@@ -1245,10 +1502,10 @@ class getCritique_args(object):
             if fid == 1:
                 if ftype == TType.LIST:
                     self.inputs = []
-                    (_etype59, _size56) = iprot.readListBegin()
-                    for _i60 in range(_size56):
-                        _elem61 = iprot.readBool()
-                        self.inputs.append(_elem61)
+                    (_etype66, _size63) = iprot.readListBegin()
+                    for _i67 in range(_size63):
+                        _elem68 = iprot.readBool()
+                        self.inputs.append(_elem68)
                     iprot.readListEnd()
                 else:
                     iprot.skip(ftype)
@@ -1265,8 +1522,8 @@ class getCritique_args(object):
         if self.inputs is not None:
             oprot.writeFieldBegin('inputs', TType.LIST, 1)
             oprot.writeListBegin(TType.BOOL, len(self.inputs))
-            for iter62 in self.inputs:
-                oprot.writeBool(iter62)
+            for iter69 in self.inputs:
+                oprot.writeBool(iter69)
             oprot.writeListEnd()
             oprot.writeFieldEnd()
         oprot.writeFieldStop()
@@ -1314,10 +1571,10 @@ class getCritique_result(object):
             if fid == 0:
                 if ftype == TType.LIST:
                     self.success = []
-                    (_etype66, _size63) = iprot.readListBegin()
-                    for _i67 in range(_size63):
-                        _elem68 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
-                        self.success.append(_elem68)
+                    (_etype73, _size70) = iprot.readListBegin()
+                    for _i74 in range(_size70):
+                        _elem75 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                        self.success.append(_elem75)
                     iprot.readListEnd()
                 else:
                     iprot.skip(ftype)
@@ -1334,8 +1591,8 @@ class getCritique_result(object):
         if self.success is not None:
             oprot.writeFieldBegin('success', TType.LIST, 0)
             oprot.writeListBegin(TType.STRING, len(self.success))
-            for iter69 in self.success:
-                oprot.writeString(iter69.encode('utf-8') if sys.version_info[0] == 2 else iter69)
+            for iter76 in self.success:
+                oprot.writeString(iter76.encode('utf-8') if sys.version_info[0] == 2 else iter76)
             oprot.writeListEnd()
             oprot.writeFieldEnd()
         oprot.writeFieldStop()
@@ -1364,11 +1621,13 @@ class getScoreExplanation_args(object):
     """
     Attributes:
      - arch
+     - useSpecial
     """
 
 
-    def __init__(self, arch=None,):
+    def __init__(self, arch=None, useSpecial=None,):
         self.arch = arch
+        self.useSpecial = useSpecial
 
     def read(self, iprot):
         if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
@@ -1382,11 +1641,16 @@ class getScoreExplanation_args(object):
             if fid == 1:
                 if ftype == TType.LIST:
                     self.arch = []
-                    (_etype73, _size70) = iprot.readListBegin()
-                    for _i74 in range(_size70):
-                        _elem75 = iprot.readBool()
-                        self.arch.append(_elem75)
+                    (_etype80, _size77) = iprot.readListBegin()
+                    for _i81 in range(_size77):
+                        _elem82 = iprot.readBool()
+                        self.arch.append(_elem82)
                     iprot.readListEnd()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 2:
+                if ftype == TType.BOOL:
+                    self.useSpecial = iprot.readBool()
                 else:
                     iprot.skip(ftype)
             else:
@@ -1402,9 +1666,13 @@ class getScoreExplanation_args(object):
         if self.arch is not None:
             oprot.writeFieldBegin('arch', TType.LIST, 1)
             oprot.writeListBegin(TType.BOOL, len(self.arch))
-            for iter76 in self.arch:
-                oprot.writeBool(iter76)
+            for iter83 in self.arch:
+                oprot.writeBool(iter83)
             oprot.writeListEnd()
+            oprot.writeFieldEnd()
+        if self.useSpecial is not None:
+            oprot.writeFieldBegin('useSpecial', TType.BOOL, 2)
+            oprot.writeBool(self.useSpecial)
             oprot.writeFieldEnd()
         oprot.writeFieldStop()
         oprot.writeStructEnd()
@@ -1426,6 +1694,7 @@ all_structs.append(getScoreExplanation_args)
 getScoreExplanation_args.thrift_spec = (
     None,  # 0
     (1, TType.LIST, 'arch', (TType.BOOL, None, False), None, ),  # 1
+    (2, TType.BOOL, 'useSpecial', None, None, ),  # 2
 )
 
 
@@ -1451,11 +1720,11 @@ class getScoreExplanation_result(object):
             if fid == 0:
                 if ftype == TType.LIST:
                     self.success = []
-                    (_etype80, _size77) = iprot.readListBegin()
-                    for _i81 in range(_size77):
-                        _elem82 = ObjectiveSatisfaction()
-                        _elem82.read(iprot)
-                        self.success.append(_elem82)
+                    (_etype87, _size84) = iprot.readListBegin()
+                    for _i88 in range(_size84):
+                        _elem89 = ObjectiveSatisfaction()
+                        _elem89.read(iprot)
+                        self.success.append(_elem89)
                     iprot.readListEnd()
                 else:
                     iprot.skip(ftype)
@@ -1472,8 +1741,8 @@ class getScoreExplanation_result(object):
         if self.success is not None:
             oprot.writeFieldBegin('success', TType.LIST, 0)
             oprot.writeListBegin(TType.STRUCT, len(self.success))
-            for iter83 in self.success:
-                iter83.write(oprot)
+            for iter90 in self.success:
+                iter90.write(oprot)
             oprot.writeListEnd()
             oprot.writeFieldEnd()
         oprot.writeFieldStop()
@@ -1495,6 +1764,137 @@ class getScoreExplanation_result(object):
 all_structs.append(getScoreExplanation_result)
 getScoreExplanation_result.thrift_spec = (
     (0, TType.LIST, 'success', (TType.STRUCT, [ObjectiveSatisfaction, None], False), None, ),  # 0
+)
+
+
+class changeLoadedFiles_args(object):
+    """
+    Attributes:
+     - params_map
+    """
+
+
+    def __init__(self, params_map=None,):
+        self.params_map = params_map
+
+    def read(self, iprot):
+        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+            iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
+            return
+        iprot.readStructBegin()
+        while True:
+            (fname, ftype, fid) = iprot.readFieldBegin()
+            if ftype == TType.STOP:
+                break
+            if fid == 1:
+                if ftype == TType.MAP:
+                    self.params_map = {}
+                    (_ktype92, _vtype93, _size91) = iprot.readMapBegin()
+                    for _i95 in range(_size91):
+                        _key96 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                        _val97 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                        self.params_map[_key96] = _val97
+                    iprot.readMapEnd()
+                else:
+                    iprot.skip(ftype)
+            else:
+                iprot.skip(ftype)
+            iprot.readFieldEnd()
+        iprot.readStructEnd()
+
+    def write(self, oprot):
+        if oprot._fast_encode is not None and self.thrift_spec is not None:
+            oprot.trans.write(oprot._fast_encode(self, [self.__class__, self.thrift_spec]))
+            return
+        oprot.writeStructBegin('changeLoadedFiles_args')
+        if self.params_map is not None:
+            oprot.writeFieldBegin('params_map', TType.MAP, 1)
+            oprot.writeMapBegin(TType.STRING, TType.STRING, len(self.params_map))
+            for kiter98, viter99 in self.params_map.items():
+                oprot.writeString(kiter98.encode('utf-8') if sys.version_info[0] == 2 else kiter98)
+                oprot.writeString(viter99.encode('utf-8') if sys.version_info[0] == 2 else viter99)
+            oprot.writeMapEnd()
+            oprot.writeFieldEnd()
+        oprot.writeFieldStop()
+        oprot.writeStructEnd()
+
+    def validate(self):
+        return
+
+    def __repr__(self):
+        L = ['%s=%r' % (key, value)
+             for key, value in self.__dict__.items()]
+        return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+    def __eq__(self, other):
+        return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+    def __ne__(self, other):
+        return not (self == other)
+all_structs.append(changeLoadedFiles_args)
+changeLoadedFiles_args.thrift_spec = (
+    None,  # 0
+    (1, TType.MAP, 'params_map', (TType.STRING, 'UTF8', TType.STRING, 'UTF8', False), None, ),  # 1
+)
+
+
+class changeLoadedFiles_result(object):
+    """
+    Attributes:
+     - success
+    """
+
+
+    def __init__(self, success=None,):
+        self.success = success
+
+    def read(self, iprot):
+        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+            iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
+            return
+        iprot.readStructBegin()
+        while True:
+            (fname, ftype, fid) = iprot.readFieldBegin()
+            if ftype == TType.STOP:
+                break
+            if fid == 0:
+                if ftype == TType.I32:
+                    self.success = iprot.readI32()
+                else:
+                    iprot.skip(ftype)
+            else:
+                iprot.skip(ftype)
+            iprot.readFieldEnd()
+        iprot.readStructEnd()
+
+    def write(self, oprot):
+        if oprot._fast_encode is not None and self.thrift_spec is not None:
+            oprot.trans.write(oprot._fast_encode(self, [self.__class__, self.thrift_spec]))
+            return
+        oprot.writeStructBegin('changeLoadedFiles_result')
+        if self.success is not None:
+            oprot.writeFieldBegin('success', TType.I32, 0)
+            oprot.writeI32(self.success)
+            oprot.writeFieldEnd()
+        oprot.writeFieldStop()
+        oprot.writeStructEnd()
+
+    def validate(self):
+        return
+
+    def __repr__(self):
+        L = ['%s=%r' % (key, value)
+             for key, value in self.__dict__.items()]
+        return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+    def __eq__(self, other):
+        return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+    def __ne__(self, other):
+        return not (self == other)
+all_structs.append(changeLoadedFiles_result)
+changeLoadedFiles_result.thrift_spec = (
+    (0, TType.I32, 'success', None, None, ),  # 0
 )
 fix_spec(all_structs)
 del all_structs
