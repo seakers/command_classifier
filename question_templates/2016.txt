@@ -4,4 +4,4 @@ vassar_stakeholder vassar_stakeholder
 --
 0100
 --
-which instruments improve the science score for stakeholder ${vassar_stakeholder}
+which instruments can be used to improve the science benefit for stakeholder ${vassar_stakeholder}

@@ -11,7 +11,7 @@ from tensorflow.contrib import learn
 # ==================================================
 
 # Data loading params
-tf.app.flags.DEFINE_float("dev_sample_percentage", .3, "Percentage of the training data to use for validation")
+tf.app.flags.DEFINE_float("dev_sample_percentage", .1, "Percentage of the training data to use for validation")
 
 # Model Hyperparameters
 tf.app.flags.DEFINE_integer("embedding_dim", 128, "Dimensionality of character embedding (default: 128)")
