@@ -1,0 +1,7 @@
+200
+--
+objective objective
+--
+0100
+--
+which instruments improve the science score for objective ${objective}

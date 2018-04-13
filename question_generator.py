@@ -41,6 +41,11 @@ def subs_mission(session):
     return random.choice(missions).name
 
 
+def subs_agency(session):
+    agencies = session.query(models.Agency).all()
+    return random.choice(agencies).name
+
+
 def subs_instrument_ifeed(session):
     options = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'j', 'k', 'l']
     return random.choice(options)
@@ -101,6 +106,7 @@ substitutions['measurement'] = subs_measurement
 substitutions['technology'] = subs_technology
 substitutions['mission'] = subs_mission
 substitutions['instrument'] = subs_instrument_ifeed
+substitutions['space_agency'] = subs_agency
 substitutions['year'] = subs_year
 substitutions['design_id'] = subs_design_id
 substitutions['objective'] = subs_objective

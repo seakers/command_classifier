@@ -23,7 +23,7 @@ tf.app.flags.DEFINE_integer("top_num", 1, "Number of top K prediction classess (
 
 # Training parameters
 tf.app.flags.DEFINE_integer("batch_size", 128, "Batch Size (default: 64)")
-tf.app.flags.DEFINE_integer("num_epochs", 100, "Number of training epochs (default: 200)")
+tf.app.flags.DEFINE_integer("num_epochs", 200, "Number of training epochs (default: 200)")
 tf.app.flags.DEFINE_integer("evaluate_every", 100, "Evaluate model on dev set after this many steps (default: 100)")
 tf.app.flags.DEFINE_integer("checkpoint_every", 100, "Save model after this many steps (default: 100)")
 tf.app.flags.DEFINE_integer("num_checkpoints", 5, "Number of checkpoints to store (default: 5)")
