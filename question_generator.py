@@ -89,7 +89,8 @@ def subs_instrument_parameter(session):
 
 
 def subs_vassar_instrument(session):
-    options = ["ACE_ORCA","ACE_POL","ACE_LID","CLAR_ERB","ACE_CPR","DESD_SAR","DESD_LID","GACM_VIS","GACM_SWIR","HYSP_TIR","POSTEPS_IRS","CNES_KaRIN"]
+    options = ["ACE_ORCA","ACE_POL","ACE_LID","CLAR_ERB","ACE_CPR","DESD_SAR","DESD_LID","GACM_VIS","GACM_SWIR",
+               "HYSP_TIR","POSTEPS_IRS","CNES_KaRIN","BIOMASS","SMAP_RAD","SMAP_MWR","CMIS","VIIRS"]
     return random.choice(options)
 
 
@@ -98,7 +99,8 @@ def subs_vassar_measurement(session):
 
 
 def subs_vassar_stakeholder(session):
-    options = ["Atmospheric", "Oceanic", "Terrestrial"]
+    options = ["Atmospheric", "Oceanic", "Terrestrial", "Weather", "Climate", "Land and ecosystems", "Water",
+               "Human health"]
     return random.choice(options)
 
 
