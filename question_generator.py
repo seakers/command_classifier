@@ -61,7 +61,7 @@ def subs_design_id(session):
 
 def subs_objective(session):
     VASSAR.startConnection()
-    objectives = VASSAR.client.getObjectiveList()
+    objectives = VASSAR.client.getObjectiveList('ClimateCentric')
     VASSAR.endConnection()
     return random.choice(objectives)
 

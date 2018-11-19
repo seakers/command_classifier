@@ -1,7 +1,7 @@
-pandas==0.22.0
-psycopg2-binary==2.7.4
-spacy==2.0.11
-SQLAlchemy==1.2.6
-tensorflow-gpu==1.7.0
+pandas==0.23.4
+psycopg2-binary==2.7.5
+spacy==2.0.16
+SQLAlchemy==1.2.13
+tensorflow-gpu==1.11.0
 thrift==0.11.0
 xlrd==1.1.0
