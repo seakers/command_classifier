@@ -30,6 +30,7 @@ def load_data_sources(daphne_version):
             "vassar": VASSAR,
             "instruments_sheet": instruments_sheet,
             "param_names": param_names,
+            "models": models,
             "session": Session()
         }
 
@@ -46,24 +47,24 @@ def substitution_functions(daphne_version):
 
     if daphne_version == "EOSS":
         def subs_measurement(data_sources):
-            measurements = data_sources["session"].query(models.Measurement).all()
+            measurements = data_sources["session"].query(data_sources["models"].Measurement).all()
             return random.choice(measurements).name
         substitutions['measurement'] = subs_measurement
 
         def subs_technology(data_sources):
-            technologies = list(models.technologies)
-            for type in data_sources["session"].query(models.InstrumentType).all():
+            technologies = list(data_sources["models"].technologies)
+            for type in data_sources["session"].query(data_sources["models"].InstrumentType).all():
                 technologies.append(type.name)
             return random.choice(technologies)
         substitutions['technology'] = subs_technology
 
         def subs_mission(data_sources):
-            missions = data_sources["session"].query(models.Mission).all()
+            missions = data_sources["session"].query(data_sources["models"].Mission).all()
             return random.choice(missions).name
         substitutions['mission'] = subs_mission
 
         def subs_agency(data_sources):
-            agencies = data_sources["session"].query(models.Agency).all()
+            agencies = data_sources["session"].query(data_sources["models"].Agency).all()
             return random.choice(agencies).name
         substitutions['space_agency'] = subs_agency
 
@@ -170,7 +171,7 @@ if __name__ == '__main__':
                             template_lines.append(Template(line[:-1]))
 
             # Start generating random questions
-            data_path = os.path.join(os.getcwd(), "data")
+            data_path = os.path.join(os.getcwd(), "data", daphne_version)
             if not os.path.exists(data_path):
                 os.makedirs(data_path)
             output_path = os.path.join(data_path, filename)
