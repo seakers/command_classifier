@@ -1,14 +1,15 @@
 from string import Template
 import os
 import random
-from sqlalchemy.orm import sessionmaker
-import models
-from VASSARClient import VASSARClient
 import pandas
 
 
 def load_data_sources(daphne_version):
     if daphne_version == "EOSS":
+        from sqlalchemy.orm import sessionmaker
+        import models
+        from VASSARClient import VASSARClient
+
         # Connect to the database to retrieve names
         engine = models.db_connect()
         Session = sessionmaker(bind=engine)
