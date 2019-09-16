@@ -11,18 +11,17 @@ import csv
 # ==================================================
 
 # Eval Parameters
-tf.flags.DEFINE_string("checkpoint_dir", "./runs/Historian/checkpoints/", "Checkpoint directory from training run")
-tf.flags.DEFINE_integer("top_num", 1, "Number of top K prediction classes (default: 3)")
+tf.app.flags.DEFINE_string("checkpoint_dir", "./runs/checkpoints/Historian", "Checkpoint directory from training run")
+tf.app.flags.DEFINE_integer("top_num", 1, "Number of top K prediction classes (default: 3)")
 
 # Misc Parameters
-tf.flags.DEFINE_boolean("allow_soft_placement", True, "Allow device soft device placement")
-tf.flags.DEFINE_boolean("log_device_placement", False, "Log placement of ops on devices")
-tf.flags.DEFINE_boolean("gpu_options_allow_growth", True, "Allow gpu options growth")
+tf.app.flags.DEFINE_boolean("allow_soft_placement", True, "Allow device soft device placement")
+tf.app.flags.DEFINE_boolean("log_device_placement", False, "Log placement of ops on devices")
+tf.app.flags.DEFINE_boolean("gpu_options_allow_growth", True, "Allow gpu options growth")
 
-FLAGS = tf.flags.FLAGS
-FLAGS._parse_flags()
+FLAGS = tf.app.flags.FLAGS
 print("\nParameters:")
-for attr, value in sorted(FLAGS.__flags.items()):
+for attr, value in sorted(FLAGS.flag_values_dict().items()):
     print("{}={}".format(attr.upper(), value))
 print("")
 
