@@ -33,7 +33,7 @@ def train_cnn(x_text, y, daphne_version, output_dir):
     x = tokenizer.texts_to_sequences(x_text)
     max_x_length = max(max(FILTER_SIZES), max(map(len, x)))  # Min added so all convolutions have enough data
     x = np.array([xi + [0] * (max_x_length - len(xi)) for xi in x])
-    vocab_size = len(tokenizer.index_word.keys())
+    vocab_size = len(tokenizer.index_word.keys())+1
 
     # Split train/test set
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=DEV_SAMPLE_PERCENTAGE, random_state=10)
