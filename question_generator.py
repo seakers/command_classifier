@@ -131,11 +131,51 @@ def substitution_functions(daphne_version):
         return substitutions
 
     if daphne_version == "AT":
+
+        def subs_telemetry_feed_measurement(data_sources):
+            options = ["main cabin temperature", "main cabin pressure", "O2 tank level",
+                       "SEP coolant ducting flow"]
+            return random.choice(options)
+        substitutions['measurement'] = subs_telemetry_feed_measurement
+
+        def subs_malfunction(data_sources):
+            options = ["leak", "broken component", "strange noise"]
+            return random.choice(options)
+        substitutions['malfunction'] = subs_malfunction
+
+        def subs_procedure(data_sources):
+            options = ["CCAA Main Cabin Fan Activation",
+                       "CDRA LiOH Canister Swapout",
+                       "CDRA Zeolite Filter Regeneration",
+                       "CDRA Zeolite Filter Swapout",
+                       "ECLSS Emergency O2 Activation",
+                       "ECLSS Emergency O2 Deactivation",
+                       "ECLSS Emergency O2 Bottle Swapout",
+                       "Electrolysis System Activation",
+                       "Electrolysis System Biological Filter Swapout",
+                       "Electrolysis System Checkout",
+                       "Electrolysis System Dectivation",
+                       "Fuel Cell Standby",
+                       "Fuel Cell Injector Purge",
+                       "Fuel Cell Activation",
+                       "N2 Ballast Tank Replacement",
+                       "Sabatier Reverse Water Gas Shift Reactor Replacement",
+                       "TCCS Auxiliary Fan Swapout",
+                       "TCCS Auxiliary Fan Activation",
+                       "TCCS Auxiliary Fan Deactivation",
+                       "TCCS Charcoal Filter Swapout",
+                       "TCCS Fan Dampener Assembly Rate Change",
+                       "WRS Maintenance",
+                       "Potable Water Check",
+                       "Electrolysis Auxiliar Canister Swapout"]
+            return random.choice(options)
+        substitutions['procedure'] = subs_procedure
+
         return substitutions
 
 
 if __name__ == '__main__':
-    daphne_versions = ["EOSS"]  # "EDL", "AT"
+    daphne_versions = ["AT"]  # "EDL", "AT"
     # Iterate over all types of questions
     for daphne_version in daphne_versions:
         data_sources = load_data_sources(daphne_version)
