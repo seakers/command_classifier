@@ -19,7 +19,7 @@ DROPOUT_KEEP_PROB = 0.5  # Dropout keep probability (default: 0.5)
 
 # Training parameters
 BATCH_SIZE = 128  # Batch Size (default: 64)
-NUM_EPOCHS = 1  # Number of training epochs (default: 200)
+NUM_EPOCHS = 5  # Number of training epochs (default: 200)
 
 
 def train_cnn(x_text, y, daphne_version, output_dir):
@@ -28,7 +28,7 @@ def train_cnn(x_text, y, daphne_version, output_dir):
         return
 
     # Build vocabulary
-    tokenizer = Tokenizer()
+    tokenizer = Tokenizer(oov_token="unrecognized_word")
     tokenizer.fit_on_texts(x_text)
     x = tokenizer.texts_to_sequences(x_text)
     max_x_length = max(max(FILTER_SIZES), max(map(len, x)))  # Min added so all convolutions have enough data
