@@ -71,11 +71,11 @@ def train_cnn(x_text, y, daphne_version, output_dir):
 # Data Preparation
 # ==================================================
 if __name__ == '__main__':
-    daphne_versions = ["EOSS"]  # "EDL", "AT"
+    daphne_versions = ["AT"]  # "EDL", "AT"
     for daphne_version in daphne_versions:
         # Load data
         print("Loading data...")
-        data_path = os.path.join(os.getcwd(), "data", daphne_version)
+        data_path = os.path.join(os.getcwd(), "question_templates", daphne_version)
         general_x_text, general_y, specific_x_texts, specific_ys = data_helpers.load_data_and_labels(daphne_version, data_path)
         print("Data loaded!")
 
