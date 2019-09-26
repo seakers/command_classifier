@@ -8,5 +8,5 @@ DATABASE = {
     'port': '5432',
     'username': os.environ['USER'],
     'password': os.environ['PASSWORD'],
-    'database': 'ceos'
+    'database': 'daphne'
 }
