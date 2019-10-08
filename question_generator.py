@@ -132,11 +132,16 @@ def substitution_functions(daphne_version):
         return substitutions
 
     if daphne_version == "AT":
+        def subs_anomaly(data_sources):
+            anomalies = ["low cabin pressure", "high cabin temperature", "gas leak"]
+            return random.choice(anomalies)
+        substitutions['anomaly'] = subs_anomaly
+
         return substitutions
 
 
 if __name__ == '__main__':
-    daphne_versions = ["EOSS"]  # "EDL", "AT"
+    daphne_versions = ["AT"]  # "EDL", "AT"
     # Iterate over all types of questions
     for daphne_version in daphne_versions:
         data_sources = load_data_sources(daphne_version)
