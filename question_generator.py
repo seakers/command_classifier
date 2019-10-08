@@ -133,7 +133,7 @@ def substitution_functions(daphne_version):
 
     if daphne_version == "AT":
         def subs_anomaly(data_sources):
-            anomalies = ["low cabin pressure", "high cabin temperature", "gas leak"]
+            anomalies = ["low cabin pressure", "high cabin pressure", "high cabin temperature", "low cabin temperature", "gas leak"]
             return random.choice(anomalies)
         substitutions['anomaly'] = subs_anomaly
 
