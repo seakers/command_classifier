@@ -1,0 +1,8 @@
+50
+--
+--
+100
+--
+What was the last anomaly?
+Show the last anomaly.
+Provide the latest anomaly.
