@@ -133,16 +133,26 @@ def substitution_functions(daphne_version):
 
     if daphne_version == "AT":
 
+        root_path = os.getcwd()
+        root_path = root_path.rsplit('\command_classifier')[0]
+        filename = os.path.join(root_path, 'daphne_brain', 'AT', 'Databases', 'telemetry_feed_thresholds.csv')
+        tf_thresholds = pandas.read_csv(filename)
+        tf_variables = list(tf_thresholds.columns)
+        tf_variables.remove('threshold')
+        print(tf_variables)
+
         def subs_telemetry_feed_measurement(data_sources):
-            options = ["main cabin temperature", "main cabin pressure", "O2 tank level",
-                       "SEP coolant ducting flow"]
+            options = tf_variables
             return random.choice(options)
         substitutions['measurement'] = subs_telemetry_feed_measurement
 
-        def subs_malfunction(data_sources):
-            options = ["leak", "broken component", "strange noise"]
-            return random.choice(options)
-        substitutions['malfunction'] = subs_malfunction
+        def subs_time(data_sources):
+            hr = random.randint(0, 23)
+            min = random.randint(0, 59)
+            sec = random.randint(0, 59)
+            timestamp = str(hr) + ':' + str(min) + ':' + str(sec)
+            return timestamp
+        substitutions['time'] = subs_time
 
         def subs_procedure(data_sources):
             options = ["CCAA Main Cabin Fan Activation",
