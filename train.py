@@ -19,10 +19,10 @@ DROPOUT_KEEP_PROB = 0.5  # Dropout keep probability (default: 0.5)
 
 # Training parameters
 BATCH_SIZE = 128  # Batch Size (default: 64)
-NUM_EPOCHS = 5  # Number of training epochs (default: 200)
+NUM_EPOCHS = 50  # Number of training epochs (default: 200)
 
 
-def train_cnn(x_text, y, daphne_version, output_dir):
+def train_cnn(x_text, y, daphne_version, output_dir, label):
     # Check if there is data
     if len(x_text) == 0 or len(y) == 0:
         return
@@ -48,8 +48,12 @@ def train_cnn(x_text, y, daphne_version, output_dir):
                      embedding_size=EMBEDDING_DIM,
                      filter_sizes=FILTER_SIZES,
                      num_filters=NUM_FILTER,
+                     label=label,
                      dropout=DROPOUT_KEEP_PROB)
-    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['binary_accuracy'])
+    if label == "multi":
+        model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['binary_accuracy'])
+    elif label == "single":
+        model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['binary_accuracy'])
     model.fit(x_train, y_train, validation_data=(x_test, y_test), batch_size=BATCH_SIZE, epochs=NUM_EPOCHS)  # starts training
 
     # Save model to disk
@@ -80,7 +84,7 @@ if __name__ == '__main__':
         print("Data loaded!")
 
         # Train the skill selection NN
-        train_cnn(general_x_text, general_y, daphne_version, "general")
+        train_cnn(general_x_text, general_y, daphne_version, "general", "multi")
         # Train the NN for each skill questions
         for i in range(len(specific_x_texts)):
-            train_cnn(specific_x_texts[i], specific_ys[i], daphne_version, data_helpers.daphne_skills[daphne_version][i])
+            train_cnn(specific_x_texts[i], specific_ys[i], daphne_version, data_helpers.daphne_skills[daphne_version][i], "single")

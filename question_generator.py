@@ -88,6 +88,13 @@ def substitution_functions(daphne_version):
             return random.choice(objectives)
         substitutions['objective'] = subs_objective
 
+        def subs_subobjective(data_sources):
+            data_sources["vassar"].startConnection()
+            objectives = data_sources["vassar"].client.getSubobjectiveList('ClimateCentric')
+            data_sources["vassar"].endConnection()
+            return random.choice(objectives)
+        substitutions['subobjective'] = subs_subobjective
+
         def subs_not_partial_full(data_sources):
             options = ["not", "partially", "fully"]
             return random.choice(options)
