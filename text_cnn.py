@@ -1,5 +1,5 @@
-import keras
-from keras.layers import Input, Embedding, Reshape, Conv2D, MaxPool2D, Concatenate, Dropout, Dense
+import tensorflow.keras as keras
+from tensorflow.keras.layers import Input, Embedding, Reshape, Conv2D, MaxPool2D, Concatenate, Dropout, Dense
 
 
 def text_cnn(sequence_length, num_classes, vocab_size, embedding_size, filter_sizes,

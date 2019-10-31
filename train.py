@@ -1,8 +1,10 @@
 import os
+import pickle
+
 import data_helpers
 import numpy as np
 from text_cnn import text_cnn
-from keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.text import Tokenizer
 from sklearn.model_selection import train_test_split
 
 # Parameters
@@ -61,21 +63,16 @@ def train_cnn(x_text, y, daphne_version, output_dir, label):
     if not os.path.exists(output_path):
         os.makedirs(output_path)
     # Write vocabulary
-    tokenizer_json = tokenizer.to_json()
-    with open(os.path.join(output_path, "tokenizer.json"), "w") as json_file:
-        json_file.write(tokenizer_json)
-    # Write network
-    model_json = model.to_json()
-    with open(os.path.join(output_path, "model.json"), "w") as json_file:
-        json_file.write(model_json)
-    # Write weights
-    model.save_weights(os.path.join(output_path, "model.h5"))
+    with open(os.path.join(output_path, "tokenizer.pickle"), 'wb') as handle:
+        pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    # Write model
+    model.save(os.path.join(output_path, "model.h5"))
 
 
 # Data Preparation
 # ==================================================
 if __name__ == '__main__':
-    daphne_versions = ["EOSS"]  # "EDL", "AT"
+    daphne_versions = ["AT"]  # "EDL", "AT"
     for daphne_version in daphne_versions:
         # Load data
         print("Loading data...")
