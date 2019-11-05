@@ -1,8 +1,8 @@
 200
 --
 design_id design_id
-objective objective
+subobjective subobjective
 --
 0100
 --
-how does design ${design_id} satisfy ${objective}
+how does design ${design_id} satisfy ${subobjective}

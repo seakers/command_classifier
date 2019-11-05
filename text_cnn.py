@@ -1,9 +1,9 @@
-import keras
-from keras.layers import Input, Embedding, Reshape, Conv2D, MaxPool2D, Concatenate, Dropout, Dense
+import tensorflow.keras as keras
+from tensorflow.keras.layers import Input, Embedding, Reshape, Conv2D, MaxPool2D, Concatenate, Dropout, Dense
 
 
 def text_cnn(sequence_length, num_classes, vocab_size, embedding_size, filter_sizes,
-             num_filters, dropout=0.5):
+             num_filters, label, dropout=0.5):
     """
     A CNN for text classification.
     Uses an embedding layer, followed by a convolutional, max-pooling and softmax layer.
@@ -42,10 +42,16 @@ def text_cnn(sequence_length, num_classes, vocab_size, embedding_size, filter_si
     dropout = Dropout(dropout)(h_pool_flat)
 
     # output layer
+    if label == "single":
+        activation_type = "softmax"
+    elif label == "multi":
+        activation_type = "sigmoid"
+    else:
+        raise ValueError("unknown label type")
     output = Dense(num_classes,
                    kernel_initializer='glorot_normal',
                    bias_initializer=keras.initializers.constant(0.1),
-                   activation='sigmoid',
+                   activation=activation_type,
                    name='output')(dropout)
 
     model = keras.models.Model(inputs=input_x, outputs=output)
