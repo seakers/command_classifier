@@ -6,6 +6,6 @@ time time
 100
 --
 Tell me the value of measurement ${measurement} at time ${time}.
-Show me the ${measurement} at ${time}.
+S:how me the ${measurement} at ${time}.
 Plot ${measurement} at time ${time}.
 Provide ${measurement} at instant ${time}.

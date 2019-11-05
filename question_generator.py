@@ -134,8 +134,9 @@ def substitution_functions(daphne_version):
     if daphne_version == "AT":
 
         root_path = os.getcwd()
-        root_path = root_path.rsplit('\command_classifier')[0]
+        root_path = root_path.rsplit(os.sep + 'command_classifier')[0]
         filename = os.path.join(root_path, 'daphne_brain', 'AT', 'Databases', 'telemetry_feed_thresholds.csv')
+        print(filename)
         tf_thresholds = pandas.read_csv(filename)
         tf_variables = list(tf_thresholds.columns)
         tf_variables.remove('threshold')
