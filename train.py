@@ -19,7 +19,7 @@ DROPOUT_KEEP_PROB = 0.5  # Dropout keep probability (default: 0.5)
 
 # Training parameters
 BATCH_SIZE = 128  # Batch Size (default: 64)
-NUM_EPOCHS = 5  # Number of training epochs (default: 200)
+NUM_EPOCHS = 20  # Number of training epochs (default: 200)
 
 
 def train_cnn(x_text, y, daphne_version, output_dir):
@@ -75,7 +75,7 @@ if __name__ == '__main__':
     for daphne_version in daphne_versions:
         # Load data
         print("Loading data...")
-        data_path = os.path.join(os.getcwd(), "question_templates", daphne_version)
+        data_path = os.path.join(os.getcwd(), "data", daphne_version)
         general_x_text, general_y, specific_x_texts, specific_ys = data_helpers.load_data_and_labels(daphne_version, data_path)
         print("Data loaded!")
 

@@ -1,7 +1,8 @@
 200
 --
-anomaly anomaly
+anomaly_id anomaly_id
 --
 010
 --
-show me information on anomaly ${anomaly}
+show me all information on anomaly ${anomaly_id}
+show me everything about anomaly ${anomaly_id}

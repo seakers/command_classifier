@@ -1,0 +1,8 @@
+200
+--
+anomaly_id anomaly_id
+--
+010
+--
+what components are related to anomaly ${anomaly_id}
+show me all components related to ${anomaly_id}
