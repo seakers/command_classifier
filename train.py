@@ -1,8 +1,10 @@
 import os
+import pickle
+
 import data_helpers
 import numpy as np
 from text_cnn import text_cnn
-from keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.text import Tokenizer
 from sklearn.model_selection import train_test_split
 
 # Parameters
@@ -22,7 +24,7 @@ BATCH_SIZE = 128  # Batch Size (default: 64)
 NUM_EPOCHS = 20  # Number of training epochs (default: 200)
 
 
-def train_cnn(x_text, y, daphne_version, output_dir):
+def train_cnn(x_text, y, daphne_version, output_dir, label):
     # Check if there is data
     if len(x_text) == 0 or len(y) == 0:
         return
@@ -48,8 +50,12 @@ def train_cnn(x_text, y, daphne_version, output_dir):
                      embedding_size=EMBEDDING_DIM,
                      filter_sizes=FILTER_SIZES,
                      num_filters=NUM_FILTER,
+                     label=label,
                      dropout=DROPOUT_KEEP_PROB)
-    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['binary_accuracy'])
+    if label == "multi":
+        model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['binary_accuracy'])
+    elif label == "single":
+        model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['binary_accuracy'])
     model.fit(x_train, y_train, validation_data=(x_test, y_test), batch_size=BATCH_SIZE, epochs=NUM_EPOCHS)  # starts training
 
     # Save model to disk
@@ -57,15 +63,10 @@ def train_cnn(x_text, y, daphne_version, output_dir):
     if not os.path.exists(output_path):
         os.makedirs(output_path)
     # Write vocabulary
-    tokenizer_json = tokenizer.to_json()
-    with open(os.path.join(output_path, "tokenizer.json"), "w") as json_file:
-        json_file.write(tokenizer_json)
-    # Write network
-    model_json = model.to_json()
-    with open(os.path.join(output_path, "model.json"), "w") as json_file:
-        json_file.write(model_json)
-    # Write weights
-    model.save_weights(os.path.join(output_path, "model.h5"))
+    with open(os.path.join(output_path, "tokenizer.pickle"), 'wb') as handle:
+        pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    # Write model
+    model.save(os.path.join(output_path, "model.h5"))
 
 
 # Data Preparation
@@ -80,7 +81,7 @@ if __name__ == '__main__':
         print("Data loaded!")
 
         # Train the skill selection NN
-        train_cnn(general_x_text, general_y, daphne_version, "general")
+        train_cnn(general_x_text, general_y, daphne_version, "general", "multi")
         # Train the NN for each skill questions
         for i in range(len(specific_x_texts)):
-            train_cnn(specific_x_texts[i], specific_ys[i], daphne_version, data_helpers.daphne_skills[daphne_version][i])
+            train_cnn(specific_x_texts[i], specific_ys[i], daphne_version, data_helpers.daphne_skills[daphne_version][i], "single")

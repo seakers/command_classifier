@@ -1,0 +1,8 @@
+50
+--
+--
+011
+--
+What are the potential consequences of this anomaly?
+What could this anomaly cause?
+Tell me the scope of this anomaly.

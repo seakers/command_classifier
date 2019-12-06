@@ -1,0 +1,7 @@
+50
+--
+--
+011
+--
+What caused this anomaly in the past?
+What triggered this signature previously?

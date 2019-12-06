@@ -1,0 +1,9 @@
+200
+--
+malfunction malfunction
+--
+011
+--
+I have noticed a ${malfunction}. What should I do?
+There is a ${malfunction}.
+I have found a ${malfunction}.

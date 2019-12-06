@@ -1,0 +1,8 @@
+50
+--
+--
+110
+--
+Has this signature happened before?
+Has this measurement happened previously?
+Check if this measurement happened in the past.

@@ -1,0 +1,10 @@
+100
+--
+--
+100
+--
+How certain are you that this is an anomaly?
+How anomalous is this?
+How confident are you about this anomaly?
+Show me the score for this anomaly.
+Provide the anomaly score.

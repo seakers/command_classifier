@@ -1,0 +1,10 @@
+200
+--
+measurement measurement
+--
+100
+--
+Can you tell me the value of the ${measurement} measurement at the moment of this anomaly?
+Tell me the value of the ${measurement} measurement when this anomaly occured.
+Show the ${measurement} readings at the time of this anomaly.
+Provide the ${measurement} signature at the time of this anomalous reading.

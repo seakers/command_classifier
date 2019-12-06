@@ -1,0 +1,10 @@
+50
+--
+--
+001
+--
+Is this urgent?
+Is this anomaly important?
+Can this wait?
+Do I have to solve this now?
+Does this require immediate attention?

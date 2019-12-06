@@ -1,0 +1,9 @@
+50
+--
+--
+100
+--
+Is this measurement normal?
+Is this signature nominal?
+Is this measurament within thresholds?
+Check if this measurement is within limits.

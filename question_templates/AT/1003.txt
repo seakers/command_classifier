@@ -1,0 +1,10 @@
+200
+--
+--
+100
+--
+What are the thresholds for this measurement?
+Which are the settings for this measurement?
+Provide the thresholds of this measurement.
+Show me the settings for this measurement.
+Wat are this measurament limits?

@@ -1,0 +1,10 @@
+200
+--
+measurement measurement
+--
+100
+--
+Can you tell me the value of the ${measurement} measurement?
+Tell me the value of the ${measurement} measurement.
+Show the ${measurement} readings.
+Provide the ${measurement}.
