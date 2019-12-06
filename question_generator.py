@@ -133,9 +133,14 @@ def substitution_functions(daphne_version):
 
     if daphne_version == "AT":
         def subs_anomaly_ids(data_sources):
-            anomaly_ids = range(1,103)  # These correspond to the anomaly indices currently in the database (102 rows)
+            anomaly_ids = range(1, 103)  # These correspond to the anomaly indices currently in the database (102 rows)
             return random.choice(anomaly_ids)
         substitutions['anomaly_id'] = subs_anomaly_ids
+
+        def subs_procedure(data_sources):
+            procedures = range(1, 25)
+            return random.choice(procedures)
+        substitutions['procedure'] = subs_procedure
         return substitutions
 
 
