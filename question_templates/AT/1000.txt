@@ -1,8 +1,14 @@
 50
 --
+measurement measurement
 --
-100
+1000
 --
-What was the last anomaly?
-Show the last anomaly.
-Provide the latest anomaly.
+Show the current value of measurement ${measurement}.
+Show the value of measurement ${measurement}.
+Provide the current value of measurement ${measurement}.
+Provide the value of measurement ${measurement}.
+What is the current value of measurement ${measurement}?
+What is the value of measurement ${measurement}?
+${measurement} measurement current value.
+${measurement} measurement value.
