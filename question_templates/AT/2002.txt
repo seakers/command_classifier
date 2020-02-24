@@ -1,0 +1,16 @@
+200
+--
+anomaly anomaly
+--
+010
+--
+What subsystems does anomaly ${anomaly} affect?
+What subsystems does ${anomaly} affect?
+What components does anomaly ${anomaly} affect?
+What components does ${anomaly} affect?
+What are the components affected by anomaly ${anomaly}?
+What are the components affected by ${anomaly}?
+Anomaly ${anomaly} subsystems.
+Anomaly ${anomaly} components.
+${anomaly} subsystems.
+${anomaly} components.

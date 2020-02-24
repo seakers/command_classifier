@@ -1,14 +1,19 @@
-50
+100
 --
 measurement measurement
+parameter_group parameter_group
 --
-1000
+100
 --
-Show the current value of measurement ${measurement}.
-Show the value of measurement ${measurement}.
-Provide the current value of measurement ${measurement}.
-Provide the value of measurement ${measurement}.
-What is the current value of measurement ${measurement}?
-What is the value of measurement ${measurement}?
-${measurement} measurement current value.
-${measurement} measurement value.
+Show the current value of measurement ${measurement} ${parameter_group}.
+Show the value of the ${measurement} ${parameter_group} measurement.
+Show the value of ${measurement} ${parameter_group}.
+Provide the current value of measurement ${measurement} ${parameter_group}.
+Provide the value of the ${measurement} ${parameter_group} measurement.
+Provide the value of ${measurement} ${parameter_group}.
+What is the current value of measurement ${measurement} ${parameter_group}?
+What is the value of the ${measurement} ${parameter_group} measurement?
+What is the value of ${measurement} ${parameter_group}?
+${measurement} ${parameter_group} measurement current value.
+${measurement} ${parameter_group} measurement value.
+${measurement} ${parameter_group} value.

@@ -2,6 +2,7 @@ from string import Template
 import os
 import random
 import pandas
+from neo4j import GraphDatabase, basic_auth
 
 
 def load_data_sources(daphne_version):
@@ -38,7 +39,46 @@ def load_data_sources(daphne_version):
         return {}
 
     if daphne_version == "AT":
-        return {}
+        # Setup neo4j database connection
+        driver = GraphDatabase.driver("bolt://13.58.54.49:7687", auth=basic_auth("neo4j", "goSEAKers!"))
+        session = driver.session()
+
+        # Retrieve all the measurements
+        query = 'MATCH (m:Measurement) RETURN DISTINCT m.Name'
+        result = session.run(query)
+        measurements_list = []
+        for item in result:
+            measurements_list.append(item[0])
+
+        # Retrieve all the measurements' parameter groups
+        query = 'MATCH (m:Measurement) RETURN DISTINCT m.ParameterGroup'
+        result = session.run(query)
+        parameter_groups_list = []
+        for item in result:
+            if item[0] is not None and item[0] != '':
+                parameter_groups_list.append(item[0])
+        print(parameter_groups_list)
+
+        # Retrieve all the anomalies
+        query = 'MATCH (a:Anomaly) RETURN DISTINCT a.Title'
+        result = session.run(query)
+        anomalies_list = []
+        for item in result:
+            anomalies_list.append(item[0])
+
+        # Retrieve all the procedures
+        query = 'MATCH (p:Procedure) RETURN DISTINCT p.Title'
+        result = session.run(query)
+        procedures_list = []
+        for item in result:
+            procedures_list.append(item[0])
+
+        return {
+            'measurements': measurements_list,
+            'anomalies': anomalies_list,
+            'procedures': procedures_list,
+            'parameter_groups': parameter_groups_list
+        }
 
 
 def substitution_functions(daphne_version):
@@ -140,55 +180,25 @@ def substitution_functions(daphne_version):
 
     if daphne_version == "AT":
 
-        root_path = os.getcwd()
-        root_path = root_path.rsplit(os.sep + 'command_classifier')[0]
-        filename = os.path.join(root_path, 'daphne_brain', 'AT', 'Databases', 'telemetry_feed_thresholds.csv')
-        print(filename)
-        tf_thresholds = pandas.read_csv(filename)
-        tf_variables = list(tf_thresholds.columns)
-        tf_variables.remove('threshold')
-        print(tf_variables)
-
-        def subs_telemetry_feed_measurement(data_sources):
-            options = tf_variables
+        def subs_measurement(data_sources):
+            options = data_sources['measurements']
             return random.choice(options)
-        substitutions['measurement'] = subs_telemetry_feed_measurement
+        substitutions['measurement'] = subs_measurement
 
-        def subs_time(data_sources):
-            hr = random.randint(0, 23)
-            min = random.randint(0, 59)
-            sec = random.randint(0, 59)
-            timestamp = str(hr) + ':' + str(min) + ':' + str(sec)
-            return timestamp
-        substitutions['time'] = subs_time
+        def subs_anomaly(data_sources):
+            options = data_sources['anomalies']
+            return random.choice(options)
+        substitutions['anomaly'] = subs_anomaly
 
         def subs_procedure(data_sources):
-            options = ["CCAA Main Cabin Fan Activation",
-                       "CDRA LiOH Canister Swapout",
-                       "CDRA Zeolite Filter Regeneration",
-                       "CDRA Zeolite Filter Swapout",
-                       "ECLSS Emergency O2 Activation",
-                       "ECLSS Emergency O2 Deactivation",
-                       "ECLSS Emergency O2 Bottle Swapout",
-                       "Electrolysis System Activation",
-                       "Electrolysis System Biological Filter Swapout",
-                       "Electrolysis System Checkout",
-                       "Electrolysis System Dectivation",
-                       "Fuel Cell Standby",
-                       "Fuel Cell Injector Purge",
-                       "Fuel Cell Activation",
-                       "N2 Ballast Tank Replacement",
-                       "Sabatier Reverse Water Gas Shift Reactor Replacement",
-                       "TCCS Auxiliary Fan Swapout",
-                       "TCCS Auxiliary Fan Activation",
-                       "TCCS Auxiliary Fan Deactivation",
-                       "TCCS Charcoal Filter Swapout",
-                       "TCCS Fan Dampener Assembly Rate Change",
-                       "WRS Maintenance",
-                       "Potable Water Check",
-                       "Electrolysis Auxiliar Canister Swapout"]
+            options = data_sources['procedures']
             return random.choice(options)
         substitutions['procedure'] = subs_procedure
+
+        def subs_parameter_group(data_sources):
+            options = data_sources['parameter_groups']
+            return random.choice(options)
+        substitutions['parameter_group'] = subs_parameter_group
 
         return substitutions
 
