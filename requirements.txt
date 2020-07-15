@@ -1,3 +1,4 @@
+neo4j~=4.0.1
 pandas~=1.0.5
 psycopg2-binary~=2.8.5
 scikit-learn~=0.23.1
