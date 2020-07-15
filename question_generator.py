@@ -2,6 +2,7 @@ from string import Template
 import os
 import random
 import pandas
+from neo4j import GraphDatabase, basic_auth
 
 
 def load_data_sources(daphne_version):
@@ -38,7 +39,46 @@ def load_data_sources(daphne_version):
         return {}
 
     if daphne_version == "AT":
-        return {}
+        # Setup neo4j database connection
+        driver = GraphDatabase.driver("bolt://13.58.54.49:7687", auth=basic_auth("neo4j", "goSEAKers!"))
+        session = driver.session()
+
+        # Retrieve all the measurements
+        query = 'MATCH (m:Measurement) RETURN DISTINCT m.Name'
+        result = session.run(query)
+        measurements_list = []
+        for item in result:
+            measurements_list.append(item[0])
+
+        # Retrieve all the measurements' parameter groups
+        query = 'MATCH (m:Measurement) RETURN DISTINCT m.ParameterGroup'
+        result = session.run(query)
+        parameter_groups_list = []
+        for item in result:
+            if item[0] is not None and item[0] != '':
+                parameter_groups_list.append(item[0])
+        print(parameter_groups_list)
+
+        # Retrieve all the anomalies
+        query = 'MATCH (a:Anomaly) RETURN DISTINCT a.Title'
+        result = session.run(query)
+        anomalies_list = []
+        for item in result:
+            anomalies_list.append(item[0])
+
+        # Retrieve all the procedures
+        query = 'MATCH (p:Procedure) RETURN DISTINCT p.Title'
+        result = session.run(query)
+        procedures_list = []
+        for item in result:
+            procedures_list.append(item[0])
+
+        return {
+            'measurements': measurements_list,
+            'anomalies': anomalies_list,
+            'procedures': procedures_list,
+            'parameter_groups': parameter_groups_list
+        }
 
 
 def substitution_functions(daphne_version):
@@ -139,11 +179,32 @@ def substitution_functions(daphne_version):
         return substitutions
 
     if daphne_version == "AT":
+
+        def subs_measurement(data_sources):
+            options = data_sources['measurements']
+            return random.choice(options)
+        substitutions['measurement'] = subs_measurement
+
+        def subs_anomaly(data_sources):
+            options = data_sources['anomalies']
+            return random.choice(options)
+        substitutions['anomaly'] = subs_anomaly
+
+        def subs_procedure(data_sources):
+            options = data_sources['procedures']
+            return random.choice(options)
+        substitutions['procedure'] = subs_procedure
+
+        def subs_parameter_group(data_sources):
+            options = data_sources['parameter_groups']
+            return random.choice(options)
+        substitutions['parameter_group'] = subs_parameter_group
+
         return substitutions
 
 
 if __name__ == '__main__':
-    daphne_versions = ["EOSS"]  # "EDL", "AT"
+    daphne_versions = ["AT"]  # "EDL", "AT"
     # Iterate over all types of questions
     for daphne_version in daphne_versions:
         data_sources = load_data_sources(daphne_version)

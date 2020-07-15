@@ -1,0 +1,16 @@
+100
+--
+measurement measurement
+parameter_group parameter_group
+--
+100
+--
+Show the thresholds of measurement ${measurement} ${parameter_group}.
+Show the ${measurement} ${parameter_group} thresholds.
+Provide the ${measurement} ${parameter_group} limits.
+Provide the thresholds of measurement ${measurement} ${parameter_group}.
+Provide the ${measurement} ${parameter_group} measurement limits.
+What are the measurement ${measurement} ${parameter_group} thresholds?
+What are the ${measurement} ${parameter_group} thresholds?
+${measurement} ${parameter_group} thresholds.
+${measurement} ${parameter_group} limits.

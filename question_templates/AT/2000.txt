@@ -1,0 +1,18 @@
+100
+--
+anomaly anomaly
+--
+010
+--
+What are the risks of anomaly ${anomaly}?
+What are the potential risks of anomaly ${anomaly}?
+What are the risks of ${anomaly}?
+What are the potential risks of ${anomaly}?
+What are the hazards of anomaly ${anomaly}?
+What are the potential hazards of anomaly ${anomaly}?
+What are the hazards of ${anomaly}?
+What are the potential hazards of ${anomaly}?
+Why is anomaly ${anomaly} dangerous?
+Why is ${anomaly} dangerous?
+Why is anomaly ${anomaly} hazardous?
+Why is ${anomaly} hazardous?
