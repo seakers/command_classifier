@@ -1,3 +1,4 @@
+import glob
 from string import Template
 import os
 import random
@@ -210,8 +211,8 @@ if __name__ == '__main__':
         data_sources = load_data_sources(daphne_version)
         substitutions = substitution_functions(daphne_version)
         templates_path = os.path.join(os.getcwd(), "question_templates", daphne_version)
-        for filename in os.listdir(templates_path):
-            question_class = int(filename.split('.', 1)[0])
+        for filename in glob.glob(os.path.join(templates_path, "*.txt")):
+            question_class = int(os.path.basename(filename).split('.', 1)[0])
             parameter_map = {}
             template_lines = []
             num_questions = 0
@@ -242,7 +243,7 @@ if __name__ == '__main__':
             data_path = os.path.join(os.getcwd(), "data", daphne_version)
             if not os.path.exists(data_path):
                 os.makedirs(data_path)
-            output_path = os.path.join(data_path, filename)
+            output_path = os.path.join(data_path, os.path.basename(filename))
             with open(output_path, 'w') as file:
                 file.write(labels + "\n")
                 for i in range(1, num_questions+1):
