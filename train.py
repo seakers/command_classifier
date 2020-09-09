@@ -64,7 +64,7 @@ def train_cnn(x_text, y, daphne_version, output_dir, label):
         os.makedirs(output_path)
     # Write vocabulary
     with open(os.path.join(output_path, "tokenizer.pickle"), 'wb') as handle:
-        pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        pickle.dump(tokenizer, handle, protocol=pickle.DEFAULT_PROTOCOL)
     # Write model
     model.save(os.path.join(output_path, "model.h5"))
 
