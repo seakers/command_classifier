@@ -204,7 +204,7 @@ def substitution_functions(daphne_version):
 
 
 if __name__ == '__main__':
-    daphne_versions = ["AT"]  # "EDL", "AT"
+    daphne_versions = ["EOSS"]  # "EDL", "AT"
     # Iterate over all types of questions
     for daphne_version in daphne_versions:
         data_sources = load_data_sources(daphne_version)
