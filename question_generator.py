@@ -89,12 +89,31 @@ def load_data_sources(daphne_version):
                 spaced = stripped.replace('_', " ")
                 components_list.append(spaced)
 
+
+        # Retrieve all procedure numbers
+        query = 'MATCH (p:Procedure) RETURN DISTINCT p.pNumber'
+        result = session.run(query)
+        procedureNumber_list = []
+        for item in result:
+            procedureNumber_list.append(item[0])
+
+        # Retrieve all step numbers
+        query = 'MATCH (n) WHERE EXISTS(n.SubStep) RETURN DISTINCT n.Title AS Title UNION ALL MATCH (m) WHERE '  \
+                'EXISTS(m.SubSubStep) RETURN DISTINCT m.Title AS Title'
+        result = session.run(query)
+        stepNumber_list = []
+        for item in result:
+            spaced = item[0].replace('Step ', "")
+            stepNumber_list.append(spaced)
+
         return {
             'measurements': measurements_list,
             'anomalies': anomalies_list,
             'procedures': procedures_list,
             'parameter_groups': parameter_groups_list,
-            'component': components_list
+            'component': components_list,
+            'procedureNumber': procedureNumber_list,
+            'stepNumber': stepNumber_list
         }
 
 
@@ -243,6 +262,18 @@ def substitution_functions(daphne_version):
             return random.choice(options)
 
         substitutions['component'] = subs_component
+
+        def subs_procedureNumber(data_sources):
+            options = data_sources['procedureNumber']
+            return random.choice(options)
+
+        substitutions['procedureNumber'] = subs_procedureNumber
+
+        def subs_stepNumber(data_sources):
+            options = data_sources['stepNumber']
+            return random.choice(options)
+
+        substitutions['stepNumber'] = subs_stepNumber
 
         return substitutions
 

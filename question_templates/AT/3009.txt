@@ -1,14 +1,10 @@
-1000
+2000
 --
 component component
 --
 001
 --
-Show the picture of component ${component}.
-Show the image of component ${component}.
-Show the ${component} picture.
-Show the ${component} image.
-Provide the ${component} picture.
-Provide the ${component} image.
-${component} picture.
-${component} image.
+Show picture of component ${component}.
+Show image of component ${component}.
+Provide picture of component ${component}.
+Provide picture of component ${component}.

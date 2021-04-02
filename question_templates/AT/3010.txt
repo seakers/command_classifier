@@ -1,0 +1,12 @@
+1000
+--
+procedureNumber procedureNumber
+--
+001
+--
+Show me the procedure ${procedureNumber}.
+What is the procedure ${procedureNumber}?
+Show me procedure number ${procedureNumber}.
+What is procedure number ${procedureNumber}?
+${procedureNumber}.
+procedure number ${procedureNumber}.
