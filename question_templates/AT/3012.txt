@@ -1,13 +1,9 @@
-1000
+200
 --
-procedure procedure
-stepNumber stepNumber
+procedureNumber procedureNumber
 --
 001
 --
-Show me step ${stepNumber} of procedure ${procedure}.
-Show me step number ${stepNumber} of procedure ${procedure}.
-What is step ${stepNumber} of procedure ${procedure}.
-What is step number ${stepNumber} of procedure ${procedure}.
-Step ${stepNumber} of procedure ${procedure}.
-Step number ${stepNumber} of procedure ${procedure}.
+Will procedure ${procedureNumber} impact other components?
+Which components will procedure ${procedureNumber} impact?
+Show the affected components by procedure ${procedureNumber}.

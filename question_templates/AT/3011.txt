@@ -1,13 +1,13 @@
 1000
 --
 procedureNumber procedureNumber
-stepNumber stepNumber
 --
 001
 --
-Show me step ${stepNumber} of procedure number ${procedureNumber}.
-Show me step number ${stepNumber} of procedure number ${procedureNumber}.
-What is step ${stepNumber} of procedure number ${procedureNumber}.
-What is step number ${stepNumber} of procedure number ${procedureNumber}.
-Step ${stepNumber} of procedure number ${procedureNumber}.
-Step number ${stepNumber} of procedure number ${procedureNumber}.
+Provide procedure ${procedureNumber}.
+Open ${procedureNumber}.
+Open procedure ${procedureNumber}.
+Show me procedure ${procedureNumber}.
+Provide ${procedureNumber} pdf.
+Show me ${procedureNumber} pdf.
+Display pdf for ${procedureNumber}.

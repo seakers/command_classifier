@@ -1,16 +1,15 @@
 100
 --
 measurement measurement
-parameter_group parameter_group
 --
 100
 --
-Is measurement ${measurement} ${parameter_group} normal?.
-Is measurement ${measurement} ${parameter_group} nominal?.
-Is measurement ${measurement} ${parameter_group} correct?.
-Is ${measurement} ${parameter_group} normal?.
-Is ${measurement} ${parameter_group} nominal?.
-Is ${measurement} ${parameter_group} correct?.
-Check the ${measurement} ${parameter_group} status.
-Check measurement ${measurement} ${parameter_group} status.
-Check ${measurement} ${parameter_group} status.
+Is measurement ${measurement} normal?.
+Is measurement ${measurement} nominal?.
+Is measurement ${measurement} correct?.
+Is ${measurement} normal?.
+Is ${measurement} nominal?.
+Is ${measurement} correct?.
+Check the ${measurement} status.
+Check measurement ${measurement} status.
+Check ${measurement} status.

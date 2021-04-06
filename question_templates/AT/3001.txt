@@ -1,10 +1,12 @@
-300
+500
 --
 procedure procedure
 --
 001
 --
 Provide procedure ${procedure}.
+Open ${procedure}.
+Open procedure ${procedure}.
 Show me procedure ${procedure}.
 Provide ${procedure} pdf.
 Show me ${procedure} pdf.
