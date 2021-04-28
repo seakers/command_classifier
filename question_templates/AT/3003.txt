@@ -4,6 +4,6 @@ anomaly anomaly
 --
 001
 --
-How much time will it take to solve anomaly ${anomaly}?
-What is the estimated time of resolution for anomaly ${anomaly}?
-How long will it take to fix ${anomaly}.
+How much time will it take to solve anomaly ${anomaly}
+What is the estimated time of resolution for anomaly ${anomaly}
+How long will it take to fix ${anomaly}

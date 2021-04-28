@@ -4,12 +4,12 @@ measurement measurement
 --
 100
 --
-Show the thresholds of measurement ${measurement}.
-Show the ${measurement} thresholds.
-Provide the ${measurement} limits.
-Provide the thresholds of measurement ${measurement}.
-Provide the ${measurement} measurement limits.
-What are the measurement ${measurement} thresholds?
-What are the ${measurement} thresholds?
-${measurement} thresholds.
-${measurement} limits.
+Show the thresholds of measurement ${measurement}
+Show the ${measurement} thresholds
+Provide the ${measurement} limits
+Provide the thresholds of measurement ${measurement}
+Provide the ${measurement} measurement limits
+What are the measurement ${measurement} thresholds
+What are the ${measurement} thresholds
+${measurement} thresholds
+${measurement} limits

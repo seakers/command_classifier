@@ -4,6 +4,6 @@ procedureNumber procedureNumber
 --
 001
 --
-Read ${procedureNumber}.
-Read procedure ${procedureNumber}.
-Read steps of procedure ${procedureNumber}.
+Read ${procedureNumber}
+Read procedure ${procedureNumber}
+Read procedure number ${procedureNumber}

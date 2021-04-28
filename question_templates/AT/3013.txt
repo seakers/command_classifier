@@ -4,7 +4,9 @@ procedureNumber procedureNumber
 --
 001
 --
-How much time will it take to apply procedure ${procedureNumber}?
-What is the estimated time of completion for procedure ${procedureNumber}?
-How long will it take to do ${procedureNumber}.
-How long is procedure ${procedureNumber}?
+How much time will it take to apply procedure ${procedureNumber}
+What is the estimated time of completion for procedure ${procedureNumber}
+What is the estimated time of completion for procedure number ${procedureNumber}
+How long will it take to do ${procedureNumber}
+How long is procedure ${procedureNumber}
+How long is procedure number ${procedureNumber}

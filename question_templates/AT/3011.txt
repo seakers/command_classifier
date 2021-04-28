@@ -4,10 +4,13 @@ procedureNumber procedureNumber
 --
 001
 --
-Provide procedure ${procedureNumber}.
-Open ${procedureNumber}.
-Open procedure ${procedureNumber}.
-Show me procedure ${procedureNumber}.
-Provide ${procedureNumber} pdf.
-Show me ${procedureNumber} pdf.
-Display pdf for ${procedureNumber}.
+Provide procedure ${procedureNumber}
+Open ${procedureNumber}
+Open procedure ${procedureNumber}
+Show me procedure ${procedureNumber}
+Provide ${procedureNumber} pdf
+Show me ${procedureNumber} pdf
+Display pdf for ${procedureNumber}
+Provide procedure number ${procedureNumber}
+Open procedure number ${procedureNumber}
+Show me procedure number ${procedureNumber}

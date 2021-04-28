@@ -4,15 +4,15 @@ anomaly anomaly
 --
 010
 --
-What is the signature of anomaly ${anomaly}?
-What is the signature of ${anomaly}?
-What parameters does anomaly ${anomaly} affect?
-What parameters does ${anomaly} affect?
-What are the measurements affected by anomaly ${anomaly}?
-What are the measurements affected by ${anomaly}?
-What are the symptoms of anomaly ${anomaly}?
-What are the symptoms of ${anomaly}?
-Anomaly ${anomaly} signature.
-Anomaly ${anomaly} symptoms.
-${anomaly} signature.
-${anomaly} symptoms.
+What is the signature of anomaly ${anomaly}
+What is the signature of ${anomaly}
+What parameters does anomaly ${anomaly} affect
+What parameters does ${anomaly} affect
+What are the measurements affected by anomaly ${anomaly}
+What are the measurements affected by ${anomaly}
+What are the symptoms of anomaly ${anomaly}
+What are the symptoms of ${anomaly}
+Anomaly ${anomaly} signature
+Anomaly ${anomaly} symptoms
+${anomaly} signature
+${anomaly} symptoms

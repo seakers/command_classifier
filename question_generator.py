@@ -6,6 +6,8 @@ import random
 import pandas
 from neo4j import GraphDatabase, basic_auth
 
+from homophone_generator import homophone_generator
+
 
 def load_data_sources(daphne_version):
     if daphne_version == "EOSS":
@@ -329,5 +331,25 @@ if __name__ == '__main__':
                     # Generate a question
                     template = random.choice(template_lines)
                     question = template.substitute(params)
+
+                    # Remove (), #, -
+                    question = question.replace("#", "number ")
+                    question = question.replace("-", " ")
+                    question = question.replace("(", "")
+                    question = question.replace(")", "")
                     file.write(question + '\n')
+
+                    # Generate a homophone
+                    homophone_question = homophone_generator(question)
+
+                    # add noise for abbreviations
+                    homophone_question = homophone_question.replace("TCCS", "pccs")
+                    homophone_question = homophone_question.replace("WRS", "w are s")
+                    homophone_question = homophone_question.replace("CDRA", "sidra")
+                    homophone_question = homophone_question.replace("LiOH", "lyle")
+                    homophone_question = homophone_question.replace("CCAA", "see CAA")
+
+                    if homophone_question != question:
+                        file.write(homophone_question + '\n')
+
                     print(question)

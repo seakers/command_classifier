@@ -3,5 +3,5 @@
 --
 001
 --
-Repeat.
-Repeat step.
+Repeat
+Repeat step

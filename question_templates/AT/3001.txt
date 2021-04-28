@@ -4,10 +4,10 @@ procedure procedure
 --
 001
 --
-Provide procedure ${procedure}.
-Open ${procedure}.
-Open procedure ${procedure}.
-Show me procedure ${procedure}.
-Provide ${procedure} pdf.
-Show me ${procedure} pdf.
-Display pdf for ${procedure}.
+Provide procedure ${procedure}
+Open ${procedure}
+Open procedure ${procedure}
+Show me procedure ${procedure}
+Provide ${procedure} pdf
+Show me ${procedure} pdf
+Display pdf for ${procedure}

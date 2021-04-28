@@ -3,5 +3,5 @@
 --
 001
 --
-Next.
-Next step.
+Next
+Next step

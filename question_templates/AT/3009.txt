@@ -4,7 +4,7 @@ component component
 --
 001
 --
-Show picture of component ${component}.
-Show image of component ${component}.
-Provide picture of component ${component}.
-Provide picture of component ${component}.
+Show picture of component ${component}
+Show image of component ${component}
+Provide picture of component ${component}
+Provide picture of component ${component}

@@ -5,9 +5,9 @@ stepNumber stepNumber
 --
 001
 --
-Show me step ${stepNumber} of procedure ${procedure}.
-Show me step number ${stepNumber} of procedure ${procedure}.
-What is step ${stepNumber} of procedure ${procedure}.
-What is step number ${stepNumber} of procedure ${procedure}.
-Step ${stepNumber} of procedure ${procedure}.
-Step number ${stepNumber} of procedure ${procedure}.
+Show me step ${stepNumber} of procedure ${procedure}
+Show me step number ${stepNumber} of procedure ${procedure}
+What is step ${stepNumber} of procedure ${procedure}
+What is step number ${stepNumber} of procedure ${procedure}
+Step ${stepNumber} of procedure ${procedure}
+Step number ${stepNumber} of procedure ${procedure}

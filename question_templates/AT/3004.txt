@@ -4,7 +4,7 @@ procedure procedure
 --
 001
 --
-How much time will it take to apply procedure ${procedure}?
-What is the estimated time of completion for procedure ${procedure}?
-How long will it take to do ${procedure}.
-How long is procedure ${procedure}?
+How much time will it take to apply procedure ${procedure}
+What is the estimated time of completion for procedure ${procedure}
+How long will it take to do ${procedure}
+How long is procedure ${procedure}

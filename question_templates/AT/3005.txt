@@ -4,6 +4,6 @@ procedure procedure
 --
 001
 --
-Read ${procedure}.
-Read procedure ${procedure}.
-Read steps of procedure ${procedure}.
+Read ${procedure}
+Read procedure ${procedure}
+Read steps of procedure ${procedure}

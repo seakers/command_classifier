@@ -4,6 +4,9 @@ procedureNumber procedureNumber
 --
 001
 --
-Will procedure ${procedureNumber} impact other components?
-Which components will procedure ${procedureNumber} impact?
-Show the affected components by procedure ${procedureNumber}.
+Will procedure ${procedureNumber} impact other components
+Will procedure number ${procedureNumber} impact other components
+Which components will procedure ${procedureNumber} impact
+Which components will procedure number ${procedureNumber} impact
+Show the affected components by procedure ${procedureNumber}
+Show the affected components by procedure number ${procedureNumber}

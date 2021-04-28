@@ -4,12 +4,13 @@ measurement measurement
 --
 100
 --
-Is measurement ${measurement} normal?.
-Is measurement ${measurement} nominal?.
-Is measurement ${measurement} correct?.
-Is ${measurement} normal?.
-Is ${measurement} nominal?.
-Is ${measurement} correct?.
-Check the ${measurement} status.
-Check measurement ${measurement} status.
-Check ${measurement} status.
+Is measurement ${measurement} normal
+Is measurement ${measurement} nominal
+Is measurement ${measurement} correct
+Is ${measurement} normal
+Is ${measurement} nominal
+Is ${measurement} correct
+Check the ${measurement} status
+Check measurement ${measurement} status
+Check the status of measurement ${measurement}
+Check ${measurement} status
