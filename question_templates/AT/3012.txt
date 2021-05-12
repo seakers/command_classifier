@@ -1,4 +1,4 @@
-200
+1000
 --
 procedureNumber procedureNumber
 --
@@ -6,7 +6,10 @@ procedureNumber procedureNumber
 --
 Will procedure ${procedureNumber} impact other components
 Will procedure number ${procedureNumber} impact other components
+Which components will ${procedureNumber} impact
 Which components will procedure ${procedureNumber} impact
 Which components will procedure number ${procedureNumber} impact
-Show the affected components by procedure ${procedureNumber}
-Show the affected components by procedure number ${procedureNumber}
+Show the affected components by ${procedureNumber}
+Show the components affected by ${procedureNumber}
+Show the components affected by procedure ${procedureNumber}
+Show the components affected by procedure number ${procedureNumber}

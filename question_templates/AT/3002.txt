@@ -6,4 +6,7 @@ procedure procedure
 --
 Will procedure ${procedure} impact other components
 Which components will procedure ${procedure} impact
+Which components will ${procedure} impact
 Show the affected components by procedure ${procedure}
+Show the components affected by procedure ${procedure}
+Show the components affected by ${procedure}

@@ -5,6 +5,10 @@ component component
 001
 --
 Show picture of component ${component}
+Show picture of ${component}
 Show image of component ${component}
+Show image of ${component}
 Provide picture of component ${component}
-Provide picture of component ${component}
+Provide picture of ${component}
+Provide image of component ${component}
+Provide image of ${component}

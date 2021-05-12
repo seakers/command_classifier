@@ -1,4 +1,4 @@
-100
+500
 --
 anomaly anomaly
 --
@@ -7,3 +7,6 @@ anomaly anomaly
 How much time will it take to solve anomaly ${anomaly}
 What is the estimated time of resolution for anomaly ${anomaly}
 How long will it take to fix ${anomaly}
+How long will it take to fix anomaly ${anomaly}
+How long will it take to resolve anomaly ${anomaly}
+How long will it take to resolve ${anomaly}

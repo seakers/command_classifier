@@ -1,4 +1,4 @@
-1000
+2000
 --
 procedureNumber procedureNumber
 stepNumber stepNumber
@@ -12,3 +12,5 @@ What is step number ${stepNumber} of procedure ${procedureNumber}
 Step ${stepNumber} of procedure ${procedureNumber}
 Step number ${stepNumber} of procedure ${procedureNumber}
 Read step ${stepNumber} of procedure ${procedureNumber}
+Read step number ${stepNumber} of procedure ${procedureNumber}
+Read step ${stepNumber} of procedure number ${procedureNumber}
