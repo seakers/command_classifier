@@ -16,12 +16,20 @@ def create_dictionary(dictionary_file):
         plural_words = []
         for word_string in word_strings:
             matches = re.findall("([^( ]+) ?(\(-(.+?)\))?", word_string)
+            print(matches)
 
             if not matches:
                 continue
 
             word = matches[0][0]
             plural_word = matches[0][2]
+
+            # This loops allows to handle for multiple word expressions
+            for i in range(1, len(matches)):
+                word += " "
+                word += matches[i][0]
+                plural_word += " "
+                plural_word = matches[i][2]
 
             if plural_word:
                 plural_words.append(word + plural_word)
