@@ -16,7 +16,6 @@ def create_dictionary(dictionary_file):
         plural_words = []
         for word_string in word_strings:
             matches = re.findall("([^( ]+) ?(\(-(.+?)\))?", word_string)
-            print(matches)
 
             if not matches:
                 continue
