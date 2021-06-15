@@ -12,4 +12,6 @@ Provide anomaly ${anomaly} procedures
 Show me the procedure to solve ${anomaly}
 Procedure ${anomaly}
 Anomaly ${anomaly} procedure
+What procedures will fix ${anomaly}
+How do I resolve ${anomaly}
 Give me the procedure for ${anomaly}

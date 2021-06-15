@@ -13,6 +13,9 @@ What are the measurements affected by ${anomaly}
 What are the symptoms of anomaly ${anomaly}
 What are the symptoms of ${anomaly}
 Anomaly ${anomaly} signature
+${anomaly} affects which measurements
 Anomaly ${anomaly} symptoms
 ${anomaly} signature
+What measurements are affected by ${anomaly}
+What measurements are changed by ${anomaly}
 ${anomaly} symptoms

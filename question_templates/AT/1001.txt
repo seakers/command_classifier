@@ -12,4 +12,14 @@ Provide the ${measurement} measurement limits
 What are the measurement ${measurement} thresholds
 What are the ${measurement} thresholds
 ${measurement} thresholds
+What are the limits for ${measurement}
+Show the limits for ${measurement}
+What are the thresholds of ${measurement}
+What are the thresholds for ${measurement}
 ${measurement} limits
+Give the thresholds for ${measurement}
+Give the thresholds of ${measurement}
+Give the limits for ${measurement}
+Give the limits of ${measurement}
+Provide the limits of ${measurement}
+What are the limits of ${measurement}

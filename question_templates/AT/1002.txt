@@ -14,3 +14,4 @@ Check the ${measurement} status
 Check measurement ${measurement} status
 Check the status of measurement ${measurement}
 Check ${measurement} status
+What is the status of ${measurement}
