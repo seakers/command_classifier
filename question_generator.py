@@ -7,32 +7,14 @@ from neo4j import GraphDatabase, basic_auth
 
 def load_data_sources(daphne_version):
     if daphne_version == "EOSS":
-        from sqlalchemy.orm import sessionmaker
-        import models
-        from VASSARClient import VASSARClient
+        from db_client import Client, technologies
 
         # Connect to the database to retrieve names
-        engine = models.db_connect()
-        Session = sessionmaker(bind=engine)
-
-        VASSAR = VASSARClient()
-
-        instruments_sheet = pandas.read_excel('./xls/Climate-centric/Climate-centric AttributeSet.xls',
-                                              sheet_name='Instrument')
-        measurements_sheet = pandas.read_excel('./xls/Climate-centric/Climate-centric AttributeSet.xls',
-                                               sheet_name='Measurement')
-        param_names = []
-        for row in measurements_sheet.itertuples(index=True, name='Measurement'):
-            if row[2] == 'Parameter':
-                for i in range(6, len(row)):
-                    param_names.append(row[i])
+        postgres_client = Client()
 
         return {
-            "vassar": VASSAR,
-            "instruments_sheet": instruments_sheet,
-            "param_names": param_names,
-            "models": models,
-            "session": Session()
+            "db_client": postgres_client,
+            "technologies": technologies
         }
 
     if daphne_version == "EDL":
@@ -87,25 +69,25 @@ def substitution_functions(daphne_version):
 
     if daphne_version == "EOSS":
         def subs_measurement(data_sources):
-            measurements = data_sources["session"].query(data_sources["models"].Measurement).all()
-            return random.choice(measurements).name
+            measurements = data_sources["db_client"].get_measurements()
+            return random.choice(measurements)
         substitutions['measurement'] = subs_measurement
 
         def subs_technology(data_sources):
-            technologies = list(data_sources["models"].technologies)
-            for type in data_sources["session"].query(data_sources["models"].InstrumentType).all():
-                technologies.append(type.name)
+            technologies = list(data_sources["technologies"])
+            for tech_type in data_sources["db_client"].get_instrument_types():
+                technologies.append(tech_type)
             return random.choice(technologies)
         substitutions['technology'] = subs_technology
 
         def subs_mission(data_sources):
-            missions = data_sources["session"].query(data_sources["models"].Mission).all()
-            return random.choice(missions).name
+            missions = data_sources["db_client"].get_missions()
+            return random.choice(missions)
         substitutions['mission'] = subs_mission
 
         def subs_agency(data_sources):
-            agencies = data_sources["session"].query(data_sources["models"].Agency).all()
-            return random.choice(agencies).name
+            agencies = data_sources["db_client"].get_agencies()
+            return random.choice(agencies)
         substitutions['space_agency'] = subs_agency
 
         def subs_instrument_ifeed(data_sources):
