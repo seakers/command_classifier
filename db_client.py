@@ -2,9 +2,15 @@ import os
 
 from sqlalchemy.orm import sessionmaker, declarative_base, relationship
 from sqlalchemy import create_engine, Column, Integer, Float, String, ForeignKey, Boolean, ARRAY, and_, CheckConstraint, DateTime, Time, Table
-import pandas as pd
 
-DeclarativeBase = declarative_base()
+user = os.environ['USER']
+password = os.environ['PASSWORD']
+postgres_host = os.environ['POSTGRES_HOST']
+postgres_port = os.environ['POSTGRES_PORT']
+vassar_db_name = 'daphne'
+db_string = f'postgresql+psycopg2://{user}:{password}@{postgres_host}:{postgres_port}/{vassar_db_name}'
+engine = create_engine(db_string, echo=True)
+DeclarativeBase = declarative_base(bind=engine)
 
 class Client:
 
@@ -30,111 +36,48 @@ class Client:
         return meas_attr_id
 
     def get_measurements(self):
-        measurements = self.session.query(Measurement.name).all()
+        measurements = [row[0] for row in self.session.query(Measurement.name).all()]
         return measurements
 
     def get_instrument_types(self):
-        types = self.session.query(InstrumentType.name).all()
+        types = [row[0] for row in self.session.query(InstrumentType.name).all()]
         return types
 
     def get_missions(self):
-        missions = self.session.query(Mission.name).all()
+        missions = [row[0] for row in self.session.query(Mission.name).all()]
         return missions
 
     def get_agencies(self):
-        agencies = self.session.query(Agency.name).all()
+        agencies = [row[0] for row in self.session.query(Agency.name).all()]
         return agencies
 
     def get_agencies(self):
-        agencies = self.session.query(Agency.name).all()
+        agencies = [row[0] for row in self.session.query(Agency.name).all()]
         return agencies
 
-    def get_problem_id(self, problem_name, group_id=1):
-        problem_id_query = self.session.query(Problem.id, Problem.name).filter(Problem.name == problem_name).filter(Problem.group_id == group_id).first()
-        problem_id = problem_id_query[0]
-        return problem_id
+    def get_stakeholders(self):
+        stakeholders = [row[0] for row in self.session.query(Stakeholder_Needs_Panel.name).all()]
+        return stakeholders
 
-    def get_instrument_id(self, inst_name, group_id=1):
-        problem_id_query = self.session.query(VassarInstrument.id, VassarInstrument.name).filter(VassarInstrument.name == inst_name).filter(VassarInstrument.group_id == group_id).first()
-        problem_id = problem_id_query[0]
-        return problem_id
+    def get_objectives(self):
+        objectives = [row[0] for row in self.session.query(Stakeholder_Needs_Objective.name).all()]
+        return objectives
 
-    def get_orbit_id(self, inst_name, group_id=1):
-        problem_id_query = self.session.query(Orbit.id, Orbit.name).filter(Orbit.name == inst_name).filter(Orbit.group_id == group_id).first()
-        problem_id = problem_id_query[0]
-        return problem_id
+    def get_subobjectives(self):
+        subobjectives = [row[0] for row in self.session.query(Stakeholder_Needs_Subobjective.name).all()]
+        return subobjectives
 
-    def get_orbit_attribute_id(self, name, group_id=1):
-        problem_id_query = self.session.query(Orbit_Attribute.id, Orbit_Attribute.name).filter(Orbit_Attribute.name == name).filter(Orbit_Attribute.group_id == group_id).first()
-        problem_id = problem_id_query[0]
-        return problem_id
+    def get_instrument_attributes(self):
+        instr_attributes = [row[0] for row in self.session.query(Instrument_Attribute.name).all()]
+        return instr_attributes
 
-    def get_lv_id(self, inst_name, group_id=1):
-        problem_id_query = self.session.query(Launch_Vehicle.id, Launch_Vehicle.name).filter(Launch_Vehicle.name == inst_name).filter(Launch_Vehicle.group_id == group_id).first()
-        problem_id = problem_id_query[0]
-        return problem_id
+    def get_vassar_instruments(self):
+        vassar_instruments = [row[0] for row in self.session.query(VassarInstrument.name).all()]
+        return vassar_instruments
 
-    def get_lv_attribute_id(self, name, group_id=1):
-        problem_id_query = self.session.query(Launch_Vehicle_Attribute.id, Launch_Vehicle_Attribute.name).filter(Launch_Vehicle_Attribute.name == name).filter(Launch_Vehicle_Attribute.group_id == group_id).first()
-        problem_id = problem_id_query[0]
-        return problem_id
-
-    def get_instrument_attribute_id(self, name, group_id=1):
-        problem_id_query = self.session.query(Instrument_Attribute.id, Instrument_Attribute.name).filter(
-            Instrument_Attribute.name == name).filter(Instrument_Attribute.group_id == group_id).first()
-        problem_id = problem_id_query[0]
-        return problem_id
-
-    def get_panel_id(self, problem_id, index_id):
-        panel_id_query = self.session.query(Stakeholder_Needs_Panel.id, Stakeholder_Needs_Panel.name).filter(
-            and_(Stakeholder_Needs_Panel.index_id == index_id,
-                 Stakeholder_Needs_Panel.problem_id == problem_id)).first()
-        panel_id = panel_id_query[0]
-        return panel_id
-
-    def get_num_problem_panels(self, problem_id):
-        panel_id_query = self.session.query(Stakeholder_Needs_Panel.id, Stakeholder_Needs_Panel.name).filter(Stakeholder_Needs_Panel.problem_id == problem_id).all()
-        return len(panel_id_query)
-
-    def get_objective_id__subobjective(self, name, problem_id):
-        objective_id_query = self.session.query(Stakeholder_Needs_Objective.id, Stakeholder_Needs_Objective.name).filter(
-            and_(Stakeholder_Needs_Objective.name == name,
-                 Stakeholder_Needs_Objective.problem_id == problem_id)).first()
-        objective_id = objective_id_query[0]
-        return objective_id
-
-    def get_subobjective_id(self, name, problem_id):
-        subobjective_id_query = self.session.query(Stakeholder_Needs_Subobjective.id,
-                                              Stakeholder_Needs_Subobjective.name).filter(
-            and_(Stakeholder_Needs_Subobjective.name == name,
-                 Stakeholder_Needs_Subobjective.problem_id == problem_id)).first()
-        subobjective_id = subobjective_id_query[0]
-        return subobjective_id
-
-    def does_meas_exist(self, name, group_id=1):
-        return self.session.query(VassarMeasurement.group_id, VassarMeasurement.name).filter_by(group_id=group_id, name=name).scalar()
-
-    def get_accepted_values(self, row, col__num_accepted_vals=4):
-        accepted_value_names = []
-        num_accepted_vals = int(row[col__num_accepted_vals])
-        col__first_accepted_val = col__num_accepted_vals + 1
-        print(row)
-        for index in range(num_accepted_vals):
-            col__current_idx = col__first_accepted_val + index
-            try:
-                accepted_value_name = row[col__current_idx]
-                if not pd.isna(accepted_value_name):
-                    accepted_value_names.append(str(accepted_value_name))
-            except:
-                return accepted_value_names
-        return accepted_value_names
-
-    def get_accepted_value_id(self, group_id, value):
-        accepted_value_id_query = self.session.query(Accepted_Value.id, Accepted_Value.value).filter(
-            Accepted_Value.group_id == group_id).filter(Accepted_Value.value == value).first()
-        accepted_value_id = accepted_value_id_query[0]
-        print("Found accepted value", accepted_value_id)
-        return accepted_value_id
+    def get_vassar_measurements(self):
+        vassar_measurements = [row[0] for row in self.session.query(VassarMeasurement.name).all()]
+        return vassar_measurements
 
 
 
@@ -144,8 +87,6 @@ class Client:
  # | | |_ | |/ _ \| '_ \ / _` | |
  # | |__| | | (_) | |_) | (_| | |
  #  \_____|_|\___/|_.__/ \__,_|_|
-
-global_client = Client()
 
 class auth_user(DeclarativeBase):
     """Sqlalchemy broad measurement categories model"""
@@ -624,6 +565,8 @@ class Power_Mission_Analysis(DeclarativeBase):
     worst_sun_angles = Column('worst_sun_angles', Float)
     max_eclipse_time = Column('max_eclipse_time', Float)
 
+
+### CEOS TABLES
 
 operators_table = Table('ceos_operators', DeclarativeBase.metadata,
                         Column('agency_id', Integer, ForeignKey('ceos_agencies.id')),

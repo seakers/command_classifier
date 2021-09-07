@@ -104,17 +104,13 @@ def substitution_functions(daphne_version):
         substitutions['design_id'] = subs_design_id
 
         def subs_objective(data_sources):
-            data_sources["vassar"].startConnection()
-            objectives = data_sources["vassar"].client.getObjectiveList('ClimateCentric')
-            data_sources["vassar"].endConnection()
+            objectives = data_sources["db_client"].get_objectives()
             return random.choice(objectives)
         substitutions['objective'] = subs_objective
 
         def subs_subobjective(data_sources):
-            data_sources["vassar"].startConnection()
-            objectives = data_sources["vassar"].client.getSubobjectiveList('ClimateCentric')
-            data_sources["vassar"].endConnection()
-            return random.choice(objectives)
+            subobjectives = data_sources["db_client"].get_subobjectives()
+            return random.choice(subobjectives)
         substitutions['subobjective'] = subs_subobjective
 
         def subs_not_partial_full(data_sources):
@@ -123,7 +119,7 @@ def substitution_functions(daphne_version):
         substitutions['not_partial_full'] = subs_not_partial_full
 
         def subs_agent(data_sources):
-            options = ["expert", "historian", "analyst", "explorer"]
+            options = ["expert", "historian", "analyst", "explorer", "engineer", "critic"]
             return random.choice(options)
         substitutions['agent'] = subs_agent
 
@@ -136,23 +132,23 @@ def substitution_functions(daphne_version):
         substitutions['number'] = subs_number
 
         def subs_instrument_parameter(data_sources):
-            return random.choice(data_sources["instruments_sheet"]['Attributes-for-object-Instrument'])
+            instrument_parameters = data_sources["db_client"].get_instrument_attributes()
+            return random.choice(instrument_parameters)
         substitutions['instrument_parameter'] = subs_instrument_parameter
 
         def subs_vassar_instrument(data_sources):
-            options = ["ACE_ORCA","ACE_POL","ACE_LID","CLAR_ERB","ACE_CPR","DESD_SAR","DESD_LID","GACM_VIS","GACM_SWIR",
-                       "HYSP_TIR","POSTEPS_IRS","CNES_KaRIN","BIOMASS","SMAP_RAD","SMAP_MWR","CMIS","VIIRS"]
-            return random.choice(options)
+            vassar_instruments = data_sources["db_client"].get_vassar_instruments()
+            return random.choice(vassar_instruments)
         substitutions['vassar_instrument'] = subs_vassar_instrument
 
         def subs_vassar_measurement(data_sources):
-            return random.choice(data_sources["param_names"])
+            vassar_measurements = data_sources["db_client"].get_vassar_measurements()
+            return random.choice(vassar_measurements)
         substitutions['vassar_measurement'] = subs_vassar_measurement
 
         def subs_vassar_stakeholder(data_sources):
-            options = ["Atmospheric", "Oceanic", "Terrestrial", "Weather", "Climate", "Land and ecosystems", "Water",
-                       "Human health"]
-            return random.choice(options)
+            stakeholders = data_sources["db_client"].get_stakeholders()
+            return random.choice(stakeholders)
         substitutions['vassar_stakeholder'] = subs_vassar_stakeholder
 
         return substitutions
