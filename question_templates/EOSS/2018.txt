@@ -1,6 +1,6 @@
 200
 --
 --
-0100
+01000
 --
 what requirements are not being satisfied

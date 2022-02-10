@@ -4,7 +4,7 @@ import random
 
 
 from string import Template
-from .substitutions import Substitutions
+from .Substitutions import Substitutions
 
 
 
@@ -82,7 +82,6 @@ class DataProcessing:
             'question_class': question_class,
             'outfile': os.path.join(datapath, filename)
         }
-
 
     def process(self):
         for qtemplate in self.templates:

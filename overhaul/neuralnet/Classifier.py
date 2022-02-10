@@ -9,7 +9,7 @@ from multiprocessing import Process, SimpleQueue
 from .Model import Model
 
 global_skills = {
-    "EOSS": ["iFEED", "VASSAR", "Critic", "Historian"],
+    "EOSS": ["iFEED", "VASSAR", "Critic", "Historian", "Teacher"],
     "EDL": [],
     "AT": ["Detection", "Diagnosis", "Recommendation"]
 }
@@ -34,22 +34,17 @@ class Classifier:
         self.BATCH_SIZE = 128  # Batch Size (default: 64)
         self.NUM_EPOCHS = 50  # Number of training epochs (default: 200)
 
-    def clean_lines(self, file_path, queue):
-        with open(file_path, 'r') as file:
-            queue.put([self.clean_line(line) for line in file])
 
-    def clean_line(self, line):
-        doc = self.nlp(line)
-        tokens = []
-        for token in doc:
-            # If stopword or punctuation, ignore token and continue
-            if (token.is_stop and not (
-                    token.lemma_ == "which" or token.lemma_ == "how" or token.lemma_ == "what" or token.lemma_ == "when" or token.lemma_ == "why")) or token.is_punct:
-                continue
 
-            # Lemmatize the token and yield
-            tokens.append(token.lemma_)
-        return " ".join(tokens)
+    """
+      _                        _   _____          _         
+     | |                      | | |  __ \        | |        
+     | |      ___    __ _   __| | | |  | |  __ _ | |_  __ _ 
+     | |     / _ \  / _` | / _` | | |  | | / _` || __|/ _` |
+     | |____| (_) || (_| || (_| | | |__| || (_| || |_| (_| |
+     |______|\___/  \__,_| \__,_| |_____/  \__,_| \__|\__,_|
+                                                        
+    """
 
     def load_data(self):
 
@@ -69,6 +64,7 @@ class Classifier:
 
         # --> 1. Partition datafiles into skills and map each intent_id to a unique integer
         for filename in files_list:
+            print(filename)
             file_path = os.path.join(data_path, filename)
             with open(file_path, 'r') as file:
                 intent_id = int(filename.split('.', 1)[0])
@@ -195,9 +191,34 @@ class Classifier:
 
         return [general_x_text, general_y, specific_x_texts, specific_ys]
 
+    def clean_lines(self, file_path, queue):
+        with open(file_path, 'r') as file:
+            queue.put([self.clean_line(line) for line in file])
+
+    def clean_line(self, line):
+        doc = self.nlp(line)
+        tokens = []
+        for token in doc:
+            # If stopword or punctuation, ignore token and continue
+            if (token.is_stop and not (
+                    token.lemma_ == "which" or token.lemma_ == "how" or token.lemma_ == "what" or token.lemma_ == "when" or token.lemma_ == "why")) or token.is_punct:
+                continue
+
+            # Lemmatize the token and yield
+            tokens.append(token.lemma_)
+        return " ".join(tokens)
 
 
 
+    """
+      _______           _        
+     |__   __|         (_)       
+        | | _ __  __ _  _  _ __  
+        | || '__|/ _` || || '_ \ 
+        | || |  | (_| || || | | |
+        |_||_|   \__,_||_||_| |_|
+                             
+    """
 
     def train(self):
 
@@ -255,6 +276,17 @@ class Classifier:
 
         return 0
 
+
+
+    """
+       _____                    
+      / ____|                   
+     | (___    __ _ __   __ ___ 
+      \___ \  / _` |\ \ / // _ \
+      ____) || (_| | \ V /|  __/
+     |_____/  \__,_|  \_/  \___|
+                                                
+    """
 
     def save(self, model, tokenizer, output_dir):
         output_path = os.path.join(os.getcwd(), "models", self.daphne_version, output_dir)

@@ -3,6 +3,6 @@
 design_id1 design_id
 design_id2 design_id
 --
-0100
+01000
 --
 why is architecture ${design_id1} better than ${design_id2}

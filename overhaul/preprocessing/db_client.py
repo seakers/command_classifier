@@ -79,14 +79,15 @@ class Client:
         vassar_measurements = [row[0] for row in self.session.query(VassarMeasurement.name).all()]
         return vassar_measurements
 
+"""
+     #   _____ _       _           _
+     #  / ____| |     | |         | |
+     # | |  __| | ___ | |__   __ _| |
+     # | | |_ | |/ _ \| '_ \ / _` | |
+     # | |__| | | (_) | |_) | (_| | |
+     #  \_____|_|\___/|_.__/ \__,_|_|
+"""
 
-
- #   _____ _       _           _
- #  / ____| |     | |         | |
- # | |  __| | ___ | |__   __ _| |
- # | | |_ | |/ _ \| '_ \ / _` | |
- # | |__| | | (_) | |_) | (_| | |
- #  \_____|_|\___/|_.__/ \__,_|_|
 
 class auth_user(DeclarativeBase):
     """Sqlalchemy broad measurement categories model"""
@@ -386,13 +387,15 @@ class ObjectiveScoreExplanation(DeclarativeBase):
     subobjective_id = Column('subobjective_id', Integer, ForeignKey('Stakeholder_Needs_Subobjective.id'))
     satisfaction = Column('satisfaction', Float)
 
+"""
+     #  _                     _
+     # | |                   | |
+     # | |     ___   ___ __ _| |
+     # | |    / _ \ / __/ _` | |
+     # | |___| (_) | (_| (_| | |
+     # |______\___/ \___\__,_|_|
+"""
 
- #  _                     _
- # | |                   | |
- # | |     ___   ___ __ _| |
- # | |    / _ \ / __/ _` | |
- # | |___| (_) | (_| (_| | |
- # |______\___/ \___\__,_|_|
 
 # measurement attribute values vary across instruments
 class Join__VassarInstrument_Capability(DeclarativeBase):

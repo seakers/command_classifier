@@ -2,7 +2,7 @@
 --
 instrument instrument
 --
-1000
+10000
 --
 which of the designs use instrument ${instrument}
 which of the designs do not use instrument ${instrument}
