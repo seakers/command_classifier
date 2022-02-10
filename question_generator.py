@@ -68,6 +68,18 @@ def substitution_functions(daphne_version):
     substitutions = dict()
 
     if daphne_version == "EOSS":
+
+
+        def subs_cost_element(data_sources):
+            cost_elements = [
+                'launch-cost', 'bus-cost', 'bus-recurring-cost', 'bus-non-recurring-cost', 'payload-cost',
+                'payload-recurring-cost', 'payload-non-recurring-cost', 'satellite-cost', 'spacecraft-recurring-cost', 'spacecraft-non-recurring-cost',
+                'IAT-cost', 'IAT-recurring-cost', 'IAT-non-recurring-cost', 'program-cost', 'program-recurring-cost',
+                'program-non-recurring-cost', 'operations-cost', 'mission-recurring-cost', 'mission-non-recurring-cost', 'lifecycle-cost'
+            ]
+            return random.choice(cost_elements)
+        substitutions['cost_element'] = subs_cost_element
+
         def subs_measurement(data_sources):
             measurements = data_sources["db_client"].get_measurements()
             return random.choice(measurements)

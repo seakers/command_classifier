@@ -18,10 +18,7 @@ def clean_str(line):
     tokens = []
     for token in doc:
         # If stopword or punctuation, ignore token and continue
-        if (token.is_stop
-            and not (token.lemma_ == "which" or token.lemma_ == "how" or token.lemma_ == "what"
-                     or token.lemma_ == "when" or token.lemma_ == "why")) \
-                or token.is_punct:
+        if (token.is_stop and not (token.lemma_ == "which" or token.lemma_ == "how" or token.lemma_ == "what" or token.lemma_ == "when" or token.lemma_ == "why")) or token.is_punct:
             continue
 
         # Lemmatize the token and yield
