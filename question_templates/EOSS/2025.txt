@@ -1,0 +1,9 @@
+200
+--
+--
+0100
+--
+what region of the spectrum do radar systems work on
+at what wavelength to radar systems operate
+in which spectrum do radars operate
+what is the spectrum region for radar systems

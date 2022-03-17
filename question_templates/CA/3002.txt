@@ -3,8 +3,6 @@
 --
 001
 --
-what are the different types of remote sensors
-are the different types of remote sensors
-are radar systems considered remote sensors
-what range do microwave radiometers operate in
-what sensor systems operate in the infrared spectrum
+at what wavelengths do radar systems operate
+in which spectrum do radars operate
+what is the spectrum region for radar systems

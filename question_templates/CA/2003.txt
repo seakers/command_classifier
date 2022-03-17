@@ -4,9 +4,5 @@
 010
 --
 what is a satellite system
-what can you tell me about satellite systems
-what is the important terminology for satellite systems
-what is a space vehicle
-what can you tell me about space vehicles
 do you have any relevant material to satellite systems
 end to end space solution

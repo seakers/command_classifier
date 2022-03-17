@@ -3,9 +3,4 @@
 --
 010
 --
-what do you know about the integrated bus and payload
-do you have relevant info on integrated bus and payload
-do you have any visuals for the integrated bus and payload
-do you have any visuals for the end to end satellite system
-where is the payload on the satellite
-where is the payload integrated
+can you show me an image of a satellite

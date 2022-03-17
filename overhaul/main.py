@@ -25,7 +25,7 @@ def train():
 
 
 def main(process, train):
-    daphne_version = 'EOSS'
+    daphne_version = 'CA'
 
     if process:
         print('--> Preprocessing Data')

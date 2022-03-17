@@ -257,6 +257,7 @@ class Classifier:
 
         # Training
         # ==================================================
+        # x_train.shape[1]
         model = Model(sequence_length=x_train.shape[1],
                       num_classes=y_train.shape[1],
                       vocab_size=vocab_size,
