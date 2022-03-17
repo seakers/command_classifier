@@ -4,7 +4,6 @@ from pathlib import Path
 import numpy as np
 import data_helpers
 from transformers import AutoTokenizer, DataCollatorWithPadding, AutoModelForSequenceClassification, TrainingArguments, Trainer
-from sklearn.model_selection import train_test_split
 
 # Parameters
 # ==================================================
@@ -12,73 +11,45 @@ from sklearn.model_selection import train_test_split
 # Data loading params
 DEV_SAMPLE_PERCENTAGE = 0.1  # Percentage of the training data to use for validation
 
-# Model Hyperparameters
-EMBEDDING_DIM = 128  # Dimensionality of character embedding (default: 128)
-FILTER_SIZES = [3, 4, 5]  # Comma-separated filter sizes (default: '3,4,5')
-NUM_FILTER = 128  # Number of filters per filter size (default: 128)
-DROPOUT_KEEP_PROB = 0.5  # Dropout keep probability (default: 0.5)
-
 # Training parameters
-BATCH_SIZE = 128  # Batch Size (default: 64)
-NUM_EPOCHS = 50  # Number of training epochs (default: 200)
+BATCH_SIZE = 16  # Batch Size
+NUM_EPOCHS = 5  # Number of training epochs
 
 
-
-
-def train_transformer(dataset, daphne_version, output_dir, label):
-    tokenizer = AutoTokenizer.from_pretrained("scibert_scivocab_uncased")
+def train_transformer(dataset, daphne_version, output_dir):
+    tokenizer = AutoTokenizer.from_pretrained("allenai/scibert_scivocab_uncased")
 
     def preprocess_function(examples):
         return tokenizer(examples["text"], truncation=True)
     
-    tokenized_dataset = dataset.map(preprocess_function, truncation=True)
+    tokenized_dataset = dataset.map(preprocess_function, batched=True)
+    split_dataset = tokenized_dataset.train_test_split(test_size=DEV_SAMPLE_PERCENTAGE)
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
+    model = AutoModelForSequenceClassification.from_pretrained("allenai/scibert_scivocab_uncased", num_labels=len(split_dataset["train"][0]["labels"]), problem_type="multi_label_classification")
 
-    model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased", num_labels=2)
+    output_path = Path("./") / "models" / daphne_version / output_dir
+    training_args = TrainingArguments(
+        output_dir=output_path,
+        learning_rate=2e-5,
+        per_device_train_batch_size=BATCH_SIZE,
+        per_device_eval_batch_size=BATCH_SIZE,
+        num_train_epochs=NUM_EPOCHS,
+        save_strategy="no",
+        weight_decay=0.01,
+    )
 
-def train_cnn(x_text, y, daphne_version, output_dir, label):
-    # Check if there is data
-    if len(x_text) == 0 or len(y) == 0:
-        return
+    trainer = Trainer(
+        model=model,
+        args=training_args,
+        train_dataset=split_dataset["train"],
+        eval_dataset=split_dataset["test"],
+        tokenizer=tokenizer,
+        data_collator=data_collator,
+    )
 
-    # Build vocabulary
-    tokenizer = Tokenizer(oov_token="unrecognized_word")
-    tokenizer.fit_on_texts(x_text)
-    x = tokenizer.texts_to_sequences(x_text)
-    max_x_length = max(max(FILTER_SIZES), max(map(len, x)))  # Min added so all convolutions have enough data
-    x = np.array([xi + [0] * (max_x_length - len(xi)) for xi in x])
-    vocab_size = len(tokenizer.index_word.keys())+1
+    trainer.train()
 
-    # Split train/test set
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=DEV_SAMPLE_PERCENTAGE, random_state=10)
-    print("Vocabulary Size: {:d}".format(vocab_size))
-    print("Train/Dev split: {:d}/{:d}".format(len(y_train), len(y_test)))
-
-    # Training
-    # ==================================================
-    model = text_cnn(sequence_length=x_train.shape[1],
-                     num_classes=y_train.shape[1],
-                     vocab_size=vocab_size,
-                     embedding_size=EMBEDDING_DIM,
-                     filter_sizes=FILTER_SIZES,
-                     num_filters=NUM_FILTER,
-                     label=label,
-                     dropout=DROPOUT_KEEP_PROB)
-    if label == "multi":
-        model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['binary_accuracy'])
-    elif label == "single":
-        model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['binary_accuracy'])
-    model.fit(x_train, y_train, validation_data=(x_test, y_test), batch_size=BATCH_SIZE, epochs=NUM_EPOCHS)  # starts training
-
-    # Save model to disk
-    output_path = os.path.join(os.getcwd(), "models", daphne_version, output_dir)
-    if not os.path.exists(output_path):
-        os.makedirs(output_path)
-    # Write vocabulary
-    with open(os.path.join(output_path, "tokenizer.pickle"), 'wb') as handle:
-        pickle.dump(tokenizer, handle, protocol=pickle.DEFAULT_PROTOCOL)
-    # Write model
-    model.save(os.path.join(output_path, "model.h5"))
+    model.save_pretrained(output_path)
 
 
 # Data Preparation
@@ -93,7 +64,7 @@ if __name__ == '__main__':
         print("Data loaded!")
 
         # Train the skill selection NN
-        train_cnn(general_x_text, general_y, daphne_version, "general", "multi")
+        train_transformer(roles_dataset, daphne_version, "general")
         # Train the NN for each skill questions
-        for i in range(len(specific_x_texts)):
-            train_cnn(specific_x_texts[i], specific_ys[i], daphne_version, data_helpers.daphne_skills[daphne_version][i], "single")
+        for i, intent_dataset in enumerate(intents_dataset):
+            train_transformer(intent_dataset, daphne_version, data_helpers.daphne_skills[daphne_version][i])

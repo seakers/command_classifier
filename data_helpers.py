@@ -39,7 +39,7 @@ def load_data_and_labels(daphne_version: str, data_folder: Path):
         file_path = os.path.join(data_folder, filename)
         with open(file_path, 'r') as file:
             file_general_labels = next(file)[:-1]
-            file_general_labels = [b == "1" for b in file_general_labels]
+            file_general_labels = [float(b == "1") for b in file_general_labels]
             for line in file:
                 # Add to general training
                 roles_dataset["text"].append(line)
@@ -48,8 +48,8 @@ def load_data_and_labels(daphne_version: str, data_folder: Path):
                 # Add to specific models training
                 for index in range(num_roles_labels):
                     if file_general_labels[index]:
-                        label_vec = [0 for _ in range(num_intents_labels[index])]
-                        label_vec[dict_intents_labels[index][specific_label]] = 1
+                        label_vec = [0. for _ in range(num_intents_labels[index])]
+                        label_vec[dict_intents_labels[index][specific_label]] = 1.
                         intents_dataset[index]["text"].append(line)
                         intents_dataset[index]["labels"].append(label_vec)
 
@@ -61,9 +61,9 @@ def load_data_and_labels(daphne_version: str, data_folder: Path):
 
 
 def get_label_using_logits(logits, top_number=1):
-    logits = np.ndarray.tolist(logits)
+    logits_list = logits.tolist()
     predicted_labels = []
-    for item in logits:
+    for item in logits_list:
         index_list = np.argsort(item)[-top_number:]
         index_list = index_list[::-1]
         predicted_labels.append(np.ndarray.tolist(index_list))
