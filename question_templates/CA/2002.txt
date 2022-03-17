@@ -1,0 +1,18 @@
+200
+--
+--
+010
+--
+What is a Satellite System?
+Satellite
+An object orbiting another, natural or artificial
+Space Vehicle
+Object sent to space to perform mission
+Spacecraft
+Space vehicle without the payload
+Satellite System
+Space Segment
+Launch Segment
+Ground Segment
+User Segment
+The system is the end to end solution for delivering the product or capability to the user

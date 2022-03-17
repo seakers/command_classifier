@@ -1,0 +1,18 @@
+200
+--
+--
+010
+--
+Bus
+Support payload mission
+Point payload
+Monitor and control temperature
+Provide electrical power, commands
+Reach and maintain orbit
+Mission Payload
+Communication Payload
+Format and send narrowband and wideband data to user Data storage
+Booster Adapter
+Load carrying interface with the launch vehicle
+Launch System Integration
+Launch vehicle interfaces

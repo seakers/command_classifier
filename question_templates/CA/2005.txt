@@ -1,0 +1,17 @@
+200
+--
+--
+010
+--
+Satellite Bus
+Satellite is an integrated bus and payload system
+Bus is the infrastructure of the satellite
+Bus performs a multitude of functions
+Provides the frame
+Maintains temperature
+Provides power
+Orients the payload
+Reaches and maintains orbit
+Transmits mission and tracking data to ground
+Maintains control of all satellite systems
+Each subsystem performs a unique function, but its designs are dependent on all other systems and the mission payload

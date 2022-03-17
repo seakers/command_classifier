@@ -10,9 +10,6 @@ from neuralnet.Classifier import Classifier
 
 
 
-
-
-
 def preprocess():
     print('--> Preprocessing Data')
     client = DataProcessing()
@@ -27,23 +24,20 @@ def train():
 
 
 
-
-
-
-
-
 def main(process, train):
+    daphne_version = 'CA'
 
     if process:
         print('--> Preprocessing Data')
-        client = DataProcessing()
+        client = DataProcessing(daphne_version)
         client.process()
 
 
     if train:
-        client = Classifier()
+        client = Classifier(daphne_version)
         client.train()
         print('--> Training Model')
+
 
     if not train and not process:
         print('--> Please input either args: --process or --train')

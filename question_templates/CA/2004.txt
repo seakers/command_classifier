@@ -1,0 +1,12 @@
+200
+--
+--
+010
+--
+Integrated Bus and Payload
+Attitude & Control
+Electrical Power
+Structures & Mechanisms
+Telemetry, Tracking & Command
+Payload
+Thermal

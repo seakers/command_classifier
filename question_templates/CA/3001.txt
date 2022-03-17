@@ -1,0 +1,17 @@
+200
+--
+--
+001
+--
+Remote Sensing
+Remote Sensing is the observation of an object from a distance
+Payloads that collect this information fall under the following category
+Imagery Intelligence (IMINT)
+Electro-Optical (Visible)
+Infrared
+Radar
+Transmission to Ground for Processing
+Receiving Energy by Sensor
+Target Interactions
+Interactions with the Atmosphere
+Electromagnetic Radiation

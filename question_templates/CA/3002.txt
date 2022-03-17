@@ -1,0 +1,14 @@
+200
+--
+--
+001
+--
+Remote Sensor types
+Visible Systems
+Sensors that operate from the ultraviolet to the red end of the visual spectrum, limited to daylight operation
+Operate in various bands throughout the infrared spectrum
+Infrared Systems
+Radar Systems
+Microwave Radiometers
+Operate in the centimeter to millimeter bands and are active instruments that provide their own illumination of the scene
+Operate in the 20 200GHz range, worse resolution than visible but can collect data over wide range

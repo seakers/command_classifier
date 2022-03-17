@@ -10,6 +10,7 @@ from .Model import Model
 
 global_skills = {
     "EOSS": ["iFEED", "VASSAR", "Critic", "Historian", "Teacher"],
+    "CA": ['Basics', 'Spacecraft Bus', 'Mission Payloads'],
     "EDL": [],
     "AT": ["Detection", "Diagnosis", "Recommendation"]
 }

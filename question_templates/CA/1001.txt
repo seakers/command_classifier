@@ -1,0 +1,12 @@
+200
+--
+--
+100
+--
+Three main approaches
+Top-down, using parametric Cost Estimation Relationships
+Bottom-up, using Work Breakdown Structure
+Analogy, using nearest neighbor estimation + correction factors
+Work Breakdown Structure (WBS) requires large amount of information that may not be available in architecture stages
+Performance of top-down and analogy depend on the existence of a good database of past systems that are similar enough to the current one
+Most real cost models are a mix of these approaches: there is some high-level decomposition of the cost into different activities (WBS) and then estimates based on historical data and/or models (CER or analogy) for the individual activities

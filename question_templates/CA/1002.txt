@@ -1,0 +1,20 @@
+200
+--
+--
+100
+--
+The NASA cost estimation process
+project definition tasks
+cost methodology tasks
+cost estimate tasks
+receive customer request and understand the project
+build or obtain a work breakdown structure WBS
+define or obtain the project technical description
+develop ground rules and assumptions
+select cost estimation methodology
+select and build cost model tool
+gather and normalize data
+develop the cost estimate
+develop and incorporate the cost risk assessment
+document the cost estimate
+present the cost estimate results
