@@ -1,10 +1,9 @@
 import os
 import pickle
-
-import data_helpers
+from pathlib import Path
 import numpy as np
-from text_cnn import text_cnn
-from tensorflow.keras.preprocessing.text import Tokenizer
+import data_helpers
+from transformers import AutoTokenizer, DataCollatorWithPadding, AutoModelForSequenceClassification, TrainingArguments, Trainer
 from sklearn.model_selection import train_test_split
 
 # Parameters
@@ -23,6 +22,19 @@ DROPOUT_KEEP_PROB = 0.5  # Dropout keep probability (default: 0.5)
 BATCH_SIZE = 128  # Batch Size (default: 64)
 NUM_EPOCHS = 50  # Number of training epochs (default: 200)
 
+
+
+
+def train_transformer(dataset, daphne_version, output_dir, label):
+    tokenizer = AutoTokenizer.from_pretrained("scibert_scivocab_uncased")
+
+    def preprocess_function(examples):
+        return tokenizer(examples["text"], truncation=True)
+    
+    tokenized_dataset = dataset.map(preprocess_function, truncation=True)
+    data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
+
+    model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased", num_labels=2)
 
 def train_cnn(x_text, y, daphne_version, output_dir, label):
     # Check if there is data
@@ -76,8 +88,8 @@ if __name__ == '__main__':
     for daphne_version in daphne_versions:
         # Load data
         print("Loading data...")
-        data_path = os.path.join(os.getcwd(), "data", daphne_version)
-        general_x_text, general_y, specific_x_texts, specific_ys = data_helpers.load_data_and_labels(daphne_version, data_path)
+        data_path = Path('.') / "data" / daphne_version
+        roles_dataset, intents_dataset = data_helpers.load_data_and_labels(daphne_version, data_path)
         print("Data loaded!")
 
         # Train the skill selection NN

@@ -1,9 +1,8 @@
-neo4j~=4.0.1
-pandas~=1.0.5
-psycopg2-binary~=2.8.6
-scikit-learn~=0.23.1
-spacy~=2.2.4
-SQLAlchemy~=1.4.2
-tensorflow~=2.2.0
-thrift~=0.13.0
-xlrd~=1.2.0
+neo4j~=4.4.2
+pandas~=1.4.1
+psycopg2-binary~=2.9.3 
+scikit-learn~=1.0.2
+spacy~=3.2.3
+SQLAlchemy~=1.4.32
+transformers~=4.17.0
+torch==1.11.0+cu113
