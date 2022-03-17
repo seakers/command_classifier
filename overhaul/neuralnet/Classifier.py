@@ -9,7 +9,7 @@ from multiprocessing import Process, SimpleQueue
 from .Model import Model
 
 global_skills = {
-    "EOSS": ["iFEED", "VASSAR", "Critic", "Historian", "Teacher"],
+    "EOSS": ["iFEED", "VASSAR", "Critic", "Historian"],
     "CA": ['Basics', 'Spacecraft Bus', 'Mission Payloads'],
     "EDL": [],
     "AT": ["Detection", "Diagnosis", "Recommendation"]

@@ -2,7 +2,7 @@
 --
 measurement measurement
 --
-00010
+0001
 --
 which orbit is the most common for ${measurement}
 which orbit is the most typical for ${measurement}

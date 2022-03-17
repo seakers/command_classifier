@@ -4,7 +4,7 @@ instrument instrument
 orbit orbit
 number number
 --
-10000
+1000
 --
 which of the designs use ${number} instruments in total
 what are the designs that use total ${number} instruments

@@ -3,12 +3,10 @@
 --
 010
 --
-Space Training Modules
-Space Fundamentals
-Spacecraft Bus
-Space Vehicle Basics
-Subsystems
-Bus Sizing Model
-Mission Payloads
-Ground Segment
-Launch Systems
+where can I learn more about spacecraft bus
+what is the spacecraft buss
+is the spacecraft buss important
+does the spacecraft buss have different subsystems
+are mission payloads important to the spacecraft bus design
+what is the ground segment used for
+how are launch systems relevant to the spacecraft bus

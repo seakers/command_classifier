@@ -2,7 +2,7 @@
 --
 vassar_stakeholder vassar_stakeholder
 --
-01000
+0100
 --
 which instruments improve the science score for stakeholder ${vassar_stakeholder}
 which instruments improve the science benefit for stakeholder ${vassar_stakeholder}

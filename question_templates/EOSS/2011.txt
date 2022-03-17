@@ -2,6 +2,6 @@
 --
 subobjective subobjective
 --
-01000
+0100
 --
 the one for ${subobjective}

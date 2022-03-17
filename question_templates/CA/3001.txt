@@ -3,15 +3,10 @@
 --
 001
 --
-Remote Sensing
-Remote Sensing is the observation of an object from a distance
-Payloads that collect this information fall under the following category
-Imagery Intelligence (IMINT)
-Electro-Optical (Visible)
-Infrared
-Radar
-Transmission to Ground for Processing
-Receiving Energy by Sensor
-Target Interactions
-Interactions with the Atmosphere
-Electromagnetic Radiation
+what can you tell me about remote sensing
+do you know much about remote sensing
+how do satellites take observations
+what are the different payload categories
+what are target interactions
+are interactions with the atmosphere important
+how do we observe from a distance

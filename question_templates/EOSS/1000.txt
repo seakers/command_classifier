@@ -1,7 +1,7 @@
 200
 --
 --
-10000
+1000
 --
 what are the features that are shared by the target designs
 what is the feature that is unique to the solutions in the target region

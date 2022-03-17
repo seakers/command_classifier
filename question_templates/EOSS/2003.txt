@@ -3,6 +3,6 @@
 design_id design_id
 objective objective
 --
-01000
+0100
 --
 who satisfies ${objective} in design ${design_id}

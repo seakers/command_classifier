@@ -2,7 +2,7 @@
 --
 objective objective
 --
-01000
+0100
 --
 which instruments improve the science score for objective ${objective}
 which instruments improve the science benefit for objective ${objective}

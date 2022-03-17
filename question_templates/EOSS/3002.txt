@@ -3,6 +3,6 @@
 agent agent
 design_id design_id
 --
-00100
+0010
 --
 what does the ${agent} think of ${design_id}

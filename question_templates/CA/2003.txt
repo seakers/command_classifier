@@ -3,16 +3,10 @@
 --
 010
 --
-Bus
-Support payload mission
-Point payload
-Monitor and control temperature
-Provide electrical power, commands
-Reach and maintain orbit
-Mission Payload
-Communication Payload
-Format and send narrowband and wideband data to user Data storage
-Booster Adapter
-Load carrying interface with the launch vehicle
-Launch System Integration
-Launch vehicle interfaces
+what is a satellite system
+what can you tell me about satellite systems
+what is the important terminology for satellite systems
+what is a space vehicle
+what can you tell me about space vehicles
+do you have any relevant material to satellite systems
+end to end space solution

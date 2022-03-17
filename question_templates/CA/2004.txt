@@ -3,10 +3,11 @@
 --
 010
 --
-Integrated Bus and Payload
-Attitude & Control
-Electrical Power
-Structures & Mechanisms
-Telemetry, Tracking & Command
-Payload
-Thermal
+different space vehicle components
+do you have information on space vehicle components
+what is your favorite space vehicle component
+relevant information for space vehicle components
+function of mission payload
+what is the function of the booster adapter
+what is a booster adapter used for
+what is the purpose of launch system integration

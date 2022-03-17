@@ -2,7 +2,7 @@
 --
 technology technology
 --
-00010
+0001
 --
 which orbit is the most common for ${technology}
 which orbit is the most typical for ${technology}

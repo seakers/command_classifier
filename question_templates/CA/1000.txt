@@ -3,15 +3,14 @@
 --
 100
 --
-Lifecycle cost estimation
-To estimate the cost of a mission, you must think holistically about cost throughout the system’s lifecycle
-Development cost
-including any technologies
-Implementation / Fabrication cost
-Testing cost
-Launch cost
-Operations cost
-Disposal cost
-Separate out non-recurring (one-time costs to develop, fabricate and test a qualification unit) from recurring costs
-incurred for every unit produced such as fabrication, launch and ops
-When appropriate, consider the effects of inflation, discounting, learning and economies of scale
+Tell me more about lifecycle cost estimation
+How do I estimate the cost of a mission
+Which concepts are thought of holistically
+What are the different lifecycle cost components
+lifecycle cost components
+what are non-recurring costs
+what are recurring costs
+what can you tell me about fabrication
+are costs incurred on every unit produced
+when should inflation be considered
+when should economies of scale be considered

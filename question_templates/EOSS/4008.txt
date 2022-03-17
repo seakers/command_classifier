@@ -2,6 +2,6 @@
 --
 mission mission
 --
-00010
+0001
 --
 when was mission ${mission} launched

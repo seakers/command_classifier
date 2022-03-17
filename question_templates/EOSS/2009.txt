@@ -2,6 +2,6 @@
 --
 vassar_measurement vassar_measurement
 --
-01000
+0100
 --
 the one for ${vassar_measurement}
