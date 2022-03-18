@@ -23,8 +23,9 @@ print("\nEvaluating...\n")
 inputs = tokenizer(question, return_tensors="pt")
 outputs = model(**inputs)
 logits = outputs.logits
-prediction = data_helpers.get_label_using_logits(logits, top_number=1)
-print(logits, prediction)
+softmax = torch.nn.Softmax(dim=1)
+probs = softmax(logits)
+prediction = data_helpers.get_label_using_logits(probs, top_number=1)
 
 dict_specific_labels = [set(), set(), set(), set()]
 for filename in os.listdir("./data/EOSS"):

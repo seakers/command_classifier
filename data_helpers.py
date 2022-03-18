@@ -15,7 +15,7 @@ def load_data_and_labels(daphne_version: str, data_folder: Path):
     options_range = range(len(options_list))
     # Load all the categories
     roles_dataset = {"text": [], "labels": []}
-    intents_dataset = [{"text": [], "labels": []} for _ in options_range]
+    intents_dataset = [{"text": [], "label": []} for _ in options_range]
 
     num_roles_labels = len(options_list)
     # Add texts and labels
@@ -48,10 +48,8 @@ def load_data_and_labels(daphne_version: str, data_folder: Path):
                 # Add to specific models training
                 for index in range(num_roles_labels):
                     if file_general_labels[index]:
-                        label_vec = [0. for _ in range(num_intents_labels[index])]
-                        label_vec[dict_intents_labels[index][specific_label]] = 1.
                         intents_dataset[index]["text"].append(line)
-                        intents_dataset[index]["labels"].append(label_vec)
+                        intents_dataset[index]["label"].append(dict_intents_labels[index][specific_label])
 
     roles_hf_dataset = Dataset.from_dict(roles_dataset)
     intents_hf_dataset = []
