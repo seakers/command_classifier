@@ -1,9 +1,8 @@
 200
 --
 --
-001
+0010
 --
-What is spacecraft training 101-3
-Tell me about mission payload training
-do you know about 101-3 training
-which training is from 101-3
+What are cost estimating relationships
+How are to use CERs
+

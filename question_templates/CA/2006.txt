@@ -1,0 +1,8 @@
+200
+--
+--
+0100
+--
+What are EOIR products
+What do EOIR imagers consist of
+How are target images recreated

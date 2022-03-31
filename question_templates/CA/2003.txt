@@ -1,8 +1,8 @@
 200
 --
 --
-010
+0100
 --
-what is a satellite system
-do you have any relevant material to satellite systems
-end to end space solution
+what is the point of imaging payloads
+why is remote sensing important
+why is imaging important

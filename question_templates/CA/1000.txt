@@ -1,16 +1,6 @@
 200
 --
 --
-100
+1000
 --
-Tell me more about lifecycle cost estimation
-How do I estimate the cost of a mission
-Which concepts are thought of holistically
-What are the different lifecycle cost components
-lifecycle cost components
-what are non-recurring costs
-what are recurring costs
-what can you tell me about fabrication
-are costs incurred on every unit produced
-when should inflation be considered
-when should economies of scale be considered
+What is spacecraft training 101-2

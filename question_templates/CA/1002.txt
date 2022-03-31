@@ -1,8 +1,6 @@
 200
 --
 --
-100
+1000
 --
-What does the workflow of the cost estimating process look like
-what are the different parts of NASA cost estimation
-how many parts are there in the NASA cost estimation process
+what is the agenda for the spacecraft bus course

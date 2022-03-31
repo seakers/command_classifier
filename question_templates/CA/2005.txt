@@ -1,6 +1,8 @@
 200
 --
 --
-010
+0100
 --
-can you show me an image of a satellite
+electro-optical payloads
+was the hubble telescope electro optical
+examples of electro optical payloads

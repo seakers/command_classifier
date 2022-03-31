@@ -1,8 +1,9 @@
 200
 --
 --
-001
+0010
 --
-at what wavelengths do radar systems operate
-in which spectrum do radars operate
-what is the spectrum region for radar systems
+When are CERs valid
+When are cost estimating relationships valid
+How to find CERs error
+

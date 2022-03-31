@@ -1,12 +1,8 @@
 200
 --
 --
-001
+0010
 --
-what can you tell me about remote sensing
-do you know much about remote sensing
-how do satellites take observations
-what are the different payload categories
-what are target interactions
-are interactions with the atmosphere important
-how do we observe from a distance
+How are CERs developed
+How do we fit cost estimation relationships
+How are cost estimating relationships created

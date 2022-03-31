@@ -1,11 +1,7 @@
 200
 --
 --
-100
+1000
 --
-what are the different approaches to cost estimation
-how do i do cost estimation
-what is a work breakdown structure
-when should I use a work breakdown structure
-what concepts require a lot of information
-top down cost analysis versus anaology
+where can I learn more about spacecraft bus
+is the spacecraft bus important

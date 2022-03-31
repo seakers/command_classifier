@@ -1,10 +1,8 @@
 200
 --
 --
-010
+0100
 --
-different space vehicle components
-do you have information on space vehicle components
-what is your favorite space vehicle component
-relevant information for space vehicle components
-function of mission payload
+what do you know about the electromagnetic spectrum
+what are we collecting
+electromagnetic specturm bands
