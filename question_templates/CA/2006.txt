@@ -4,5 +4,6 @@
 0100
 --
 What are EOIR products
+different EO/IR products
 What do EOIR imagers consist of
 How are target images recreated

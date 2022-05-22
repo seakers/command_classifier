@@ -1,0 +1,7 @@
+200
+--
+--
+0100
+--
+What are the key components of EO/IR sensors
+What are the different components of EO/IR payloads

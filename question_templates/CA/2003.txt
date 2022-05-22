@@ -4,5 +4,5 @@
 0100
 --
 what is the point of imaging payloads
-why is remote sensing important
-why is imaging important
+imaging payload applications
+remote sensing applications

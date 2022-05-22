@@ -5,6 +5,6 @@
 --
 what can you tell me about remote sensing
 do you know much about remote sensing
-how do satellites take observations
-what are the different payload categories
+How does the atmosphere impact remote sensing
+what is atmospheric attenuation
 what are target interactions

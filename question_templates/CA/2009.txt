@@ -1,0 +1,10 @@
+200
+--
+--
+0100
+--
+what are the different eo/ir types
+EO/IR sensor components
+EO/IR payload scanners
+EO/IR payload starer
+which payload type uses linear detectors

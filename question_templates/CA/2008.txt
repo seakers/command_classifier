@@ -3,9 +3,10 @@
 --
 0100
 --
-What are key payload parameters
-important payload parameters
+What are key EO/IR parameters
+important payload EO/IR parameters
 What is instrument aperture diameter
 Can you tell me more about aperture diameter
 How does one find aperture diameter
 What is instrument field of view
+How is instrument resolution defined
