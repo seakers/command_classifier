@@ -1,0 +1,8 @@
+200
+--
+--
+00001
+--
+What is NIIRS
+What does NIIRS stand for
+How are instrument resolutions defined

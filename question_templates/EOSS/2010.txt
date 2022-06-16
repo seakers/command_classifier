@@ -3,6 +3,6 @@
 instrument_parameter instrument_parameter
 vassar_measurement vassar_measurement
 --
-0100
+01000
 --
 what is the requirement for ${instrument_parameter} for ${vassar_measurement}

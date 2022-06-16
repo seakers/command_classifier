@@ -2,7 +2,7 @@
 --
 vassar_stakeholder vassar_stakeholder
 --
-0100
+01000
 --
 explain the stakeholder ${vassar_stakeholder} science score for this design
 explain the stakeholder ${vassar_stakeholder} science benefit for this design

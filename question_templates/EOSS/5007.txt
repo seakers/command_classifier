@@ -1,0 +1,9 @@
+200
+--
+--
+00001
+--
+At which frequencies do electro optical payloads operate between
+At which frequencies do EOIR payloads operate between
+At which frequencies do EO/IR payloads operate between
+At which frequencies do EO/IR payloads collect data

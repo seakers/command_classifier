@@ -3,6 +3,6 @@
 design_id design_id
 subobjective subobjective
 --
-0100
+01000
 --
 how does design ${design_id} satisfy ${subobjective}
