@@ -1,0 +1,7 @@
+200
+--
+--
+1000
+--
+how do control moment gyros work
+how are control moment gyros used for attitude control

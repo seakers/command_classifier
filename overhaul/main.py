@@ -24,8 +24,7 @@ def train():
 
 
 
-def main(process, train):
-    daphne_version = 'CA'
+def main(process, train, daphne_version='EOSS'):
 
     if process:
         print('--> Preprocessing Data')
@@ -50,9 +49,16 @@ if __name__ == '__main__':
                         action="store_true")
     parser.add_argument("--train", help="trains the model",
                         action="store_true")
+    parser.add_argument("--CA", help="trains CA",
+                        action="store_true")
+    parser.add_argument("--EOSS", help="trains EOSS",
+                        action="store_true")
     args = parser.parse_args()
-    main(args.process, args.train)
 
+    if args.CA:
+        main(args.process, args.train, 'CA')
+    if args.EOSS:
+        main(args.process, args.train, 'EOSS')
 
 
 

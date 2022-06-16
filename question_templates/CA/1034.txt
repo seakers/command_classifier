@@ -1,0 +1,8 @@
+200
+--
+--
+1000
+--
+what are cost drivers for the propulsion subsystem
+how much does the propulsion subsystem cost
+what effects the cost of the propulsion subsystem

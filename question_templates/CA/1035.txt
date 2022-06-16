@@ -1,0 +1,7 @@
+200
+--
+--
+1000
+--
+what is the command and data handling subsystem
+what are the functions of the command and data handling subsystem

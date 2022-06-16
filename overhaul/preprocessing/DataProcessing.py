@@ -34,6 +34,9 @@ class DataProcessing:
 
         if not os.path.exists(data_path):
             os.makedirs(data_path)
+        else:
+            for f in os.listdir(data_path):
+                os.remove(os.path.join(data_path, f))
 
 
         template_objects = []

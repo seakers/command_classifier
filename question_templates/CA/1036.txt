@@ -1,0 +1,8 @@
+200
+--
+--
+1000
+--
+how is the command and data handling subsystem designed
+what are design considerations for the command and data handling subsystem
+different components of the command and data handling subsystem

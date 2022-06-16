@@ -3,4 +3,13 @@
 --
 1000
 --
-can you show me an image of a satellite
+what is the satellite bus
+what is the difference between satellite and satellite bus
+what are the different satellite bus functions
+what does the satellite bus structures and mechanisms system do
+what does the satellite bus thermal control system do
+what does the satellite bus electrical power system do
+what does the satellite bus attitude determination and control system do
+what does the satellite bus propulsion system do
+what does the satellite bus command and data handling system do
+what is the purpose of the satellite bus

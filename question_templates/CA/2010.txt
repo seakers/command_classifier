@@ -3,6 +3,9 @@
 --
 0100
 --
-remote sensing thermal infrared region
-which spectrum has middle wave infrared
-which spectrum has long wave infrared
+EO/IR key components
+Focal plane arrays
+optical image
+readout integrated circuits
+ROIC
+what is FPA

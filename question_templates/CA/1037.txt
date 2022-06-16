@@ -1,0 +1,8 @@
+200
+--
+--
+1000
+--
+what effects the cost of the command and data handling system
+what are the cost drivers for the command and data handling subsystem
+does complexity effect the command and data handling subsystem

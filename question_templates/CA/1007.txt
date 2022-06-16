@@ -1,0 +1,7 @@
+200
+--
+--
+1000
+--
+what are design considerations for the structures and mechanisms subsystem
+how to design the structures and mechanisms subsystem

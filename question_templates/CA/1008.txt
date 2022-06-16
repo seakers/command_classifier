@@ -1,0 +1,8 @@
+200
+--
+--
+1000
+--
+what are cost drivers for the structures and mechanisms subsystem
+what are requirements for the structures and mechanisms system
+complexity of the structures and mechanisms subsystem

@@ -1,0 +1,8 @@
+200
+--
+--
+1000
+--
+how does the spacecraft know where it is
+how does the attitude determination and control system work
+how do the internals of the ADCS subsystem work

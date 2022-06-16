@@ -1,0 +1,8 @@
+200
+--
+--
+1000
+--
+what are the design considerations for the attitude determination and control subsystem
+how to design the ADCS
+how should I design the attitude determination and control system

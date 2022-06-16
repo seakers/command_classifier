@@ -5,3 +5,5 @@
 --
 where can I learn more about spacecraft bus
 is the spacecraft bus important
+What is the spacecraft bus course agenda
+What are the different spacecraft bus subsystems

@@ -1,0 +1,7 @@
+200
+--
+--
+1000
+--
+show me an image of the attitude determination and control subsystem
+image of ADCS subsystem

@@ -1,0 +1,9 @@
+200
+--
+--
+1000
+--
+what is the spacecraft bus electrical power subsystem
+what does the electrical power subsystem do
+what are the components of the electrical power system
+how does the electrical power system control power

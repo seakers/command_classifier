@@ -1,0 +1,7 @@
+200
+--
+--
+1000
+--
+show me a block diagram of the attitude determination and control system
+block diagram of ADCS subsystem

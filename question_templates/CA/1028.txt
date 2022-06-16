@@ -1,0 +1,8 @@
+200
+--
+--
+1000
+--
+how do reaction wheels work
+how are reactions wheels used for attitude control
+what are different ways of spacecraft attitude control

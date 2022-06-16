@@ -3,6 +3,6 @@
 --
 1000
 --
-what is a satellite system
-do you have any relevant material to satellite systems
-end to end space solution
+What are the different space vehicle components
+what are the functions of space vehicle components
+different spacecraft vehicle functions

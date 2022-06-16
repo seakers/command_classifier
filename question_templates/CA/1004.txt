@@ -3,8 +3,6 @@
 --
 1000
 --
-different space vehicle components
-do you have information on space vehicle components
-what is your favorite space vehicle component
-relevant information for space vehicle components
-function of mission payload
+show me a satellite image
+image of satellite integrated bus and payload
+what does a fully integrated satellite look like

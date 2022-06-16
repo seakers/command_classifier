@@ -1,0 +1,8 @@
+200
+--
+--
+1000
+--
+what are design considerations for the electrical power subsystem
+how do I design the electrical power subsystem
+what should I know when designing the spacecraft electrical power subsystem

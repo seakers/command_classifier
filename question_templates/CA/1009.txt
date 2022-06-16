@@ -1,0 +1,10 @@
+200
+--
+--
+1000
+--
+what is the thermal control subsystem
+tell me about the spacecraft bus thermal control system
+what are the different heat transfer modes for the thermal control subsystem
+how does the thermal control subsystem work
+what generates heat in the spacecraft bus
