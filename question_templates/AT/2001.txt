@@ -8,11 +8,21 @@ What is the signature of anomaly ${anomaly}
 What is the signature of ${anomaly}
 What parameters does anomaly ${anomaly} affect
 What parameters does ${anomaly} affect
+What measurements does anomaly ${anomaly} affect
+What measurements does ${anomaly} affect
 What are the measurements affected by anomaly ${anomaly}
 What are the measurements affected by ${anomaly}
+What are the parameters affected by anomaly ${anomaly}
+What are the parameters affected by ${anomaly}
 What are the symptoms of anomaly ${anomaly}
 What are the symptoms of ${anomaly}
 Anomaly ${anomaly} signature
 Anomaly ${anomaly} symptoms
 ${anomaly} signature
 ${anomaly} symptoms
+${anomaly} affects which measurements
+${anomaly} affects which parameters
+What measurements are affected by ${anomaly}
+What measurements are changed by ${anomaly}
+What parameters are affected by ${anomaly}
+What parameters are changed by ${anomaly}

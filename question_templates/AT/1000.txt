@@ -5,14 +5,26 @@ measurement measurement
 100
 --
 Show the current value of measurement ${measurement}
+Show the current value of parameter ${measurement}
 Show the value of the ${measurement} measurement
+Show the value of the ${measurement} parameter
 Show the value of ${measurement}
+Tell me the value of ${measurement}
 Provide the current value of measurement ${measurement}
+Provide the current value of parameter ${measurement}
 Provide the value of the ${measurement} measurement
+Provide the value of the ${measurement} parameter
 Provide the value of ${measurement}
 What is the current value of measurement ${measurement}
+What is the current value of parameter ${measurement}
 What is the value of the ${measurement} measurement
+What is the value of the ${measurement} parameter
 What is the value of ${measurement}
+What is ${measurement} right now
+What is ${measurement} at right now
+What is ${measurement} now
 ${measurement} measurement current value
+${measurement} parameter current value
 ${measurement} measurement value
+${measurement} parameter value
 ${measurement} value

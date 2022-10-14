@@ -42,4 +42,5 @@ def main():
     dictionary = create_dictionary(dictionary_file)
     print(json.dumps(dictionary))
 
+
 main()

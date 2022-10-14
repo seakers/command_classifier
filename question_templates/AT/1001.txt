@@ -5,11 +5,28 @@ measurement measurement
 100
 --
 Show the thresholds of measurement ${measurement}
+Show the thresholds of parameter ${measurement}
 Show the ${measurement} thresholds
 Provide the ${measurement} limits
 Provide the thresholds of measurement ${measurement}
+Provide the thresholds of parameter ${measurement}
 Provide the ${measurement} measurement limits
+Provide the ${measurement} parameter limits
 What are the measurement ${measurement} thresholds
+What are the parameter ${measurement} thresholds
 What are the ${measurement} thresholds
+What are the limits for ${measurement}
+Show the limits for ${measurement}
+Show the limits of ${measurement}
+What are the thresholds for ${measurement}
+What are the thresholds of ${measurement}
 ${measurement} thresholds
 ${measurement} limits
+Give the thresholds for ${measurement}
+Give the thresholds of ${measurement}
+Give the limits for ${measurement}
+Give the limits of ${measurement}
+Provide the limits of ${measurement}
+Provide the limits for ${measurement}
+What are the limits of ${measurement}
+What are the limits for ${measurement}

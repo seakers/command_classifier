@@ -6,15 +6,13 @@
 #  options string: py
 #
 
-from thrift.Thrift import TType, TMessageType, TFrozenDict, TException, TApplicationException
-from thrift.protocol.TProtocol import TProtocolException
-from thrift.TRecursive import fix_spec
-
-import sys
 import logging
-from .ttypes import *
+
 from thrift.Thrift import TProcessor
 from thrift.transport import TTransport
+
+from .ttypes import *
+
 all_structs = []
 
 
@@ -365,7 +363,8 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        raise TApplicationException(TApplicationException.MISSING_RESULT, "evalDiscreteInputArch failed: unknown result")
+        raise TApplicationException(TApplicationException.MISSING_RESULT,
+                                    "evalDiscreteInputArch failed: unknown result")
 
     def runLocalSearchBinaryInput(self, problem, arch):
         """
@@ -399,7 +398,8 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        raise TApplicationException(TApplicationException.MISSING_RESULT, "runLocalSearchBinaryInput failed: unknown result")
+        raise TApplicationException(TApplicationException.MISSING_RESULT,
+                                    "runLocalSearchBinaryInput failed: unknown result")
 
     def runLocalSearchDiscreteInput(self, problem, arch):
         """
@@ -433,7 +433,8 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        raise TApplicationException(TApplicationException.MISSING_RESULT, "runLocalSearchDiscreteInput failed: unknown result")
+        raise TApplicationException(TApplicationException.MISSING_RESULT,
+                                    "runLocalSearchDiscreteInput failed: unknown result")
 
     def getOrbitList(self, problem):
         """
@@ -595,7 +596,8 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        raise TApplicationException(TApplicationException.MISSING_RESULT, "getInstrumentsForObjective failed: unknown result")
+        raise TApplicationException(TApplicationException.MISSING_RESULT,
+                                    "getInstrumentsForObjective failed: unknown result")
 
     def getInstrumentsForPanel(self, problem, panel):
         """
@@ -629,7 +631,8 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        raise TApplicationException(TApplicationException.MISSING_RESULT, "getInstrumentsForPanel failed: unknown result")
+        raise TApplicationException(TApplicationException.MISSING_RESULT,
+                                    "getInstrumentsForPanel failed: unknown result")
 
     def getCritiqueBinaryInputArch(self, problem, inputs):
         """
@@ -663,7 +666,8 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        raise TApplicationException(TApplicationException.MISSING_RESULT, "getCritiqueBinaryInputArch failed: unknown result")
+        raise TApplicationException(TApplicationException.MISSING_RESULT,
+                                    "getCritiqueBinaryInputArch failed: unknown result")
 
     def getCritiqueDiscreteInputArch(self, problem, inputs):
         """
@@ -697,7 +701,8 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        raise TApplicationException(TApplicationException.MISSING_RESULT, "getCritiqueDiscreteInputArch failed: unknown result")
+        raise TApplicationException(TApplicationException.MISSING_RESULT,
+                                    "getCritiqueDiscreteInputArch failed: unknown result")
 
     def getArchitectureScoreExplanation(self, problem, arch):
         """
@@ -731,7 +736,8 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        raise TApplicationException(TApplicationException.MISSING_RESULT, "getArchitectureScoreExplanation failed: unknown result")
+        raise TApplicationException(TApplicationException.MISSING_RESULT,
+                                    "getArchitectureScoreExplanation failed: unknown result")
 
     def getPanelScoreExplanation(self, problem, arch, panel):
         """
@@ -767,7 +773,8 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        raise TApplicationException(TApplicationException.MISSING_RESULT, "getPanelScoreExplanation failed: unknown result")
+        raise TApplicationException(TApplicationException.MISSING_RESULT,
+                                    "getPanelScoreExplanation failed: unknown result")
 
     def getObjectiveScoreExplanation(self, problem, arch, objective):
         """
@@ -803,7 +810,8 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        raise TApplicationException(TApplicationException.MISSING_RESULT, "getObjectiveScoreExplanation failed: unknown result")
+        raise TApplicationException(TApplicationException.MISSING_RESULT,
+                                    "getObjectiveScoreExplanation failed: unknown result")
 
     def isGABinaryInputRunning(self):
         self.send_isGABinaryInputRunning()
@@ -829,7 +837,8 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        raise TApplicationException(TApplicationException.MISSING_RESULT, "isGABinaryInputRunning failed: unknown result")
+        raise TApplicationException(TApplicationException.MISSING_RESULT,
+                                    "isGABinaryInputRunning failed: unknown result")
 
     def startGABinaryInput(self, problem, dataset, username):
         """
@@ -931,7 +940,8 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        raise TApplicationException(TApplicationException.MISSING_RESULT, "getArchScienceInformationBinaryInput failed: unknown result")
+        raise TApplicationException(TApplicationException.MISSING_RESULT,
+                                    "getArchScienceInformationBinaryInput failed: unknown result")
 
     def getArchCostInformationBinaryInput(self, problem, arch):
         """
@@ -965,7 +975,8 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        raise TApplicationException(TApplicationException.MISSING_RESULT, "getArchCostInformationBinaryInput failed: unknown result")
+        raise TApplicationException(TApplicationException.MISSING_RESULT,
+                                    "getArchCostInformationBinaryInput failed: unknown result")
 
     def getSubscoreDetailsBinaryInput(self, problem, arch, subobj):
         """
@@ -1001,7 +1012,8 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        raise TApplicationException(TApplicationException.MISSING_RESULT, "getSubscoreDetailsBinaryInput failed: unknown result")
+        raise TApplicationException(TApplicationException.MISSING_RESULT,
+                                    "getSubscoreDetailsBinaryInput failed: unknown result")
 
     def isGADiscreteInputRunning(self):
         self.send_isGADiscreteInputRunning()
@@ -1027,7 +1039,8 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        raise TApplicationException(TApplicationException.MISSING_RESULT, "isGADiscreteInputRunning failed: unknown result")
+        raise TApplicationException(TApplicationException.MISSING_RESULT,
+                                    "isGADiscreteInputRunning failed: unknown result")
 
     def startGADiscreteInput(self, problem, dataset, username):
         """
@@ -1129,7 +1142,8 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        raise TApplicationException(TApplicationException.MISSING_RESULT, "getArchScienceInformationDiscreteInput failed: unknown result")
+        raise TApplicationException(TApplicationException.MISSING_RESULT,
+                                    "getArchScienceInformationDiscreteInput failed: unknown result")
 
     def getArchCostInformationDiscreteInput(self, problem, arch):
         """
@@ -1163,7 +1177,8 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        raise TApplicationException(TApplicationException.MISSING_RESULT, "getArchCostInformationDiscreteInput failed: unknown result")
+        raise TApplicationException(TApplicationException.MISSING_RESULT,
+                                    "getArchCostInformationDiscreteInput failed: unknown result")
 
     def getSubscoreDetailsDiscreteInput(self, problem, arch, subobj):
         """
@@ -1199,7 +1214,8 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        raise TApplicationException(TApplicationException.MISSING_RESULT, "getSubscoreDetailsDiscreteInput failed: unknown result")
+        raise TApplicationException(TApplicationException.MISSING_RESULT,
+                                    "getSubscoreDetailsDiscreteInput failed: unknown result")
 
 
 class Processor(Iface, TProcessor):
@@ -1225,13 +1241,15 @@ class Processor(Iface, TProcessor):
         self._processMap["isGABinaryInputRunning"] = Processor.process_isGABinaryInputRunning
         self._processMap["startGABinaryInput"] = Processor.process_startGABinaryInput
         self._processMap["stopGABinaryInput"] = Processor.process_stopGABinaryInput
-        self._processMap["getArchScienceInformationBinaryInput"] = Processor.process_getArchScienceInformationBinaryInput
+        self._processMap[
+            "getArchScienceInformationBinaryInput"] = Processor.process_getArchScienceInformationBinaryInput
         self._processMap["getArchCostInformationBinaryInput"] = Processor.process_getArchCostInformationBinaryInput
         self._processMap["getSubscoreDetailsBinaryInput"] = Processor.process_getSubscoreDetailsBinaryInput
         self._processMap["isGADiscreteInputRunning"] = Processor.process_isGADiscreteInputRunning
         self._processMap["startGADiscreteInput"] = Processor.process_startGADiscreteInput
         self._processMap["stopGADiscreteInput"] = Processor.process_stopGADiscreteInput
-        self._processMap["getArchScienceInformationDiscreteInput"] = Processor.process_getArchScienceInformationDiscreteInput
+        self._processMap[
+            "getArchScienceInformationDiscreteInput"] = Processor.process_getArchScienceInformationDiscreteInput
         self._processMap["getArchCostInformationDiscreteInput"] = Processor.process_getArchCostInformationDiscreteInput
         self._processMap["getSubscoreDetailsDiscreteInput"] = Processor.process_getSubscoreDetailsDiscreteInput
 
@@ -1894,14 +1912,15 @@ class Processor(Iface, TProcessor):
         oprot.writeMessageEnd()
         oprot.trans.flush()
 
+
 # HELPER FUNCTIONS AND STRUCTURES
 
 
 class ping_args(object):
 
-
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -1935,6 +1954,8 @@ class ping_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(ping_args)
 ping_args.thrift_spec = (
 )
@@ -1942,9 +1963,9 @@ ping_args.thrift_spec = (
 
 class ping_result(object):
 
-
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -1978,6 +1999,8 @@ class ping_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(ping_result)
 ping_result.thrift_spec = (
 )
@@ -1991,13 +2014,13 @@ class evalBinaryInputArch_args(object):
 
     """
 
-
-    def __init__(self, problem=None, inputs=None,):
+    def __init__(self, problem=None, inputs=None, ):
         self.problem = problem
         self.inputs = inputs
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -2007,7 +2030,8 @@ class evalBinaryInputArch_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
@@ -2057,11 +2081,13 @@ class evalBinaryInputArch_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(evalBinaryInputArch_args)
 evalBinaryInputArch_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
-    (2, TType.LIST, 'inputs', (TType.BOOL, None, False), None, ),  # 2
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
+    (2, TType.LIST, 'inputs', (TType.BOOL, None, False), None,),  # 2
 )
 
 
@@ -2072,12 +2098,12 @@ class evalBinaryInputArch_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -2121,9 +2147,11 @@ class evalBinaryInputArch_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(evalBinaryInputArch_result)
 evalBinaryInputArch_result.thrift_spec = (
-    (0, TType.STRUCT, 'success', [BinaryInputArchitecture, None], None, ),  # 0
+    (0, TType.STRUCT, 'success', [BinaryInputArchitecture, None], None,),  # 0
 )
 
 
@@ -2135,13 +2163,13 @@ class evalDiscreteInputArch_args(object):
 
     """
 
-
-    def __init__(self, problem=None, inputs=None,):
+    def __init__(self, problem=None, inputs=None, ):
         self.problem = problem
         self.inputs = inputs
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -2151,7 +2179,8 @@ class evalDiscreteInputArch_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
@@ -2201,11 +2230,13 @@ class evalDiscreteInputArch_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(evalDiscreteInputArch_args)
 evalDiscreteInputArch_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
-    (2, TType.LIST, 'inputs', (TType.I32, None, False), None, ),  # 2
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
+    (2, TType.LIST, 'inputs', (TType.I32, None, False), None,),  # 2
 )
 
 
@@ -2216,12 +2247,12 @@ class evalDiscreteInputArch_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -2265,9 +2296,11 @@ class evalDiscreteInputArch_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(evalDiscreteInputArch_result)
 evalDiscreteInputArch_result.thrift_spec = (
-    (0, TType.STRUCT, 'success', [DiscreteInputArchitecture, None], None, ),  # 0
+    (0, TType.STRUCT, 'success', [DiscreteInputArchitecture, None], None,),  # 0
 )
 
 
@@ -2279,13 +2312,13 @@ class runLocalSearchBinaryInput_args(object):
 
     """
 
-
-    def __init__(self, problem=None, arch=None,):
+    def __init__(self, problem=None, arch=None, ):
         self.problem = problem
         self.arch = arch
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -2295,7 +2328,8 @@ class runLocalSearchBinaryInput_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
@@ -2338,11 +2372,13 @@ class runLocalSearchBinaryInput_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(runLocalSearchBinaryInput_args)
 runLocalSearchBinaryInput_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
-    (2, TType.STRUCT, 'arch', [BinaryInputArchitecture, None], None, ),  # 2
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
+    (2, TType.STRUCT, 'arch', [BinaryInputArchitecture, None], None,),  # 2
 )
 
 
@@ -2353,12 +2389,12 @@ class runLocalSearchBinaryInput_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -2410,9 +2446,11 @@ class runLocalSearchBinaryInput_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(runLocalSearchBinaryInput_result)
 runLocalSearchBinaryInput_result.thrift_spec = (
-    (0, TType.LIST, 'success', (TType.STRUCT, [BinaryInputArchitecture, None], False), None, ),  # 0
+    (0, TType.LIST, 'success', (TType.STRUCT, [BinaryInputArchitecture, None], False), None,),  # 0
 )
 
 
@@ -2424,13 +2462,13 @@ class runLocalSearchDiscreteInput_args(object):
 
     """
 
-
-    def __init__(self, problem=None, arch=None,):
+    def __init__(self, problem=None, arch=None, ):
         self.problem = problem
         self.arch = arch
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -2440,7 +2478,8 @@ class runLocalSearchDiscreteInput_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
@@ -2483,11 +2522,13 @@ class runLocalSearchDiscreteInput_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(runLocalSearchDiscreteInput_args)
 runLocalSearchDiscreteInput_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
-    (2, TType.STRUCT, 'arch', [DiscreteInputArchitecture, None], None, ),  # 2
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
+    (2, TType.STRUCT, 'arch', [DiscreteInputArchitecture, None], None,),  # 2
 )
 
 
@@ -2498,12 +2539,12 @@ class runLocalSearchDiscreteInput_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -2555,9 +2596,11 @@ class runLocalSearchDiscreteInput_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(runLocalSearchDiscreteInput_result)
 runLocalSearchDiscreteInput_result.thrift_spec = (
-    (0, TType.LIST, 'success', (TType.STRUCT, [DiscreteInputArchitecture, None], False), None, ),  # 0
+    (0, TType.LIST, 'success', (TType.STRUCT, [DiscreteInputArchitecture, None], False), None,),  # 0
 )
 
 
@@ -2568,12 +2611,12 @@ class getOrbitList_args(object):
 
     """
 
-
-    def __init__(self, problem=None,):
+    def __init__(self, problem=None, ):
         self.problem = problem
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -2583,7 +2626,8 @@ class getOrbitList_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             else:
@@ -2616,10 +2660,12 @@ class getOrbitList_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getOrbitList_args)
 getOrbitList_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
 )
 
 
@@ -2630,12 +2676,12 @@ class getOrbitList_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -2648,7 +2694,8 @@ class getOrbitList_result(object):
                     self.success = []
                     (_etype149, _size146) = iprot.readListBegin()
                     for _i150 in range(_size146):
-                        _elem151 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                        _elem151 = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                         self.success.append(_elem151)
                     iprot.readListEnd()
                 else:
@@ -2686,9 +2733,11 @@ class getOrbitList_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getOrbitList_result)
 getOrbitList_result.thrift_spec = (
-    (0, TType.LIST, 'success', (TType.STRING, 'UTF8', False), None, ),  # 0
+    (0, TType.LIST, 'success', (TType.STRING, 'UTF8', False), None,),  # 0
 )
 
 
@@ -2699,12 +2748,12 @@ class getInstrumentList_args(object):
 
     """
 
-
-    def __init__(self, problem=None,):
+    def __init__(self, problem=None, ):
         self.problem = problem
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -2714,7 +2763,8 @@ class getInstrumentList_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             else:
@@ -2747,10 +2797,12 @@ class getInstrumentList_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getInstrumentList_args)
 getInstrumentList_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
 )
 
 
@@ -2761,12 +2813,12 @@ class getInstrumentList_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -2779,7 +2831,8 @@ class getInstrumentList_result(object):
                     self.success = []
                     (_etype156, _size153) = iprot.readListBegin()
                     for _i157 in range(_size153):
-                        _elem158 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                        _elem158 = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                         self.success.append(_elem158)
                     iprot.readListEnd()
                 else:
@@ -2817,9 +2870,11 @@ class getInstrumentList_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getInstrumentList_result)
 getInstrumentList_result.thrift_spec = (
-    (0, TType.LIST, 'success', (TType.STRING, 'UTF8', False), None, ),  # 0
+    (0, TType.LIST, 'success', (TType.STRING, 'UTF8', False), None,),  # 0
 )
 
 
@@ -2830,12 +2885,12 @@ class getObjectiveList_args(object):
 
     """
 
-
-    def __init__(self, problem=None,):
+    def __init__(self, problem=None, ):
         self.problem = problem
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -2845,7 +2900,8 @@ class getObjectiveList_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             else:
@@ -2878,10 +2934,12 @@ class getObjectiveList_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getObjectiveList_args)
 getObjectiveList_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
 )
 
 
@@ -2892,12 +2950,12 @@ class getObjectiveList_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -2910,7 +2968,8 @@ class getObjectiveList_result(object):
                     self.success = []
                     (_etype163, _size160) = iprot.readListBegin()
                     for _i164 in range(_size160):
-                        _elem165 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                        _elem165 = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                         self.success.append(_elem165)
                     iprot.readListEnd()
                 else:
@@ -2948,9 +3007,11 @@ class getObjectiveList_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getObjectiveList_result)
 getObjectiveList_result.thrift_spec = (
-    (0, TType.LIST, 'success', (TType.STRING, 'UTF8', False), None, ),  # 0
+    (0, TType.LIST, 'success', (TType.STRING, 'UTF8', False), None,),  # 0
 )
 
 
@@ -2961,12 +3022,12 @@ class getSubobjectiveList_args(object):
 
     """
 
-
-    def __init__(self, problem=None,):
+    def __init__(self, problem=None, ):
         self.problem = problem
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -2976,7 +3037,8 @@ class getSubobjectiveList_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             else:
@@ -3009,10 +3071,12 @@ class getSubobjectiveList_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getSubobjectiveList_args)
 getSubobjectiveList_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
 )
 
 
@@ -3023,12 +3087,12 @@ class getSubobjectiveList_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -3041,7 +3105,8 @@ class getSubobjectiveList_result(object):
                     self.success = []
                     (_etype170, _size167) = iprot.readListBegin()
                     for _i171 in range(_size167):
-                        _elem172 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                        _elem172 = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                         self.success.append(_elem172)
                     iprot.readListEnd()
                 else:
@@ -3079,9 +3144,11 @@ class getSubobjectiveList_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getSubobjectiveList_result)
 getSubobjectiveList_result.thrift_spec = (
-    (0, TType.LIST, 'success', (TType.STRING, 'UTF8', False), None, ),  # 0
+    (0, TType.LIST, 'success', (TType.STRING, 'UTF8', False), None,),  # 0
 )
 
 
@@ -3093,13 +3160,13 @@ class getInstrumentsForObjective_args(object):
 
     """
 
-
-    def __init__(self, problem=None, objective=None,):
+    def __init__(self, problem=None, objective=None, ):
         self.problem = problem
         self.objective = objective
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -3109,12 +3176,14 @@ class getInstrumentsForObjective_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
                 if ftype == TType.STRING:
-                    self.objective = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.objective = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                               0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             else:
@@ -3151,11 +3220,13 @@ class getInstrumentsForObjective_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getInstrumentsForObjective_args)
 getInstrumentsForObjective_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
-    (2, TType.STRING, 'objective', 'UTF8', None, ),  # 2
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
+    (2, TType.STRING, 'objective', 'UTF8', None,),  # 2
 )
 
 
@@ -3166,12 +3237,12 @@ class getInstrumentsForObjective_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -3184,7 +3255,8 @@ class getInstrumentsForObjective_result(object):
                     self.success = []
                     (_etype177, _size174) = iprot.readListBegin()
                     for _i178 in range(_size174):
-                        _elem179 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                        _elem179 = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                         self.success.append(_elem179)
                     iprot.readListEnd()
                 else:
@@ -3222,9 +3294,11 @@ class getInstrumentsForObjective_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getInstrumentsForObjective_result)
 getInstrumentsForObjective_result.thrift_spec = (
-    (0, TType.LIST, 'success', (TType.STRING, 'UTF8', False), None, ),  # 0
+    (0, TType.LIST, 'success', (TType.STRING, 'UTF8', False), None,),  # 0
 )
 
 
@@ -3236,13 +3310,13 @@ class getInstrumentsForPanel_args(object):
 
     """
 
-
-    def __init__(self, problem=None, panel=None,):
+    def __init__(self, problem=None, panel=None, ):
         self.problem = problem
         self.panel = panel
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -3252,7 +3326,8 @@ class getInstrumentsForPanel_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
@@ -3294,11 +3369,13 @@ class getInstrumentsForPanel_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getInstrumentsForPanel_args)
 getInstrumentsForPanel_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
-    (2, TType.STRING, 'panel', 'UTF8', None, ),  # 2
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
+    (2, TType.STRING, 'panel', 'UTF8', None,),  # 2
 )
 
 
@@ -3309,12 +3386,12 @@ class getInstrumentsForPanel_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -3327,7 +3404,8 @@ class getInstrumentsForPanel_result(object):
                     self.success = []
                     (_etype184, _size181) = iprot.readListBegin()
                     for _i185 in range(_size181):
-                        _elem186 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                        _elem186 = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                         self.success.append(_elem186)
                     iprot.readListEnd()
                 else:
@@ -3365,9 +3443,11 @@ class getInstrumentsForPanel_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getInstrumentsForPanel_result)
 getInstrumentsForPanel_result.thrift_spec = (
-    (0, TType.LIST, 'success', (TType.STRING, 'UTF8', False), None, ),  # 0
+    (0, TType.LIST, 'success', (TType.STRING, 'UTF8', False), None,),  # 0
 )
 
 
@@ -3379,13 +3459,13 @@ class getCritiqueBinaryInputArch_args(object):
 
     """
 
-
-    def __init__(self, problem=None, inputs=None,):
+    def __init__(self, problem=None, inputs=None, ):
         self.problem = problem
         self.inputs = inputs
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -3395,7 +3475,8 @@ class getCritiqueBinaryInputArch_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
@@ -3438,11 +3519,13 @@ class getCritiqueBinaryInputArch_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getCritiqueBinaryInputArch_args)
 getCritiqueBinaryInputArch_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
-    (2, TType.STRUCT, 'inputs', [BinaryInputArchitecture, None], None, ),  # 2
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
+    (2, TType.STRUCT, 'inputs', [BinaryInputArchitecture, None], None,),  # 2
 )
 
 
@@ -3453,12 +3536,12 @@ class getCritiqueBinaryInputArch_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -3471,7 +3554,8 @@ class getCritiqueBinaryInputArch_result(object):
                     self.success = []
                     (_etype191, _size188) = iprot.readListBegin()
                     for _i192 in range(_size188):
-                        _elem193 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                        _elem193 = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                         self.success.append(_elem193)
                     iprot.readListEnd()
                 else:
@@ -3509,9 +3593,11 @@ class getCritiqueBinaryInputArch_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getCritiqueBinaryInputArch_result)
 getCritiqueBinaryInputArch_result.thrift_spec = (
-    (0, TType.LIST, 'success', (TType.STRING, 'UTF8', False), None, ),  # 0
+    (0, TType.LIST, 'success', (TType.STRING, 'UTF8', False), None,),  # 0
 )
 
 
@@ -3523,13 +3609,13 @@ class getCritiqueDiscreteInputArch_args(object):
 
     """
 
-
-    def __init__(self, problem=None, inputs=None,):
+    def __init__(self, problem=None, inputs=None, ):
         self.problem = problem
         self.inputs = inputs
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -3539,7 +3625,8 @@ class getCritiqueDiscreteInputArch_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
@@ -3582,11 +3669,13 @@ class getCritiqueDiscreteInputArch_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getCritiqueDiscreteInputArch_args)
 getCritiqueDiscreteInputArch_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
-    (2, TType.STRUCT, 'inputs', [DiscreteInputArchitecture, None], None, ),  # 2
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
+    (2, TType.STRUCT, 'inputs', [DiscreteInputArchitecture, None], None,),  # 2
 )
 
 
@@ -3597,12 +3686,12 @@ class getCritiqueDiscreteInputArch_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -3615,7 +3704,8 @@ class getCritiqueDiscreteInputArch_result(object):
                     self.success = []
                     (_etype198, _size195) = iprot.readListBegin()
                     for _i199 in range(_size195):
-                        _elem200 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                        _elem200 = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                         self.success.append(_elem200)
                     iprot.readListEnd()
                 else:
@@ -3653,9 +3743,11 @@ class getCritiqueDiscreteInputArch_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getCritiqueDiscreteInputArch_result)
 getCritiqueDiscreteInputArch_result.thrift_spec = (
-    (0, TType.LIST, 'success', (TType.STRING, 'UTF8', False), None, ),  # 0
+    (0, TType.LIST, 'success', (TType.STRING, 'UTF8', False), None,),  # 0
 )
 
 
@@ -3667,13 +3759,13 @@ class getArchitectureScoreExplanation_args(object):
 
     """
 
-
-    def __init__(self, problem=None, arch=None,):
+    def __init__(self, problem=None, arch=None, ):
         self.problem = problem
         self.arch = arch
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -3683,7 +3775,8 @@ class getArchitectureScoreExplanation_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
@@ -3726,11 +3819,13 @@ class getArchitectureScoreExplanation_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getArchitectureScoreExplanation_args)
 getArchitectureScoreExplanation_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
-    (2, TType.STRUCT, 'arch', [BinaryInputArchitecture, None], None, ),  # 2
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
+    (2, TType.STRUCT, 'arch', [BinaryInputArchitecture, None], None,),  # 2
 )
 
 
@@ -3741,12 +3836,12 @@ class getArchitectureScoreExplanation_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -3798,9 +3893,11 @@ class getArchitectureScoreExplanation_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getArchitectureScoreExplanation_result)
 getArchitectureScoreExplanation_result.thrift_spec = (
-    (0, TType.LIST, 'success', (TType.STRUCT, [ObjectiveSatisfaction, None], False), None, ),  # 0
+    (0, TType.LIST, 'success', (TType.STRUCT, [ObjectiveSatisfaction, None], False), None,),  # 0
 )
 
 
@@ -3813,14 +3910,14 @@ class getPanelScoreExplanation_args(object):
 
     """
 
-
-    def __init__(self, problem=None, arch=None, panel=None,):
+    def __init__(self, problem=None, arch=None, panel=None, ):
         self.problem = problem
         self.arch = arch
         self.panel = panel
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -3830,7 +3927,8 @@ class getPanelScoreExplanation_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
@@ -3882,12 +3980,14 @@ class getPanelScoreExplanation_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getPanelScoreExplanation_args)
 getPanelScoreExplanation_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
-    (2, TType.STRUCT, 'arch', [BinaryInputArchitecture, None], None, ),  # 2
-    (3, TType.STRING, 'panel', 'UTF8', None, ),  # 3
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
+    (2, TType.STRUCT, 'arch', [BinaryInputArchitecture, None], None,),  # 2
+    (3, TType.STRING, 'panel', 'UTF8', None,),  # 3
 )
 
 
@@ -3898,12 +3998,12 @@ class getPanelScoreExplanation_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -3955,9 +4055,11 @@ class getPanelScoreExplanation_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getPanelScoreExplanation_result)
 getPanelScoreExplanation_result.thrift_spec = (
-    (0, TType.LIST, 'success', (TType.STRUCT, [ObjectiveSatisfaction, None], False), None, ),  # 0
+    (0, TType.LIST, 'success', (TType.STRUCT, [ObjectiveSatisfaction, None], False), None,),  # 0
 )
 
 
@@ -3970,14 +4072,14 @@ class getObjectiveScoreExplanation_args(object):
 
     """
 
-
-    def __init__(self, problem=None, arch=None, objective=None,):
+    def __init__(self, problem=None, arch=None, objective=None, ):
         self.problem = problem
         self.arch = arch
         self.objective = objective
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -3987,7 +4089,8 @@ class getObjectiveScoreExplanation_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
@@ -3998,7 +4101,8 @@ class getObjectiveScoreExplanation_args(object):
                     iprot.skip(ftype)
             elif fid == 3:
                 if ftype == TType.STRING:
-                    self.objective = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.objective = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                               0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             else:
@@ -4039,12 +4143,14 @@ class getObjectiveScoreExplanation_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getObjectiveScoreExplanation_args)
 getObjectiveScoreExplanation_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
-    (2, TType.STRUCT, 'arch', [BinaryInputArchitecture, None], None, ),  # 2
-    (3, TType.STRING, 'objective', 'UTF8', None, ),  # 3
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
+    (2, TType.STRUCT, 'arch', [BinaryInputArchitecture, None], None,),  # 2
+    (3, TType.STRING, 'objective', 'UTF8', None,),  # 3
 )
 
 
@@ -4055,12 +4161,12 @@ class getObjectiveScoreExplanation_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -4112,17 +4218,19 @@ class getObjectiveScoreExplanation_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getObjectiveScoreExplanation_result)
 getObjectiveScoreExplanation_result.thrift_spec = (
-    (0, TType.LIST, 'success', (TType.STRUCT, [ObjectiveSatisfaction, None], False), None, ),  # 0
+    (0, TType.LIST, 'success', (TType.STRUCT, [ObjectiveSatisfaction, None], False), None,),  # 0
 )
 
 
 class isGABinaryInputRunning_args(object):
 
-
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -4156,6 +4264,8 @@ class isGABinaryInputRunning_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(isGABinaryInputRunning_args)
 isGABinaryInputRunning_args.thrift_spec = (
 )
@@ -4168,12 +4278,12 @@ class isGABinaryInputRunning_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -4216,9 +4326,11 @@ class isGABinaryInputRunning_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(isGABinaryInputRunning_result)
 isGABinaryInputRunning_result.thrift_spec = (
-    (0, TType.BOOL, 'success', None, None, ),  # 0
+    (0, TType.BOOL, 'success', None, None,),  # 0
 )
 
 
@@ -4231,14 +4343,14 @@ class startGABinaryInput_args(object):
 
     """
 
-
-    def __init__(self, problem=None, dataset=None, username=None,):
+    def __init__(self, problem=None, dataset=None, username=None, ):
         self.problem = problem
         self.dataset = dataset
         self.username = username
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -4248,7 +4360,8 @@ class startGABinaryInput_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
@@ -4264,7 +4377,8 @@ class startGABinaryInput_args(object):
                     iprot.skip(ftype)
             elif fid == 3:
                 if ftype == TType.STRING:
-                    self.username = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.username = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                              0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             else:
@@ -4308,12 +4422,14 @@ class startGABinaryInput_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(startGABinaryInput_args)
 startGABinaryInput_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
-    (2, TType.LIST, 'dataset', (TType.STRUCT, [BinaryInputArchitecture, None], False), None, ),  # 2
-    (3, TType.STRING, 'username', 'UTF8', None, ),  # 3
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
+    (2, TType.LIST, 'dataset', (TType.STRUCT, [BinaryInputArchitecture, None], False), None,),  # 2
+    (3, TType.STRING, 'username', 'UTF8', None,),  # 3
 )
 
 
@@ -4324,12 +4440,12 @@ class startGABinaryInput_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -4372,9 +4488,11 @@ class startGABinaryInput_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(startGABinaryInput_result)
 startGABinaryInput_result.thrift_spec = (
-    (0, TType.I32, 'success', None, None, ),  # 0
+    (0, TType.I32, 'success', None, None,),  # 0
 )
 
 
@@ -4385,12 +4503,12 @@ class stopGABinaryInput_args(object):
 
     """
 
-
-    def __init__(self, username=None,):
+    def __init__(self, username=None, ):
         self.username = username
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -4400,7 +4518,8 @@ class stopGABinaryInput_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.username = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.username = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                              0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             else:
@@ -4433,10 +4552,12 @@ class stopGABinaryInput_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(stopGABinaryInput_args)
 stopGABinaryInput_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'username', 'UTF8', None, ),  # 1
+    (1, TType.STRING, 'username', 'UTF8', None,),  # 1
 )
 
 
@@ -4447,12 +4568,12 @@ class stopGABinaryInput_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -4495,9 +4616,11 @@ class stopGABinaryInput_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(stopGABinaryInput_result)
 stopGABinaryInput_result.thrift_spec = (
-    (0, TType.I32, 'success', None, None, ),  # 0
+    (0, TType.I32, 'success', None, None,),  # 0
 )
 
 
@@ -4509,13 +4632,13 @@ class getArchScienceInformationBinaryInput_args(object):
 
     """
 
-
-    def __init__(self, problem=None, arch=None,):
+    def __init__(self, problem=None, arch=None, ):
         self.problem = problem
         self.arch = arch
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -4525,7 +4648,8 @@ class getArchScienceInformationBinaryInput_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
@@ -4568,11 +4692,13 @@ class getArchScienceInformationBinaryInput_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getArchScienceInformationBinaryInput_args)
 getArchScienceInformationBinaryInput_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
-    (2, TType.STRUCT, 'arch', [BinaryInputArchitecture, None], None, ),  # 2
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
+    (2, TType.STRUCT, 'arch', [BinaryInputArchitecture, None], None,),  # 2
 )
 
 
@@ -4583,12 +4709,12 @@ class getArchScienceInformationBinaryInput_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -4640,9 +4766,11 @@ class getArchScienceInformationBinaryInput_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getArchScienceInformationBinaryInput_result)
 getArchScienceInformationBinaryInput_result.thrift_spec = (
-    (0, TType.LIST, 'success', (TType.STRUCT, [SubscoreInformation, None], False), None, ),  # 0
+    (0, TType.LIST, 'success', (TType.STRUCT, [SubscoreInformation, None], False), None,),  # 0
 )
 
 
@@ -4654,13 +4782,13 @@ class getArchCostInformationBinaryInput_args(object):
 
     """
 
-
-    def __init__(self, problem=None, arch=None,):
+    def __init__(self, problem=None, arch=None, ):
         self.problem = problem
         self.arch = arch
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -4670,7 +4798,8 @@ class getArchCostInformationBinaryInput_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
@@ -4713,11 +4842,13 @@ class getArchCostInformationBinaryInput_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getArchCostInformationBinaryInput_args)
 getArchCostInformationBinaryInput_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
-    (2, TType.STRUCT, 'arch', [BinaryInputArchitecture, None], None, ),  # 2
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
+    (2, TType.STRUCT, 'arch', [BinaryInputArchitecture, None], None,),  # 2
 )
 
 
@@ -4728,12 +4859,12 @@ class getArchCostInformationBinaryInput_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -4785,9 +4916,11 @@ class getArchCostInformationBinaryInput_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getArchCostInformationBinaryInput_result)
 getArchCostInformationBinaryInput_result.thrift_spec = (
-    (0, TType.LIST, 'success', (TType.STRUCT, [MissionCostInformation, None], False), None, ),  # 0
+    (0, TType.LIST, 'success', (TType.STRUCT, [MissionCostInformation, None], False), None,),  # 0
 )
 
 
@@ -4800,14 +4933,14 @@ class getSubscoreDetailsBinaryInput_args(object):
 
     """
 
-
-    def __init__(self, problem=None, arch=None, subobj=None,):
+    def __init__(self, problem=None, arch=None, subobj=None, ):
         self.problem = problem
         self.arch = arch
         self.subobj = subobj
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -4817,7 +4950,8 @@ class getSubscoreDetailsBinaryInput_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
@@ -4869,12 +5003,14 @@ class getSubscoreDetailsBinaryInput_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getSubscoreDetailsBinaryInput_args)
 getSubscoreDetailsBinaryInput_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
-    (2, TType.STRUCT, 'arch', [BinaryInputArchitecture, None], None, ),  # 2
-    (3, TType.STRING, 'subobj', 'UTF8', None, ),  # 3
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
+    (2, TType.STRUCT, 'arch', [BinaryInputArchitecture, None], None,),  # 2
+    (3, TType.STRING, 'subobj', 'UTF8', None,),  # 3
 )
 
 
@@ -4885,12 +5021,12 @@ class getSubscoreDetailsBinaryInput_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -4934,17 +5070,19 @@ class getSubscoreDetailsBinaryInput_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getSubscoreDetailsBinaryInput_result)
 getSubscoreDetailsBinaryInput_result.thrift_spec = (
-    (0, TType.STRUCT, 'success', [SubobjectiveDetails, None], None, ),  # 0
+    (0, TType.STRUCT, 'success', [SubobjectiveDetails, None], None,),  # 0
 )
 
 
 class isGADiscreteInputRunning_args(object):
 
-
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -4978,6 +5116,8 @@ class isGADiscreteInputRunning_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(isGADiscreteInputRunning_args)
 isGADiscreteInputRunning_args.thrift_spec = (
 )
@@ -4990,12 +5130,12 @@ class isGADiscreteInputRunning_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -5038,9 +5178,11 @@ class isGADiscreteInputRunning_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(isGADiscreteInputRunning_result)
 isGADiscreteInputRunning_result.thrift_spec = (
-    (0, TType.BOOL, 'success', None, None, ),  # 0
+    (0, TType.BOOL, 'success', None, None,),  # 0
 )
 
 
@@ -5053,14 +5195,14 @@ class startGADiscreteInput_args(object):
 
     """
 
-
-    def __init__(self, problem=None, dataset=None, username=None,):
+    def __init__(self, problem=None, dataset=None, username=None, ):
         self.problem = problem
         self.dataset = dataset
         self.username = username
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -5070,7 +5212,8 @@ class startGADiscreteInput_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
@@ -5086,7 +5229,8 @@ class startGADiscreteInput_args(object):
                     iprot.skip(ftype)
             elif fid == 3:
                 if ftype == TType.STRING:
-                    self.username = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.username = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                              0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             else:
@@ -5130,12 +5274,14 @@ class startGADiscreteInput_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(startGADiscreteInput_args)
 startGADiscreteInput_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
-    (2, TType.LIST, 'dataset', (TType.STRUCT, [DiscreteInputArchitecture, None], False), None, ),  # 2
-    (3, TType.STRING, 'username', 'UTF8', None, ),  # 3
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
+    (2, TType.LIST, 'dataset', (TType.STRUCT, [DiscreteInputArchitecture, None], False), None,),  # 2
+    (3, TType.STRING, 'username', 'UTF8', None,),  # 3
 )
 
 
@@ -5146,12 +5292,12 @@ class startGADiscreteInput_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -5194,9 +5340,11 @@ class startGADiscreteInput_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(startGADiscreteInput_result)
 startGADiscreteInput_result.thrift_spec = (
-    (0, TType.I32, 'success', None, None, ),  # 0
+    (0, TType.I32, 'success', None, None,),  # 0
 )
 
 
@@ -5207,12 +5355,12 @@ class stopGADiscreteInput_args(object):
 
     """
 
-
-    def __init__(self, username=None,):
+    def __init__(self, username=None, ):
         self.username = username
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -5222,7 +5370,8 @@ class stopGADiscreteInput_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.username = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.username = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                              0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             else:
@@ -5255,10 +5404,12 @@ class stopGADiscreteInput_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(stopGADiscreteInput_args)
 stopGADiscreteInput_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'username', 'UTF8', None, ),  # 1
+    (1, TType.STRING, 'username', 'UTF8', None,),  # 1
 )
 
 
@@ -5269,12 +5420,12 @@ class stopGADiscreteInput_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -5317,9 +5468,11 @@ class stopGADiscreteInput_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(stopGADiscreteInput_result)
 stopGADiscreteInput_result.thrift_spec = (
-    (0, TType.I32, 'success', None, None, ),  # 0
+    (0, TType.I32, 'success', None, None,),  # 0
 )
 
 
@@ -5331,13 +5484,13 @@ class getArchScienceInformationDiscreteInput_args(object):
 
     """
 
-
-    def __init__(self, problem=None, arch=None,):
+    def __init__(self, problem=None, arch=None, ):
         self.problem = problem
         self.arch = arch
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -5347,7 +5500,8 @@ class getArchScienceInformationDiscreteInput_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
@@ -5390,11 +5544,13 @@ class getArchScienceInformationDiscreteInput_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getArchScienceInformationDiscreteInput_args)
 getArchScienceInformationDiscreteInput_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
-    (2, TType.STRUCT, 'arch', [DiscreteInputArchitecture, None], None, ),  # 2
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
+    (2, TType.STRUCT, 'arch', [DiscreteInputArchitecture, None], None,),  # 2
 )
 
 
@@ -5405,12 +5561,12 @@ class getArchScienceInformationDiscreteInput_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -5462,9 +5618,11 @@ class getArchScienceInformationDiscreteInput_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getArchScienceInformationDiscreteInput_result)
 getArchScienceInformationDiscreteInput_result.thrift_spec = (
-    (0, TType.LIST, 'success', (TType.STRUCT, [SubscoreInformation, None], False), None, ),  # 0
+    (0, TType.LIST, 'success', (TType.STRUCT, [SubscoreInformation, None], False), None,),  # 0
 )
 
 
@@ -5476,13 +5634,13 @@ class getArchCostInformationDiscreteInput_args(object):
 
     """
 
-
-    def __init__(self, problem=None, arch=None,):
+    def __init__(self, problem=None, arch=None, ):
         self.problem = problem
         self.arch = arch
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -5492,7 +5650,8 @@ class getArchCostInformationDiscreteInput_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
@@ -5535,11 +5694,13 @@ class getArchCostInformationDiscreteInput_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getArchCostInformationDiscreteInput_args)
 getArchCostInformationDiscreteInput_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
-    (2, TType.STRUCT, 'arch', [DiscreteInputArchitecture, None], None, ),  # 2
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
+    (2, TType.STRUCT, 'arch', [DiscreteInputArchitecture, None], None,),  # 2
 )
 
 
@@ -5550,12 +5711,12 @@ class getArchCostInformationDiscreteInput_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -5607,9 +5768,11 @@ class getArchCostInformationDiscreteInput_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getArchCostInformationDiscreteInput_result)
 getArchCostInformationDiscreteInput_result.thrift_spec = (
-    (0, TType.LIST, 'success', (TType.STRUCT, [MissionCostInformation, None], False), None, ),  # 0
+    (0, TType.LIST, 'success', (TType.STRUCT, [MissionCostInformation, None], False), None,),  # 0
 )
 
 
@@ -5622,14 +5785,14 @@ class getSubscoreDetailsDiscreteInput_args(object):
 
     """
 
-
-    def __init__(self, problem=None, arch=None, subobj=None,):
+    def __init__(self, problem=None, arch=None, subobj=None, ):
         self.problem = problem
         self.arch = arch
         self.subobj = subobj
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -5639,7 +5802,8 @@ class getSubscoreDetailsDiscreteInput_args(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.problem = iprot.readString().decode('utf-8') if sys.version_info[
+                                                                             0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
@@ -5691,12 +5855,14 @@ class getSubscoreDetailsDiscreteInput_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getSubscoreDetailsDiscreteInput_args)
 getSubscoreDetailsDiscreteInput_args.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'problem', 'UTF8', None, ),  # 1
-    (2, TType.STRUCT, 'arch', [DiscreteInputArchitecture, None], None, ),  # 2
-    (3, TType.STRING, 'subobj', 'UTF8', None, ),  # 3
+    (1, TType.STRING, 'problem', 'UTF8', None,),  # 1
+    (2, TType.STRUCT, 'arch', [DiscreteInputArchitecture, None], None,),  # 2
+    (3, TType.STRING, 'subobj', 'UTF8', None,),  # 3
 )
 
 
@@ -5707,12 +5873,12 @@ class getSubscoreDetailsDiscreteInput_result(object):
 
     """
 
-
-    def __init__(self, success=None,):
+    def __init__(self, success=None, ):
         self.success = success
 
     def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+        if iprot._fast_decode is not None and isinstance(iprot.trans,
+                                                         TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
             return
         iprot.readStructBegin()
@@ -5756,10 +5922,11 @@ class getSubscoreDetailsDiscreteInput_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
 all_structs.append(getSubscoreDetailsDiscreteInput_result)
 getSubscoreDetailsDiscreteInput_result.thrift_spec = (
-    (0, TType.STRUCT, 'success', [SubobjectiveDetails, None], None, ),  # 0
+    (0, TType.STRUCT, 'success', [SubobjectiveDetails, None], None,),  # 0
 )
 fix_spec(all_structs)
 del all_structs
-

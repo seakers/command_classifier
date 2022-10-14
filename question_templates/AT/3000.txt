@@ -5,11 +5,18 @@ anomaly anomaly
 001
 --
 What are the procedures for anomaly ${anomaly}
+What are the procedures of anomaly ${anomaly}
 What is the procedure for ${anomaly}
+What is the procedure of ${anomaly}
 Are there any procedures for anomaly ${anomaly}
+Are there any procedures of anomaly ${anomaly}
 Are there any procedures for ${anomaly}
+Are there any procedures of ${anomaly}
 Provide anomaly ${anomaly} procedures
 Show me the procedure to solve ${anomaly}
+Show me the procedure to solve anomaly ${anomaly}
 Procedure ${anomaly}
 Anomaly ${anomaly} procedure
 Give me the procedure for ${anomaly}
+What procedures will fix ${anomaly}
+How do I resolve ${anomaly}

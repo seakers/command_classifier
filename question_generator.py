@@ -329,6 +329,7 @@ if __name__ == '__main__':
                         params[param] = substitutions[param_type](data_sources)
 
                     # Generate a question
+                    print(params)
                     template = random.choice(template_lines)
                     question = template.substitute(params)
 
