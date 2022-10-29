@@ -3,7 +3,7 @@
 --
 0001
 --
-What are the space system cost drivers
-spacecraft subsystem cost drivers
-Thermal subsystem cost drivers
-propulsion system cost drivers
+what is the first phase of lifecycle cost
+what is the research, development, test, and evaluation phase
+where are brassboard costs found
+what lifecycle cost phase are qualification units included in

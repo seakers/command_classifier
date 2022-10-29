@@ -3,6 +3,5 @@
 --
 00001
 --
-what does slew rate mean
-what is slew rate
-what is satellite slew rate
+what are the main phases of lifecycle cost
+how many phases are there in lifecycle cost

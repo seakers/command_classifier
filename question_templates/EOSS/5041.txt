@@ -3,6 +3,6 @@
 --
 00001
 --
-what does TRL mean
-what is TRL
-what is TRL used for
+what is a qualification unit
+what are qualification units used for
+what does qualification unit mean

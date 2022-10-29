@@ -3,8 +3,5 @@
 --
 0001
 --
-What are the space system cost drivers
-spacecraft subsystem cost drivers
-Payload cost drivers
-Bus cost drivers
-ADCS cost drivers
+what is lifecycle cost
+what are the main phases of lifecycle cost

@@ -7,3 +7,4 @@ at what wavelengths do radar systems operate
 in which spectrum do radars operate
 what is the spectrum region for radar systems
 different remote sensor types
+what are the different payload types

@@ -3,5 +3,4 @@
 --
 0001
 --
-Give an overview of lifecycle cost
-How to estimate lifecycle cost
+Space mission life cycle cost learning module
