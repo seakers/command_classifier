@@ -4,4 +4,4 @@ pandas~=1.4.1
 psycopg2-binary~=2.9.3 
 SQLAlchemy~=1.4.32
 transformers~=4.17.0
-torch==1.11.0+cu113
+torch==1.13.1
